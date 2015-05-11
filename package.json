@@ -1,0 +1,28 @@
+{
+  "name": "sculpture-emulator-client",
+  "version": "1.0.0",
+  "description": "The emulator client for the anyWare sculpture",
+  "main": " ",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anyWareSculpture/sculpture-emulator-client"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anyWareSculpture/sculpture-emulator-client/issues"
+  },
+  "devDependencies": {
+    "gulp-bower-files": "~0.2.7",
+    "gulp": "~3.8.11",
+    "gulp-iife": "0.0.6",
+    "gulp-add-src": "~0.2.0",
+    "gulp-concat": "~2.5.2"
+  }
+}
