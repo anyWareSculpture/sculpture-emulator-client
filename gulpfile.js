@@ -17,7 +17,7 @@ var eslint = require('gulp-eslint');
 var gulpUtils = require('./lib/shared/gulp-utils');
 
 gulp.task('default', function(callback) {
-  return runSequence('clean', 'lint', 'test', 'css', 'build', callback);
+  return runSequence('clean', 'lint', 'test', 'css', 'templates', 'build', callback);
 });
 
 gulp.task('build', function build(callback) {
@@ -47,6 +47,11 @@ gulp.task('build-app', function buildApp() {
 gulp.task('build-index', function buildIndex() {
   return gulp.src('index.html')
     .pipe(gulp.dest(gulpUtils.getDistPath()));
+});
+
+gulp.task('templates', function templates() {
+  return gulp.src('templates/**/*.html')
+    .pipe(gulp.dest(gulpUtils.getDistPath('templates')));
 });
 
 gulp.task('css', function buildCSS() {
