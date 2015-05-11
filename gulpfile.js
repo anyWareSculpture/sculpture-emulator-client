@@ -20,11 +20,29 @@ gulp.task('default', function(callback) {
   return runSequence('clean', 'lint', 'test', 'css', 'templates', 'build', callback);
 });
 
+gulp.task('watch', ['watchJS', 'watchTemplates', 'watchCSS']);
+
+gulp.task('watchJS', function() {
+  gulp.watch(['src/**/*.js', 'bower_components/**/*.js', 'index.html'], ['lint', 'build']);
+});
+
+gulp.task('watchTests', function watchTests() {
+  gulp.watch(['src/**/*.js', 'test/**/*.js'], ['lint', 'test']);
+});
+
+gulp.task('watchTemplates', function() {
+  gulp.watch(['templates/**/*.html'], ['templates']);
+});
+
+gulp.task('watchCSS', function() {
+  gulp.watch(['styles/**/*.scss'], ['css']);
+});
+
 gulp.task('build', function build(callback) {
   return runSequence('build-dependencies', 'build-app', 'build-index', callback);
 });
 
-gulp.task('build-dependencies', function buildDependencies() {
+gulp.task('build-app', function buildDependencies() {
   return gulp.src(['src/**/*.js'])
     .pipe(sourcemaps.init())
     .pipe(iife({useStrict: false}))
@@ -35,7 +53,7 @@ gulp.task('build-dependencies', function buildDependencies() {
     .pipe(gulp.dest(gulpUtils.getDistPath()));
 });
 
-gulp.task('build-app', function buildApp() {
+gulp.task('build-dependencies', function buildApp() {
   return gulp.src(bowerFiles.ext('js').files)
     .pipe(sourcemaps.init())
     .pipe(concat('dependencies.js'))
