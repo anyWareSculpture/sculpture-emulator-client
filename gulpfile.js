@@ -11,6 +11,8 @@ var bowerFiles = require('bower-files')();
 var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
+var mocha = require('gulp-spawn-mocha');
+var eslint = require('gulp-eslint');
 
 var gulpUtils = require('./lib/shared/gulp-utils');
 
@@ -58,9 +60,16 @@ gulp.task('clean', function clean(callback) {
 });
 
 gulp.task('lint', function lint() {
-  // stub
+  return gulp.src(["src/**/*.js", "test/**/*.js"])
+    .pipe(eslint('lib/shared/.eslintrc'))
+    .pipe(eslint.format())
+    .pipe(eslint.failOnError());
 });
 
 gulp.task('test', function test() {
-  // stub
+  return gulp.src('test/**/*-test.js', {read: false})
+    .pipe(mocha({
+      reporter: 'nyan',
+      compilers: 'js:babel/register'
+    }));
 });
