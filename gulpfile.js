@@ -74,7 +74,7 @@ gulp.task('lint', function lint() {
 gulp.task('test', function test() {
   return gulp.src('test/**/*-test.js', {read: false})
     .pipe(mocha({
-      reporter: process.env.TRAVIS ? 'list' : 'nyan',
+      reporter: process.env.TRAVIS ? 'spec' : 'nyan',
       compilers: 'js:babel/register'
     }));
 });
