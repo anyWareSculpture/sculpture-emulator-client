@@ -40,3 +40,11 @@ gulp.task('build', function build(callback) {
 gulp.task('clean', function clean(callback) {
   gulpUtils.removeDistFiles(callback);
 });
+
+gulp.task('lint', function lint() {
+  // stub
+});
+
+gulp.task('test', function test() {
+  // stub
+});
