@@ -19,11 +19,10 @@ gulp.task('default', function(callback) {
 });
 
 gulp.task('build', function build(callback) {
-  return runSequence('build-dependencies', 'build-app', callback);
+  return runSequence('build-dependencies', 'build-app', 'build-index', callback);
 });
 
-gulp.task('build-dependencies', buildDependencies);
-function buildDependencies() {
+gulp.task('build-dependencies', function buildDependencies() {
   return gulp.src(['src/**/*.js'])
     .pipe(sourcemaps.init())
     .pipe(iife({useStrict: false}))
@@ -32,24 +31,27 @@ function buildDependencies() {
     .pipe(uglify())
     .pipe(sourcemaps.write("sourcemaps"))
     .pipe(gulp.dest(gulpUtils.getDistPath()));
-}
+});
 
-gulp.task('build-app', buildApp);
-function buildApp() {
+gulp.task('build-app', function buildApp() {
   return gulp.src(bowerFiles.ext('js').files)
     .pipe(sourcemaps.init())
     .pipe(concat('dependencies.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write("sourcemaps"))
     .pipe(gulp.dest(gulpUtils.getDistPath()));
-}
+});
 
-gulp.task('css', buildCSS);
-function buildCSS() {
+gulp.task('build-index', function buildIndex() {
+  return gulp.src('index.html')
+    .pipe(gulp.dest(gulpUtils.getDistPath()));
+});
+
+gulp.task('css', function buildCSS() {
   return gulp.src('styles/app.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(gulpUtils.getDistPath('css')));
-}
+});
 
 gulp.task('clean', function clean(callback) {
   gulpUtils.removeDistFiles(callback);
