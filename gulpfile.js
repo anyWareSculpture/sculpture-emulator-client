@@ -18,7 +18,6 @@ gulp.task('default', function(callback) {
 });
 
 gulp.task('build', function build(callback) {
-  console.log(bowerFiles.ext('js').files);
   return es.merge(
     gulp.src(['src/**/*.js'])
       .pipe(sourcemaps.init())
