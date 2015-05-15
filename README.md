@@ -14,6 +14,9 @@ Install Node.js and npm. Then run the following to install dependencies:
     $ npm install
     $ npm install -g bower
     $ bower install
+    $ cd lib/shared/gulp-utils
+    $ npm install
+    $ cd ../../..
 
 Install gulp:
 
