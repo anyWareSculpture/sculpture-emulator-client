@@ -1,6 +1,9 @@
 var es = require('event-stream');
 
 var gulp = require('gulp');
+var browserify = require('browserify');
+var babelify = require("babelify");
+var through = require('through2');
 
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
@@ -8,7 +11,6 @@ var addsrc = require('gulp-add-src');
 var iife = require("gulp-iife");
 var runSequence = require('run-sequence');
 var bowerFiles = require('bower-files')();
-var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 var mocha = require('gulp-spawn-mocha');
@@ -43,11 +45,22 @@ gulp.task('build', function build(callback) {
 });
 
 gulp.task('build-app', function buildDependencies() {
+  var browserified = through.obj(function (file, enc, next){
+    browserify(file.path, {
+      debug: true
+    }).transform(babelify).bundle(function(err, res){
+      // assumes file.contents is a Buffer
+      debugger;
+      file.contents = res;
+      next(null, file);
+    });
+  });
+
   return gulp.src(['src/**/*.js'])
     .pipe(sourcemaps.init())
     .pipe(iife({useStrict: false}))
+    .pipe(browserified)
     .pipe(concat('app.js'))
-    .pipe(babel())
     .pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(gulpUtils.getDistPath()));

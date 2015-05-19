@@ -19,19 +19,21 @@
     "url": "https://github.com/anyWareSculpture/sculpture-emulator-client/issues"
   },
   "devDependencies": {
+    "babel": "~5.2.17",
+    "babelify": "^6.1.1",
+    "bower-files": "~3.7.0",
+    "browserify": "^10.2.0",
+    "event-stream": "~3.3.1",
     "gulp": "~3.8.11",
-    "gulp-iife": "0.0.6",
     "gulp-add-src": "~0.2.0",
     "gulp-concat": "~2.5.2",
-    "run-sequence": "~1.1.0",
-    "bower-files": "~3.7.0",
-    "gulp-sourcemaps": "~1.5.2",
-    "gulp-babel": "~5.1.0",
-    "event-stream": "~3.3.1",
-    "gulp-uglify": "~1.2.0",
-    "gulp-sass": "~2.0.0",
-    "gulp-spawn-mocha": "~2.0.1",
     "gulp-eslint": "~0.12.0",
-    "babel": "~5.2.17"
+    "gulp-iife": "0.0.6",
+    "gulp-sass": "~2.0.0",
+    "gulp-sourcemaps": "~1.5.2",
+    "gulp-spawn-mocha": "~2.0.1",
+    "gulp-uglify": "~1.2.0",
+    "run-sequence": "~1.1.0",
+    "through2": "^0.6.5"
   }
 }
