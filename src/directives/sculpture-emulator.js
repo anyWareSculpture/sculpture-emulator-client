@@ -1,4 +1,4 @@
-let module = angular.module('sculpture-emulator', [ 'ngMaterial' ]);
+let module = angular.module('sculpture-emulator', ['ngMaterial']);
 
 module.directive("sculptureEmulator", () => {
   return {

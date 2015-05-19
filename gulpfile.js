@@ -49,7 +49,7 @@ gulp.task('build-app', function buildDependencies() {
     .pipe(concat('app.js'))
     .pipe(babel())
     .pipe(uglify())
-    .pipe(sourcemaps.write("sourcemaps"))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(gulpUtils.getDistPath()));
 });
 
@@ -58,7 +58,7 @@ gulp.task('build-dependencies', function buildApp() {
     .pipe(sourcemaps.init())
     .pipe(concat('dependencies.js'))
     .pipe(uglify())
-    .pipe(sourcemaps.write("sourcemaps"))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(gulpUtils.getDistPath()));
 });
 
@@ -74,7 +74,9 @@ gulp.task('templates', function templates() {
 
 gulp.task('css', function buildCSS() {
   return gulp.src('styles/app.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(gulpUtils.getDistPath('css')));
 });
 
