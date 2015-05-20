@@ -1,4 +1,7 @@
-let module = angular.module('sculpture-emulator', ['ngMaterial']);
+const module = angular.module('sculpture-emulator', ['ngMaterial']);
+
+const StreamingClient = require('shared/streaming-client');
+window.StreamingClient = StreamingClient;
 
 module.directive("sculptureEmulator", () => {
   return {
