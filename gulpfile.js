@@ -47,10 +47,13 @@ gulp.task('build', function build(callback) {
 gulp.task('build-app', function buildDependencies() {
   var browserified = through.obj(function (file, enc, next){
     browserify(file.path, {
-      debug: true
+      debug: true,
+      paths: ['./lib']
     }).transform(babelify).bundle(function(err, res){
       // assumes file.contents is a Buffer
-      debugger;
+      if (err) {
+        throw new Error(err);
+      }
       file.contents = res;
       next(null, file);
     });
