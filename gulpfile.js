@@ -25,7 +25,9 @@ gulp.task('default', function(callback) {
 gulp.task('watch', ['watchJS', 'watchTemplates', 'watchCSS']);
 
 gulp.task('watchJS', function() {
-  gulp.watch(['src/**/*.js', 'bower_components/**/*.js', 'index.html'], ['lint', 'build']);
+  gulp.watch(['src/**/*.js'], ['lint']);
+  gulp.watch(['bower_components/**/*.js', 'index.html'], ['build']);
+  gulp.watch(['src/**/*.js'], ['build-app']);
 });
 
 gulp.task('watchTests', function watchTests() {
@@ -60,9 +62,9 @@ gulp.task('build-app', function buildDependencies() {
   });
 
   return gulp.src(['src/**/*.js'])
-    .pipe(sourcemaps.init())
-    .pipe(iife({useStrict: false}))
     .pipe(browserified)
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(iife({useStrict: false}))
     .pipe(concat('app.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write())
