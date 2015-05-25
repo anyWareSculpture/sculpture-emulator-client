@@ -16,7 +16,7 @@ var sass = require('gulp-sass');
 var mocha = require('gulp-spawn-mocha');
 var eslint = require('gulp-eslint');
 
-var gulpUtils = require('./lib/shared/gulp-utils');
+var gulpUtils = require('@anyware/gulp-utils');
 
 gulp.task('default', function(callback) {
   return runSequence('clean', 'lint', 'test', 'css', 'templates', 'build', callback);
@@ -50,7 +50,6 @@ gulp.task('build-app', function buildDependencies() {
   var browserified = through.obj(function (file, enc, next){
     browserify(file.path, {
       debug: true,
-      paths: ['./lib']
     }).transform(babelify).bundle(function(err, res){
       // assumes file.contents is a Buffer
       if (err) {
@@ -104,7 +103,7 @@ gulp.task('clean', function clean(callback) {
 
 gulp.task('lint', function lint() {
   return gulp.src(["src/**/*.js", "test/**/*.js"])
-    .pipe(eslint('lib/shared/.eslintrc'))
+    .pipe(eslint('node_modules/@anyware/coding-style/.eslintrc'))
     .pipe(eslint.format())
     .pipe(eslint.failOnError());
 });
