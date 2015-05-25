@@ -53,7 +53,7 @@ gulp.task('build-app', function buildDependencies() {
     }).transform(babelify).bundle(function(err, res){
       // assumes file.contents is a Buffer
       if (err) {
-        throw new Error(err);
+        throw err;
       }
       file.contents = res;
       next(null, file);
