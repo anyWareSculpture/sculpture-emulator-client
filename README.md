@@ -5,24 +5,17 @@ Responsible for communicating with the streaming server and managing state in a 
 
 ## Project Setup
 
-Clone this repository:
-
-    $ git clone --recursive https://github.com/anyWareSculpture/sculpture-emulator-client
-
 Install Node.js and npm. Then run the following to install dependencies:
 
     $ npm install
     $ npm install -g bower
     $ bower install
-    $ cd lib/shared/gulp-utils
-    $ npm install
-    $ cd ../../..
 
 Install gulp:
 
     $ npm install -g gulp
 
-To build (lint, run tests, compile css, copy templates, etc., transpile)
+To build (lint, run tests, compile css, copy templates, transpile, etc.)
 run gulp:
 
     $ gulp
@@ -43,3 +36,15 @@ Run any server from the `dist/` directory to see the app:
     sudo python -m SimpleHTTPServer 80
 
 You may have to leave the directory and enter it again and then call the above command if you run `gulp` or `gulp clean` since those commands delete the `dist/` directory.
+
+While developing, instead of running all the individual build commands over and over again you can use `watch` commands.
+
+    $ gulp watch
+
+Will watch everything but tests and then rebuild automatically whenever a file changes.
+
+    $ gulpTests
+
+Will watch source files and tests only for when you're doing test development. It will lint and test the files.
+
+Look through [gulpfile.js](gulpfile.js) to see all the commands that are available.
