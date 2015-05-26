@@ -22,6 +22,12 @@ gulp.task('default', function(callback) {
   return runSequence('clean', 'lint', 'test', 'css', 'templates', 'build', callback);
 });
 
+/* This task will only work from a Travis like CI environment */
+gulp.task('submit-coverage', function submitCoverage() {
+  return gulp.src('coverage/lcov.info')
+    .pipe(codecov());
+});
+
 gulp.task('watch', ['watchJS', 'watchTemplates', 'watchCSS']);
 
 gulp.task('watchJS', function() {

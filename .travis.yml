@@ -1,10 +1,8 @@
 language: node_js
 node_js:
-  - "0.10"
+  - "0.12"
 before_script:
   - npm install -g gulp
   - npm install -g bower
   - bower install
-  - cd lib/shared/gulp-utils && npm install && cd ../../..
-  - cd lib/shared/streaming-client && npm install && cd ../../..
-script: gulp
+script: gulp && gulp submit-coverage
