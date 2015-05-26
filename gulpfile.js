@@ -15,6 +15,7 @@ var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 var mocha = require('gulp-spawn-mocha');
 var eslint = require('gulp-eslint');
+var codecov = require('gulp-codecov.io');
 
 var gulpUtils = require('@anyware/gulp-utils');
 
