@@ -2,3 +2,30 @@
 // Use @import to import sass partials in the correct order.
 
 @import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap";
+
+
+nav.top-nav {
+	@extend .navbar;
+	@extend .navbar-inverse; 
+	@extend .navbar-fixed-top;
+}
+
+.main-content {
+	@extend .container; 
+	@extend .theme-showcase;
+	padding-top: 65px;
+}
+
+.form-login {
+	max-width: 400px;
+	input[type="username"] {
+		margin-bottom: -1px;
+		border-bottom-right-radius: 0px;
+		border-bottom-left-radius: 0px;
+	}
+	input[type="password"] {
+		margin-bottom: 10px;
+		border-top-left-radius: 0px;
+		border-top-right-radius: 0px;
+	}
+}

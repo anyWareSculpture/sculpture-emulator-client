@@ -1,4 +1,4 @@
-const module = angular.module('sculpture-emulator', ['ngMaterial']);
+const module = angular.module('sculpture-emulator', ['ngMaterial', 'login', 'status', 'topnav']);
 
 const StreamingClient = require('shared/streaming-client');
 
@@ -28,6 +28,11 @@ module.directive("sculptureEmulator", () => {
       client.on(StreamingClient.EVENT_ERROR, (error) => {
         console.error(error);
       });
+
+      $scope.loginComplete = () => {
+        $scope.loggedIn = true;
+        $scope.showStatus = true;
+      }
     }]
   };
 });
