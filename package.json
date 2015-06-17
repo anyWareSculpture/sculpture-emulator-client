@@ -35,5 +35,8 @@
     "gulp-uglify": "~1.2.0",
     "run-sequence": "~1.1.0",
     "through2": "^0.6.5"
+  },
+  "dependencies": {
+    "flux": "^2.0.3"
   }
 }
