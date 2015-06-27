@@ -20,7 +20,7 @@ var codecov = require('gulp-codecov.io');
 var gulpUtils = require('@anyware/gulp-utils');
 
 gulp.task('default', function(callback) {
-  return runSequence('clean', 'lint', 'test', 'css', 'templates', 'build', callback);
+  return runSequence('clean', 'lint', 'test', 'css', 'build', callback);
 });
 
 /* This task will only work from a Travis like CI environment */
@@ -29,7 +29,7 @@ gulp.task('submit-coverage', function submitCoverage() {
     .pipe(codecov());
 });
 
-gulp.task('watch', ['watchJS', 'watchTemplates', 'watchCSS']);
+gulp.task('watch', ['watchJS', 'watchCSS']);
 
 gulp.task('watchJS', function() {
   gulp.watch(['src/**/*.js'], ['lint']);
@@ -39,10 +39,6 @@ gulp.task('watchJS', function() {
 
 gulp.task('watchTests', function watchTests() {
   gulp.watch(['src/**/*.js', 'test/**/*.js'], ['lint', 'test']);
-});
-
-gulp.task('watchTemplates', function() {
-  gulp.watch(['templates/**/*.html'], ['templates']);
 });
 
 gulp.task('watchCSS', function() {
@@ -89,11 +85,6 @@ gulp.task('build-dependencies', function buildApp() {
 gulp.task('build-index', function buildIndex() {
   return gulp.src('index.html')
     .pipe(gulp.dest(gulpUtils.getDistPath()));
-});
-
-gulp.task('templates', function templates() {
-  return gulp.src('templates/**/*.html')
-    .pipe(gulp.dest(gulpUtils.getDistPath('templates')));
 });
 
 gulp.task('css', function buildCSS() {

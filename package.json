@@ -40,7 +40,7 @@
     "through2": "^0.6.5"
   },
   "dependencies": {
-    "flux": "^2.0.3"
+    "flux": "^2.0.3",
     "@anyware/streaming-client": "^1.0.0"
   }
 }
