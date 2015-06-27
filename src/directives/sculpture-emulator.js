@@ -1,6 +1,6 @@
 const module = angular.module('sculpture-emulator', ['ngMaterial', 'login', 'status', 'topnav']);
 
-const StreamingClient = require('shared/streaming-client');
+const StreamingClient = require('@anyware/streaming-client');
 
 const CLIENT_CONNECTION_OPTIONS = {
   protocol: "ws",

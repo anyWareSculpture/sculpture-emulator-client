@@ -19,6 +19,8 @@
     "url": "https://github.com/anyWareSculpture/sculpture-emulator-client/issues"
   },
   "devDependencies": {
+    "@anyware/coding-style": "^1.0.2",
+    "@anyware/gulp-utils": "^1.0.1",
     "babel": "~5.2.17",
     "babelify": "^6.1.1",
     "bower-files": "~3.7.0",
@@ -26,6 +28,7 @@
     "event-stream": "~3.3.1",
     "gulp": "~3.8.11",
     "gulp-add-src": "~0.2.0",
+    "gulp-codecov.io": "^0.1.2",
     "gulp-concat": "~2.5.2",
     "gulp-eslint": "~0.12.0",
     "gulp-iife": "0.0.6",
@@ -38,5 +41,6 @@
   },
   "dependencies": {
     "flux": "^2.0.3"
+    "@anyware/streaming-client": "^1.0.0"
   }
 }
