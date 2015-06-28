@@ -1,0 +1,14 @@
+let LightPanel = require('./LightPanel.js');
+
+class MoleGame extends React.Component {
+  render() {
+    let numLights = 10;
+    return <div className="mole-game">
+      <LightPanel numLights={numLights} size="large" />
+      <LightPanel numLights={numLights} size="large" />
+      <LightPanel numLights={numLights} size="large" />
+    </div>;
+  }
+}
+
+module.exports = MoleGame;
