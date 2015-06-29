@@ -54,7 +54,9 @@ gulp.task('build-app', function buildDependencies() {
   var browserified = through.obj(function (file, enc, next){
     browserify(file.path, {
       debug: true,
-    }).transform(babelify).transform(reactify).bundle(function(err, res){
+    }).transform(babelify.configure({
+      stage: 0
+    })).bundle(function(err, res){
       // assumes file.contents is a Buffer
       if (err) {
         throw err;
