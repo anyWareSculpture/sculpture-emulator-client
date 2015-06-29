@@ -1,4 +1,4 @@
-let Light = require('./Light.js');
+let Light = require('./light');
 
 class Handshake extends React.Component {
   render() {

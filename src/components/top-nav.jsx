@@ -1,4 +1,4 @@
-let Login = require('./Login.js');
+let Login = require('./login');
 
 class TopNav extends React.Component {
   render() {
