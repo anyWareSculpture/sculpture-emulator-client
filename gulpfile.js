@@ -53,6 +53,7 @@ gulp.task('build-app', function buildDependencies() {
   var browserified = through.obj(function (file, enc, next){
     browserify(file.path, {
       debug: true,
+      extensions: ['.jsx']
     }).transform(babelify.configure({
       stage: 0
     })).bundle(function(err, res){
