@@ -32,7 +32,6 @@ gulp.task('submit-coverage', function submitCoverage() {
 gulp.task('watch', ['watchJS', 'watchCSS']);
 
 gulp.task('watchJS', function() {
-  gulp.watch(['src/**/*.jsx?'], ['lint']);
   gulp.watch(['bower_components/**/*.js', 'index.html'], ['build']);
   gulp.watch(['src/**/*.jsx?'], ['build-app']);
 });
