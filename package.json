@@ -25,6 +25,8 @@
     "babelify": "^6.1.1",
     "bower-files": "~3.7.0",
     "browserify": "^10.2.0",
+    "eslint": "^0.24.0",
+    "eslint-plugin-react": "^2.6.2",
     "event-stream": "~3.3.1",
     "gulp": "~3.8.11",
     "gulp-add-src": "~0.2.0",
