@@ -1,4 +1,4 @@
-let LightPanel = require('./LightPanel.js');
+let LightPanel = require('./light-panel');
 
 class MoleGame extends React.Component {
   render() {

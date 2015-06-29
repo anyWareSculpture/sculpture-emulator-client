@@ -1,6 +1,3 @@
-// let React = require('../../bower_components/react/react.js');
-// let $ = require('../../bower_components/jquery/dist/jquery.js');
-
 // const StreamingClient = require('@anyware/streaming-client');
 // DOESN'T WORK!! -- this gives the error with index at 1
 
@@ -11,12 +8,11 @@
 //   host: "connect.shiftr.io:1884"
 // };
 
-let TopNav = require('./TopNav.js');
-let Login = require('./Login.js');
-let Handshake = require('./Handshake.js');
-let Status = require('./Status.js');
-let Warning = require('./Warning.js');
-let MoleGame = require('./MoleGame.js');
+let TopNav = require('./top-nav');
+let Handshake = require('./handshake');
+let Status = require('./status');
+let Warning = require('./warning');
+let MoleGame = require('./mole-game');
 
 class SculptureEmulator extends React.Component {
   render() {

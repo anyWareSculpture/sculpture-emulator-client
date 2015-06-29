@@ -1,6 +1,4 @@
-// let React = require('../../bower_components/react/react.js');
-
-let Login = require('./Login.js');
+let Login = require('./login');
 
 class TopNav extends React.Component {
   render() {
