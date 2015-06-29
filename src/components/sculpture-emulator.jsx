@@ -15,6 +15,7 @@ let Warning = require('./warning');
 let MoleGame = require('./mole-game');
 
 class SculptureEmulator extends React.Component {
+  static displayName = 'SculptureEmulator';
   render() {
     let warning, game;
     if (!this.props.isConnected) {
@@ -25,7 +26,7 @@ class SculptureEmulator extends React.Component {
       game = <MoleGame />;
     }
 
-    return <span className="sculpture-emulator">
+    return ( <span className="sculpture-emulator">
         <TopNav isActive={false} isLoggedIn={false} />
         <div className="main-content" role="main">
           <div className="game-content">
@@ -41,7 +42,8 @@ class SculptureEmulator extends React.Component {
             </div>
           </div>
         </div>
-      </span>;
+      </span>
+    );
   }
 }
 

@@ -1,22 +1,31 @@
 let Login = require('./login');
 
 class TopNav extends React.Component {
+  static displayName = 'TopNav';
+  static propTypes = {
+    isLoggedIn: React.PropTypes.bool
+  };
   render() {
-    let loginDropdown = <li className="dropdown">
-                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button">
-                    Login
-                    <span className="caret"></span>
-                  </a>
-                  <div className="dropdown-menu"><Login /></div>
-                </li>;
+    let loginDropdown = (
+      <li className="dropdown">
+        <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button">
+          Login
+          <span className="caret"></span>
+        </a>
+        <div className="dropdown-menu"><Login /></div>
+      </li>
+    );
 
-    let logoutButton = <li className="">
-                  <a href="#" className="" role="button">
-                    Logout
-                  </a>
-                </li>;
+    let logoutButton = (
+      <li className="">
+        <a href="#" className="" role="button">
+          Logout
+        </a>
+      </li>
+      );
 
-    return <nav className="top-nav">
+    return (
+      <nav className="top-nav">
         <div className="container">
           <div className="navbar-header">
             <a className="navbar-brand" href="#">anyWare Sculpture</a>
@@ -27,7 +36,8 @@ class TopNav extends React.Component {
             </ul>
           </div>
         </div>
-      </nav>;
+      </nav>
+    );
   }
 }
 

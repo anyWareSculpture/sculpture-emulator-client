@@ -1,4 +1,8 @@
 class Warning extends React.Component {
+  static displayName = 'Warning';
+  static propTypes = {
+    msg: React.PropTypes.string.isRequired
+  }
   render() {
     let msg;
     if (this.props.msg === "disconnect") {
