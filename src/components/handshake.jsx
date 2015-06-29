@@ -1,5 +1,3 @@
-// let React = require('../../bower_components/react/react.js');
-
 let Light = require('./Light.js');
 
 class Handshake extends React.Component {

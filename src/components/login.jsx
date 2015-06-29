@@ -1,5 +1,3 @@
-// let React = require('../../bower_components/react/react.js');
-
 class Login extends React.Component {
   render() {
     return <form className="form-login">

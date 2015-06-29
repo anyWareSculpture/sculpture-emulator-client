@@ -1,6 +1,3 @@
-// let React = require('../../bower_components/react/react.js');
-// let $ = require('../../bower_components/jquery/dist/jquery.js');
-
 // const StreamingClient = require('@anyware/streaming-client');
 // DOESN'T WORK!! -- this gives the error with index at 1
 
