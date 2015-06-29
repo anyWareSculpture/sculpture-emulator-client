@@ -3,6 +3,7 @@ var es = require('event-stream');
 var gulp = require('gulp');
 var browserify = require('browserify');
 var babelify = require("babelify");
+var reactify = require('reactify');
 var through = require('through2');
 
 var concat = require('gulp-concat');
@@ -53,7 +54,7 @@ gulp.task('build-app', function buildDependencies() {
   var browserified = through.obj(function (file, enc, next){
     browserify(file.path, {
       debug: true,
-    }).transform(babelify).bundle(function(err, res){
+    }).transform(babelify).transform(reactify).bundle(function(err, res){
       // assumes file.contents is a Buffer
       if (err) {
         throw err;
