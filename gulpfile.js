@@ -3,7 +3,6 @@ var es = require('event-stream');
 var gulp = require('gulp');
 var browserify = require('browserify');
 var babelify = require("babelify");
-var reactify = require('reactify');
 var through = require('through2');
 
 var concat = require('gulp-concat');
