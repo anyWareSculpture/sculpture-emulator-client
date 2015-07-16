@@ -8,7 +8,7 @@ class TopNav extends React.Component {
   render() {
     let loginDropdown = (
       <li className="dropdown">
-        <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button">
+        <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
           Login
           <span className="caret"></span>
         </a>
@@ -18,7 +18,7 @@ class TopNav extends React.Component {
 
     let logoutButton = (
       <li className="">
-        <a href="#" className="" role="button">
+        <a className="" href="#" role="button">
           Logout
         </a>
       </li>

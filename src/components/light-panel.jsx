@@ -9,7 +9,7 @@ class LightPanel extends React.Component {
   render() {
     let lights = [];
     for (let i = 0; i < this.props.numLights; i++) {
-      lights.push(<Light isOn={false} key={i} size={this.props.size} />);
+      lights.push(<Light enableToggle={true} isOn={false} key={i} size={this.props.size} />);
     }
     return (
       <div className="light-panel">

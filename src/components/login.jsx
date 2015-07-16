@@ -3,10 +3,10 @@ class Login extends React.Component {
   render() {
     return (
       <form className="form-login">
-        <label htmlFor="inputUsername" className="sr-only">Username</label>
-        <input type="username" id="inputUsername" className="form-control" placeholder="Username" required autofocus />
-        <label htmlFor="inputPassword" className="sr-only">Password</label>
-        <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
+        <label className="sr-only" htmlFor="inputUsername">Username</label>
+        <input autoFocus className="form-control" id="inputUsername" placeholder="Username" required type="username" />
+        <label className="sr-only" htmlFor="inputPassword">Password</label>
+        <input className="form-control" id="inputPassword" placeholder="Password" required type="password" />
         <button className="submit" type="submit">Login</button>
       </form>
     );

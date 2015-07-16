@@ -1,5 +1,4 @@
 // const StreamingClient = require('@anyware/streaming-client');
-// DOESN'T WORK!! -- this gives the error with index at 1
 
 // const CLIENT_CONNECTION_OPTIONS = {
 //   protocol: "ws",
@@ -16,6 +15,10 @@ let MoleGame = require('./mole-game');
 
 class SculptureEmulator extends React.Component {
   static displayName = 'SculptureEmulator';
+  static propTypes = {
+    game: React.PropTypes.string,
+    isConnected: React.PropTypes.bool
+  }
   render() {
     let warning, game;
     if (!this.props.isConnected) {
@@ -26,7 +29,8 @@ class SculptureEmulator extends React.Component {
       game = <MoleGame />;
     }
 
-    return ( <span className="sculpture-emulator">
+    return (
+      <span className="sculpture-emulator">
         <TopNav isActive={false} isLoggedIn={false} />
         <div className="main-content" role="main">
           <div className="game-content">
@@ -68,5 +72,5 @@ class SculptureEmulator extends React.Component {
 
 // Note: pass isConnected as property for now, until connecting to streaming server is implemented.
 $(document).ready(() => {
-  React.render(<SculptureEmulator isConnected={true} game="mole" />, document.getElementById('container'));
+  React.render(<SculptureEmulator game="mole" isConnected={true}/>, document.getElementById('container'));
 });
