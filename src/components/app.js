@@ -1,6 +1,8 @@
 require("babel/polyfill");
 let SculptureEmulator = require('./sculpture-emulator');
 const StreamingClient = require('@anyware/streaming-client');
+const {SculptureStore, SculptureActionCreator} = require('@anyware/game-logic');
+const {Dispatcher} = require('flux');
 
 const DEFAULT_CLIENT_CONNECTION_OPTIONS = {
   username: "anyware",
@@ -13,6 +15,18 @@ export class EmulatorApp {
   constructor() {
     this.client = null;
 
+    this.dispatcher = new Dispatcher();
+    this.dispatcher.register((payload) => {
+      this._log(`Sent action: ${JSON.stringify(payload)}`);
+    });
+
+    this.sculpture = new SculptureStore(this.dispatcher);
+    this.sculpture.on(SculptureStore.EVENT_CHANGE, (changes) => {
+      this._log(`Sent state update: ${JSON.stringify(changes)}`);
+
+      this.client.sendStateUpdate(changes);
+    });
+    this.sculptureActionCreator = new SculptureActionCreator(this.dispatcher);
   }
 
   render() {
@@ -53,6 +67,14 @@ export class EmulatorApp {
     const errorMessage = error.stack || error.message || error;
     console.error(errorMessage);
   }
+
+  _onStateUpdate(update, metadata) {
+    update.metadata = metadata;
+
+    this._log(`Got state update: ${JSON.stringify(update)}`);
+  }
+
+}
 
 $(document).ready(() => {
   let emulator_app = new EmulatorApp();
