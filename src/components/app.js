@@ -1,3 +1,4 @@
+require("babel/polyfill");
 let SculptureEmulator = require('./sculpture-emulator');
 const StreamingClient = require('@anyware/streaming-client');
 
