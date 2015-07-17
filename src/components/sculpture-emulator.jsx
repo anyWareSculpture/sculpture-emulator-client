@@ -1,12 +1,3 @@
-// const StreamingClient = require('@anyware/streaming-client');
-
-// const CLIENT_CONNECTION_OPTIONS = {
-//   protocol: "ws",
-//   username: "anyware",
-//   password: "anyware",
-//   host: "connect.shiftr.io:1884"
-// };
-
 let TopNav = require('./top-nav');
 let Handshake = require('./handshake');
 let Status = require('./status');
@@ -51,26 +42,4 @@ class SculptureEmulator extends React.Component {
   }
 }
 
-// const client = new StreamingClient(CLIENT_CONNECTION_OPTIONS);
-
-// window.clientConnected = client.connected;
-
-// const updateConnectionStatus = () => {
-//   window.clientConnected = client.connected;
-// };
-// client.on(StreamingClient.EVENT_CONNECT, updateConnectionStatus);
-// client.on(StreamingClient.EVENT_DISCONNECT, updateConnectionStatus);
-
-// client.on(StreamingClient.EVENT_ERROR, (error) => {
-//   console.error(error);
-// });
-
-// let loginComplete = () => {
-//   window.isLoggedIn = true;
-//   window.showStatus = true;
-// };
-
-// Note: pass isConnected as property for now, until connecting to streaming server is implemented.
-$(document).ready(() => {
-  React.render(<SculptureEmulator game="mole" isConnected={true}/>, document.getElementById('container'));
-});
+module.exports = SculptureEmulator;
