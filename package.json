@@ -35,6 +35,7 @@
     "gulp-concat": "~2.5.2",
     "gulp-eslint": "~0.12.0",
     "gulp-iife": "0.0.6",
+    "gulp-notify": "^2.2.0",
     "gulp-sass": "~2.0.0",
     "gulp-sourcemaps": "~1.5.2",
     "gulp-spawn-mocha": "~2.0.1",

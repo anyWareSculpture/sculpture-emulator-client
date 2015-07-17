@@ -16,6 +16,7 @@ var sass = require('gulp-sass');
 var mocha = require('gulp-spawn-mocha');
 var eslint = require('gulp-eslint');
 var codecov = require('gulp-codecov.io');
+var notify = require("gulp-notify");
 
 var gulpUtils = require('@anyware/gulp-utils');
 
@@ -72,7 +73,8 @@ gulp.task('build-app', function buildDependencies() {
     .pipe(concat('app.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(gulpUtils.getDistPath()));
+    .pipe(gulp.dest(gulpUtils.getDistPath()))
+    .pipe(notify("Build app done!"));
 });
 
 gulp.task('build-dependencies', function buildApp() {
