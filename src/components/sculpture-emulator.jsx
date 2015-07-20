@@ -3,26 +3,53 @@ let Handshake = require('./handshake');
 let Status = require('./status');
 let Warning = require('./warning');
 let MoleGame = require('./mole-game');
+let AppStoreCreator = require('../stores/app-store');
+let ActionCreator = require('../actions/app-actions');
 
-class SculptureEmulator extends React.Component {
+export default class SculptureEmulator extends React.Component {
   static displayName = 'SculptureEmulator';
-  static propTypes = {
-    game: React.PropTypes.string,
-    isConnected: React.PropTypes.bool
+
+  constructor(props) {
+    super(props);
+    this.AppStore = new AppStoreCreator();
+    this.state = this.getStateFromStores();
+    let actions = new ActionCreator();
+    actions.connectAndSetupClient();
   }
+
+  getStateFromStores() {
+    return {
+      sculpture: this.AppStore.getSculpture(),
+      client: this.AppStore.getClient(),
+      appState: this.AppStore.getAppState()
+    };
+  }
+
+  componentDidMount() {
+    this.AppStore.addChangeListener(this._onChange.bind(this));
+  }
+
+  componentWillUnmount() {
+    this.AppStore.removeChangeListener(this._onChange.bind(this));
+  }
+
   render() {
     let warning, game;
-    if (!this.props.isConnected) {
+    let client = this.state.client || {};
+    let sculpture = this.state.sculpture;
+    let appState = this.state.appState;
+
+    if (!client.connected) {
       warning = <Warning msg="disconnect" />;
     }
 
-    if (this.props.game === "mole") {
+    if (sculpture.isPlayingMoleGame) {
       game = <MoleGame />;
     }
 
     return (
       <span className="sculpture-emulator">
-        <TopNav isActive={false} isLoggedIn={false} />
+        <TopNav isActive={false} isLoggedIn={false} /> // need to determine if connection is read only or not
         <div className="main-content" role="main">
           <div className="game-content">
             { warning }
@@ -40,6 +67,9 @@ class SculptureEmulator extends React.Component {
       </span>
     );
   }
-}
 
-module.exports = SculptureEmulator;
+  _onChange() {
+    console.log('State change captured.');
+    this.setState(this.getStateFromStores());
+  }
+}
