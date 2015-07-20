@@ -5,6 +5,12 @@ class TopNav extends React.Component {
   static propTypes = {
     isLoggedIn: React.PropTypes.bool
   };
+
+  _onDropdownSubmit(e) {
+    // close dropdown on submit
+    $(e.target.parentNode.parentNode).find('[data-toggle="dropdown"]').dropdown('toggle');
+  }
+
   render() {
     let loginDropdown = (
       <li className="dropdown">
@@ -12,7 +18,7 @@ class TopNav extends React.Component {
           Login
           <span className="caret"></span>
         </a>
-        <div className="dropdown-menu"><Login /></div>
+        <div className="dropdown-menu"><Login parentSubmit={this._onDropdownSubmit.bind(this)} /></div>
       </li>
     );
 
