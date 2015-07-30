@@ -30,7 +30,6 @@ export default class AppStore extends EventEmitter {
           break;
 
         default:
-          console.error('Invalid Action!', action, Actions);
           // nop
       }
     });

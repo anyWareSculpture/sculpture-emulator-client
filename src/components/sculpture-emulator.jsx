@@ -17,14 +17,6 @@ export default class SculptureEmulator extends React.Component {
     actions.connectAndSetupClient();
   }
 
-  getStateFromStores() {
-    return {
-      sculpture: this.AppStore.getSculpture(),
-      client: this.AppStore.getClient(),
-      appState: this.AppStore.getAppState()
-    };
-  }
-
   componentDidMount() {
     this.AppStore.addChangeListener(this._onChange.bind(this));
   }
@@ -33,8 +25,21 @@ export default class SculptureEmulator extends React.Component {
     this.AppStore.removeChangeListener(this._onChange.bind(this));
   }
 
+  getStateFromStores() {
+    return {
+      sculpture: this.AppStore.getSculpture(),
+      client: this.AppStore.getClient(),
+      appState: this.AppStore.getAppState()
+    };
+  }
+
+  _onChange() {
+    console.log('State change captured.');
+    this.setState(this.getStateFromStores);
+  }
+
   render() {
-    let warning, game;
+    let warning, game, connectionStatus;
     let client = this.state.client || {};
     let sculpture = this.state.sculpture;
     let appState = this.state.appState;
@@ -42,6 +47,9 @@ export default class SculptureEmulator extends React.Component {
     if (!client.connected) {
       warning = <Warning msg="disconnect" />;
     }
+
+    connectionStatus = [ client.connected, false, false ]
+    console.log(connectionStatus);
 
     if (sculpture.isPlayingMoleGame) {
       game = <MoleGame />;
@@ -57,7 +65,7 @@ export default class SculptureEmulator extends React.Component {
           </div>
           <div className="sidebar-content">
             <div className="well">
-              <Handshake isSending={true} />
+              <Handshake connectionStatus={connectionStatus} isSending={true} />
             </div>
             <div className="well">
               <Status />
@@ -66,10 +74,5 @@ export default class SculptureEmulator extends React.Component {
         </div>
       </span>
     );
-  }
-
-  _onChange() {
-    console.log('State change captured.');
-    this.setState(this.getStateFromStores());
   }
 }
