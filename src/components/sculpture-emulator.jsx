@@ -48,11 +48,11 @@ export default class SculptureEmulator extends React.Component {
       warning = <Warning msg="disconnect" />;
     }
 
-    connectionStatus = [ client.connected, false, false ]
-    console.log(connectionStatus);
+    // set correct index TODO
+    connectionStatus = [ client.connected, false, false ];
 
     if (sculpture.isPlayingMoleGame) {
-      game = <MoleGame />;
+      game = <MoleGame sculpture={sculpture} />;
     }
 
     return (

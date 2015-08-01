@@ -13,9 +13,9 @@ class Handshake extends React.Component {
 
     return (
       <div className="handshake">
-        <Light color="blue" isOn={connectionStatus[0]} />
-        <Light color="red" isOn={connectionStatus[1]} />
-        <Light color="green" isOn={connectionStatus[2]} />
+        <Light color="user0" isOn={connectionStatus[0]} />
+        <Light color="user1" isOn={connectionStatus[1]} />
+        <Light color="user2" isOn={connectionStatus[2]} />
         <button>{ this.props.isSending ? "Revoke Handshake" : "Send Handshake"}</button>
       </div>
     );

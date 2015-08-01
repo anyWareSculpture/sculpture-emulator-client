@@ -38,7 +38,7 @@ export default class AppStore extends EventEmitter {
     this.sculpture = new SculptureStore(AppDispatcher);
     this.sculpture.on(SculptureStore.EVENT_CHANGE, (changes) => {
       this._log(`Sent state update: ${JSON.stringify(changes)}`);
-      this.emitChange();
+      // this.emitChange();
       this.client.sendStateUpdate(changes);
     });
     this.sculptureActionCreator = new SculptureActionCreator(AppDispatcher);
@@ -88,7 +88,7 @@ export default class AppStore extends EventEmitter {
       // Temporarily here until the full game transitions are implemented
       if (!this.sculpture.isPlayingMoleGame) {
         this._log("Starting mole game...");
-        this.sculpture.startMoleGame();
+        this.sculptureActionCreator.sendStartMoleGame();
       }
     });
 
@@ -113,6 +113,7 @@ export default class AppStore extends EventEmitter {
     update.metadata = metadata;
 
     this._log(`Got state update: ${JSON.stringify(update)}`);
+    this.emitChange();
 
     this.sculptureActionCreator.sendMergeState(update);
   }
