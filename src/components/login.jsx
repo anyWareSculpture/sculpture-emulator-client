@@ -22,7 +22,7 @@ export default class Login extends React.Component {
       this.props.parentSubmit(e);
     }
     this.Actions.login(this.state.username, this.state.password);
-    // clear values TODO
+    // TODO: Clear these values on submit
   }
 
   _usernameChanged(e) {

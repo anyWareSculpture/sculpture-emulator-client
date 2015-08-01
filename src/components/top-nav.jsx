@@ -28,7 +28,7 @@ class TopNav extends React.Component {
           Logout
         </a>
       </li>
-      );
+    );
 
     return (
       <nav className="top-nav">

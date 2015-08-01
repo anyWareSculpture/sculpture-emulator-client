@@ -2,7 +2,7 @@ let PanelStrip = require('./panel-strip');
 
 class MoleGame extends React.Component {
   static displayName = 'MoleGame';
-    static propTypes = {
+  static propTypes = {
     sculpture: React.PropTypes.object.isRequired
   };
   render() {
@@ -13,10 +13,10 @@ class MoleGame extends React.Component {
       let idx = lightArray.stripIds[i];
       let strip = lightArray.get(idx);
       strips.push(<PanelStrip
-        stripIdx={idx}
         key={idx}
+        size="large"
         strip={strip}
-        size="large" />
+        stripIdx={idx} />
       );
     }
     return (

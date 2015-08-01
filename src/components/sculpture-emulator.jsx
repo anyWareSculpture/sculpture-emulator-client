@@ -39,7 +39,7 @@ export default class SculptureEmulator extends React.Component {
   }
 
   render() {
-    let warning, game, connectionStatus;
+    let warning, game;
     let client = this.state.client || {};
     let sculpture = this.state.sculpture;
     let appState = this.state.appState;
@@ -51,9 +51,9 @@ export default class SculptureEmulator extends React.Component {
     // set correct index TODO
     connectionStatus = [ client.connected, false, false ];
 
-    if (sculpture.isPlayingMoleGame) {
-      game = <MoleGame sculpture={sculpture} />;
-    }
+    // if (sculpture.isPlayingMoleGame) {
+    game = <MoleGame sculpture={sculpture} />;
+    // }
 
     return (
       <span className="sculpture-emulator">

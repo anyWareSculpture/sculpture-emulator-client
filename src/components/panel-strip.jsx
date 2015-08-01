@@ -3,9 +3,9 @@ let Panel = require('./panel');
 class PanelStrip extends React.Component {
   static displayName = 'PanelStrip';
   static propTypes = {
-    stripIdx: React.PropTypes.string.isRequired,
-    strip: React.PropTypes.object.isRequired,
     size: React.PropTypes.string.isRequired,
+    strip: React.PropTypes.object.isRequired,
+    stripIdx: React.PropTypes.string.isRequired
   }
   render() {
     let panels = this.props.strip.get('panels');
@@ -14,10 +14,10 @@ class PanelStrip extends React.Component {
       let idx = this.props.strip.panelIds[i];
       let panel = panels.get(idx);
       panelViews.push(<Panel
-        enableToggle={true}
         active={panel.get('active')}
-        intensity={panel.get('intensity')}
         color={panel.get('color')}
+        enableToggle={true}
+        intensity={panel.get('intensity')}
         key={i}
         panelIdx={idx}
         size={this.props.size}

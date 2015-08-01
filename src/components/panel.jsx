@@ -6,13 +6,13 @@ class Panel extends React.Component {
   static propTypes = {
     active: React.PropTypes.bool,
     color: React.PropTypes.string,
-    intensity: React.PropTypes.number,
-    stripIdx: React.PropTypes.string,
-    panelIdx: React.PropTypes.string,
     enableToggle: React.PropTypes.bool,
-    size: React.PropTypes.string
+    intensity: React.PropTypes.number,
+    panelIdx: React.PropTypes.string,
+    size: React.PropTypes.string,
+    stripIdx: React.PropTypes.string
   }
-  constructor(props) {
+  constructor() {
     super();
     this.panelActions = new PanelsActionCreator(AppDispatcher);
   }
@@ -26,16 +26,20 @@ class Panel extends React.Component {
 
     let clickHandler = function clickHandler() {
       this.panelActions.sendPanelPressed(stripIdx, panelIdx, !active);
-    }
+    };
 
-    classList.push(intensity > 0 || active ? "panel-on" : "panel-off"); //FIXME
+    // FIXME: interpret `active` at game level (ex: mole game active => 100)
+    // and allow dynamic intensity setting (not just on/off)
+    classList.push(intensity > 0 || active ? "panel-on" : "panel-off");
     classList.push("panel-" + (this.props.color ? this.props.color : "black"));
     classList.push("panel-" + (this.props.size ? this.props.size : "def-size"));
-    return <div className={ classList.join(' ') }
+    return (
+      <div className={ classList.join(' ') }
       // onMouseDown={ this.props.enableToggle ? mouseDownHandler.bind(this) : '' }
       // onMouseUp={ this.props.enableToggle ? mouseUpHandler.bind(this) : '' }
       onClick={this.props.enableToggle ? clickHandler.bind(this) : '' }
-      ></div>;
+      ></div>
+    );
   }
 }
 
