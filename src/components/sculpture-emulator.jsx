@@ -48,9 +48,6 @@ export default class SculptureEmulator extends React.Component {
       warning = <Warning msg="disconnect" />;
     }
 
-    // set correct index TODO
-    connectionStatus = [ client.connected, false, false ];
-
     // if (sculpture.isPlayingMoleGame) {
     game = <MoleGame sculpture={sculpture} />;
     // }
@@ -65,7 +62,7 @@ export default class SculptureEmulator extends React.Component {
           </div>
           <div className="sidebar-content">
             <div className="well">
-              <Handshake connectionStatus={connectionStatus} isSending={true} />
+              <Handshake isSending={true} />
             </div>
             <div className="well">
               <Status />
