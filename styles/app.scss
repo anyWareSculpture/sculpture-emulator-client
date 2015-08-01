@@ -57,51 +57,51 @@ nav.top-nav {
 	}
 }
 
-// Light
-.light {
+// Panel
+.panel {
 	border-radius: 50%;
 	display: inline-block;
 	margin-right: 10px;
 	vertical-align: middle;
 
-	&.light-on {
+	&.panel-on {
 		opacity: 1;
 	}
 
-	&.light-off {
+	&.panel-off {
 		opacity: 0.15;
 	}
 
-	&.light-black {
+	&.panel-black {
 		background-color: black;
 	}
 
-	&.light-user0 {
+	&.panel-user0 {
 		background-color: blue;
 	}
 
-	&.light-user1 {
+	&.panel-user1 {
 		background-color: red;
 	}
 
-	&.light-user2 {
+	&.panel-user2 {
 		background-color: green;
 	}
 
-	&.light-large {
+	&.panel-large {
 		width: 50px;
 		height: 50px;
 	}
 
-	&.light-def-size {
+	&.panel-def-size {
 		width: 30px;
 		height: 30px;
 	}
 }
 
-// LightPanel
-.light-panel {
-	.light {
+// PanelStrip
+.panel-strip {
+	.panel {
 		margin-top: 5px;
 		margin-bottom:5px;
 		margin-right: 0px;

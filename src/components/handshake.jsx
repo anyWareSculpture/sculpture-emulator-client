@@ -1,4 +1,4 @@
-let Light = require('./light');
+let Panel = require('./panel');
 
 class Handshake extends React.Component {
   static displayName = 'Handshake';
@@ -13,9 +13,9 @@ class Handshake extends React.Component {
 
     return (
       <div className="handshake">
-        <Light color="user0" isOn={connectionStatus[0]} />
-        <Light color="user1" isOn={connectionStatus[1]} />
-        <Light color="user2" isOn={connectionStatus[2]} />
+        <Panel color="user0" isOn={connectionStatus[0]} />
+        <Panel color="user1" isOn={connectionStatus[1]} />
+        <Panel color="user2" isOn={connectionStatus[2]} />
         <button>{ this.props.isSending ? "Revoke Handshake" : "Send Handshake"}</button>
       </div>
     );

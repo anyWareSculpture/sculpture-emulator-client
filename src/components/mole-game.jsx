@@ -1,4 +1,4 @@
-let LightPanel = require('./light-panel');
+let PanelStrip = require('./panel-strip');
 
 class MoleGame extends React.Component {
   static displayName = 'MoleGame';
@@ -8,20 +8,20 @@ class MoleGame extends React.Component {
   render() {
     let lightArray = this.props.sculpture.data.get('lights');
 
-    let panels = [];
+    let strips = [];
     for (let i = 0; i < lightArray.stripIds.length; i++) {
       let idx = lightArray.stripIds[i];
-      let lights = lightArray.get(idx);
-      panels.push(<LightPanel
+      let strip = lightArray.get(idx);
+      strips.push(<PanelStrip
         stripIdx={idx}
         key={idx}
-        lights={lights}
+        strip={strip}
         size="large" />
       );
     }
     return (
       <div className="mole-game">
-        {panels}
+        {strips}
       </div>
     );
   }

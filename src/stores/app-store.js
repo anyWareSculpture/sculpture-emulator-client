@@ -38,7 +38,6 @@ export default class AppStore extends EventEmitter {
     this.sculpture = new SculptureStore(AppDispatcher);
     this.sculpture.on(SculptureStore.EVENT_CHANGE, (changes) => {
       this._log(`Sent state update: ${JSON.stringify(changes)}`);
-      // this.emitChange();
       this.client.sendStateUpdate(changes);
     });
     this.sculptureActionCreator = new SculptureActionCreator(AppDispatcher);
