@@ -124,7 +124,13 @@ nav.top-nav {
 
 // Status
 .status {
+	height: 450px;
 	h3 {
 		margin-top: 0px;
+	}
+	.log {
+		overflow-y: scroll;
+		overflow-wrap: break-word;
+		height: 355px;
 	}
 }

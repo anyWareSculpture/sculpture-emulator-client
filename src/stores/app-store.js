@@ -17,6 +17,7 @@ export default class AppStore extends EventEmitter {
   constructor() {
     super();
     this.client = null;
+    this.commandLog = [];
 
     AppDispatcher.register((action) => {
       this._log(`Sent action: ${JSON.stringify(action)}`);
@@ -52,7 +53,9 @@ export default class AppStore extends EventEmitter {
   }
 
   getAppState() {
-    return {};
+    return {
+      commandLog: this.commandLog
+    };
   }
 
   emitChange() {
@@ -100,7 +103,11 @@ export default class AppStore extends EventEmitter {
   }
 
   _log(msg) {
-    console.log(msg);
+    this.commandLog.push(msg);
+
+    if (this.commandLog.length > 50) {
+      this.commandLog =  _.takeRight(this.commandLog, 50);
+    }
   }
 
   _error(error) {

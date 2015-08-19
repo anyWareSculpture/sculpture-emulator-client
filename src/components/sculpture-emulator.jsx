@@ -65,7 +65,9 @@ export default class SculptureEmulator extends React.Component {
               <Handshake isSending={true} />
             </div>
             <div className="well">
-              <Status />
+              <Status
+                commandLog={ this.state.appState.commandLog }
+                sculpture={sculpture} />
             </div>
           </div>
         </div>
