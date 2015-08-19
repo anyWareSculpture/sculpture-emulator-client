@@ -25,7 +25,11 @@ class Panel extends React.Component {
     let intensity = this.props.intensity;
 
     let clickHandler = function clickHandler() {
-      this.panelActions.sendPanelPressed(stripIdx, panelIdx, !active);
+      this.panelActions.sendPanelPressed(stripIdx, panelIdx, true);
+      window.setTimeout(() => {
+        // set timeout on turning toggling to inactive panel state
+        this.panelActions.sendPanelPressed(stripIdx, panelIdx, false);
+      }, 750);
     };
 
     // FIXME: interpret `active` at game level (ex: mole game active => 100)
