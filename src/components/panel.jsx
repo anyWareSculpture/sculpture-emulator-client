@@ -9,6 +9,7 @@ class Panel extends React.Component {
     enableToggle: React.PropTypes.bool,
     intensity: React.PropTypes.number,
     panelIdx: React.PropTypes.string,
+    maxIntensity: React.PropTypes.number,
     size: React.PropTypes.string,
     stripIdx: React.PropTypes.string
   }
@@ -23,6 +24,8 @@ class Panel extends React.Component {
     let panelIdx = this.props.panelIdx;
     let active = this.props.active;
     let intensity = this.props.intensity;
+    let enableToggle = this.props.enableToggle;
+    let color = this.props.color ? this.props.color : "black";
 
     let clickHandler = function clickHandler() {
       this.panelActions.sendPanelPressed(stripIdx, panelIdx, true);
@@ -32,15 +35,26 @@ class Panel extends React.Component {
       }, 750);
     };
 
-    // FIXME: interpret `active` at game level (ex: mole game active => 100)
-    // and allow dynamic intensity setting (not just on/off)
-    classList.push(intensity > 0 || active ? "panel-on" : "panel-off");
-    classList.push("panel-" + (this.props.color ? this.props.color : "black"));
+    classList.push(active ? "panel-active-" + color : "panel-off");
+    classList.push("panel-" + color);
     classList.push("panel-" + (this.props.size ? this.props.size : "def-size"));
+
+
+    let inlineStyle = {}
+    if (intensity == 0 && enableToggle) {
+      inlineStyle = {
+        opactity: 1,
+        backgroundColor: 'white'
+      }
+    }
+    else {
+      inlineStyle = {
+        opacity: intensity / ( this.props.maxIntensity || 100 )
+      }
+    }
+
     return (
-      <div className={ classList.join(' ') }
-      // onMouseDown={ this.props.enableToggle ? mouseDownHandler.bind(this) : '' }
-      // onMouseUp={ this.props.enableToggle ? mouseUpHandler.bind(this) : '' }
+      <div className={ classList.join(' ') } style={inlineStyle}
       onClick={this.props.enableToggle ? clickHandler.bind(this) : '' }
       ></div>
     );

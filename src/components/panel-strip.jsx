@@ -19,6 +19,7 @@ class PanelStrip extends React.Component {
         enableToggle={true}
         intensity={panel.get('intensity')}
         key={i}
+        maxintensity={panels.maxintensity}
         panelIdx={idx}
         size={this.props.size}
         stripIdx={this.props.stripIdx} />

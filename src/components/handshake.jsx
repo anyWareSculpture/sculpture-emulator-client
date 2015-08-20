@@ -11,9 +11,9 @@ class Handshake extends React.Component {
 
     return (
       <div className="handshake">
-        <Panel color="user0" isOn={handshakeStatus[0]} />
-        <Panel color="user1" isOn={handshakeStatus[1]} />
-        <Panel color="user2" isOn={handshakeStatus[2]} />
+        <Panel color="user0" intensity={handshakeStatus[0] ? 100 : 15} />
+        <Panel color="user1" intensity={handshakeStatus[1] ? 100 : 15 }/>
+        <Panel color="user2" intensity={handshakeStatus[2] ? 100 : 15} />
         <button>{ this.props.isSending ? "Revoke Handshake" : "Send Handshake"}</button>
       </div>
     );
