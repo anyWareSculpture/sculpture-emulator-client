@@ -5,11 +5,11 @@ class Status extends React.Component {
     sculpture: React.PropTypes.object.isRequired
   };
   render() {
-    let msgs = _(this.props.commandLog).reverse().map((msg) => {
+    let msgs = _(this.props.commandLog).map((msg) => {
       return (
         <p>{msg}</p>
       )
-    }).value();
+    }).reverse().value();
 
     return (
       <div className="status"><h3>Status</h3>

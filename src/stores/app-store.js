@@ -105,8 +105,8 @@ export default class AppStore extends EventEmitter {
   _log(msg) {
     this.commandLog.push(msg);
 
-    if (this.commandLog.length > 50) {
-      this.commandLog =  _.takeRight(this.commandLog, 50);
+    if (this.commandLog.length > 100) {
+      this.commandLog =  _.takeRight(this.commandLog, 100);
     }
   }
 
