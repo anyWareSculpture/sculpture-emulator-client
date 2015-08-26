@@ -64,6 +64,7 @@ nav.top-nav {
 	margin-right: 10px;
 	vertical-align: middle;
 	border: 1px solid grey;
+	margin-bottom: 0px;
 
 	&.panel-active {
 		box-shadow: 0px 1px 10px grey inset, 0px 0px 10px grey;
@@ -142,13 +143,16 @@ nav.top-nav {
 
 // Status
 .status {
-	height: 450px;
+	height: 470px;
 	h3 {
 		margin-top: 0px;
+	}
+	hr {
+		border-color: grey;
 	}
 	.log {
 		overflow-y: scroll;
 		overflow-wrap: break-word;
-		height: 355px;
+		height: 375px;
 	}
 }
