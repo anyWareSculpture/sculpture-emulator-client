@@ -66,8 +66,8 @@ nav.top-nav {
 	border: 1px solid grey;
 	margin-bottom: 0px;
 
-	&.panel-active {
-		box-shadow: 0px 1px 10px grey inset, 0px 0px 10px grey;
+	&.panel-active-white {
+		box-shadow: 0px 1px 10px grey inset, 0px 0px 10px purple;
 		border: none;
 	}
 
@@ -77,12 +77,12 @@ nav.top-nav {
 	}
 
 	&.panel-active-user1 {
-		box-shadow: 0px 1px 10px red inset, 0px 0px 10px red;
+		box-shadow: 0px 1px 10px red inset, 0px 0px 10px yellow;
 		border: none;
 	}
 
 	&.panel-active-user2 {
-		box-shadow: 0px 1px 10px green inset, 0px 0px 10px green;
+		box-shadow: 0px 1px 10px green inset, 0px 0px 10px orange;
 		border: none;
 	}
 
@@ -99,11 +99,23 @@ nav.top-nav {
 	}
 
 	&.panel-user1 {
-		background-color: red;
+		background-color: yellow;
 	}
 
 	&.panel-user2 {
+		background-color: orange;
+	}
+
+	&.panel-white {
+		background-color: purple;
+	}
+
+	&.panel-success {
 		background-color: green;
+	}
+
+	&.panel-error {
+		background-color: red;
 	}
 
 	&.panel-large {

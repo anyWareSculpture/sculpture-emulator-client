@@ -5,6 +5,7 @@ let PanelAnimations = require('../animations/panel-animations');
 
 const StreamingClient = require('@anyware/streaming-client');
 const {SculptureStore, SculptureActionCreator} = require('@anyware/game-logic');
+const {DefaultConfig} = require('@anyware/game-logic');
 
 const DEFAULT_CLIENT_CONNECTION_OPTIONS = {
   username: "anyware",
@@ -41,8 +42,10 @@ export default class AppStore extends EventEmitter {
       }
     });
 
+    this.config = DefaultConfig;
+
     // Register callback to handle app Actions
-    this.sculpture = new SculptureStore(AppDispatcher);
+    this.sculpture = new SculptureStore(AppDispatcher, this.config);
     this.sculpture.on(SculptureStore.EVENT_CHANGE, (changes) => {
       this._log(`Sent state update: ${JSON.stringify(changes)}`);
       this.client.sendStateUpdate(changes);
@@ -68,7 +71,7 @@ export default class AppStore extends EventEmitter {
   animationComplete() {
     this._log("Animation complete!");
     this._animating = false;
-    this.sculptureActionCreator.sendRestoreStatus();
+    this.sculptureActionCreator.sendFinishStatusAnimation();
   }
 
   showAnimationFrame(panels) {
