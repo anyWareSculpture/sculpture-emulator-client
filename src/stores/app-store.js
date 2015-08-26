@@ -1,6 +1,7 @@
 let AppDispatcher = require('../dispatcher/app-dispatcher');
 let EventEmitter = require('events').EventEmitter;
 let Actions = require('../constants/app-constants');
+let PanelAnimations = require('../animations/panel-animations');
 
 const StreamingClient = require('@anyware/streaming-client');
 const {SculptureStore, SculptureActionCreator} = require('@anyware/game-logic');
@@ -18,6 +19,7 @@ export default class AppStore extends EventEmitter {
     super();
     this.client = null;
     this.commandLog = [];
+    this._animating = false;
 
     AppDispatcher.register((action) => {
       this._log(`Sent action: ${JSON.stringify(action)}`);
@@ -28,6 +30,10 @@ export default class AppStore extends EventEmitter {
 
         case Actions.APP_LOGIN:
           this.connectAndSetupClient(action.loginOptions);
+          break;
+
+        case Actions.PLAY_SUCCESS_ANIM:
+          this.playSuccessAnimation();
           break;
 
         default:
@@ -44,6 +50,33 @@ export default class AppStore extends EventEmitter {
     this.sculptureActionCreator = new SculptureActionCreator(AppDispatcher);
   }
 
+  needsAnimation() {
+    return this.sculpture.data.get("status")
+      === SculptureStore.STATUS_SUCCESS
+      && this._animating === false;
+  }
+
+  playSuccessAnimation() {
+    this._log("Playing success animation...");
+    this._animating = true;
+    PanelAnimations.playSuccessAnimation(
+      this.showAnimationFrame.bind(this),
+      this.animationComplete.bind(this)
+    );
+  }
+
+  animationComplete() {
+    this._log("Animation complete!");
+    this._animating = false;
+    this.sculptureActionCreator.sendRestoreStatus();
+  }
+
+  showAnimationFrame(panels) {
+    // update temp panels to show next frame in an animation
+    this.animPanels = panels;
+    this.emitChange();
+  }
+
   getSculpture() {
     return this.sculpture;
   }
@@ -54,7 +87,9 @@ export default class AppStore extends EventEmitter {
 
   getAppState() {
     return {
-      commandLog: this.commandLog
+      isAnimating: this._animating,
+      commandLog: this.commandLog,
+      animPanels: this.animPanels
     };
   }
 

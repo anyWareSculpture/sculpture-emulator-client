@@ -18,4 +18,10 @@ export default class AppActions {
       }
     });
   }
+
+  playSuccessAnimation() {
+    AppDispatcher.dispatch({
+      actionType: Actions.PLAY_SUCCESS_ANIM
+    });
+  }
 }

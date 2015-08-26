@@ -13,8 +13,8 @@ export default class SculptureEmulator extends React.Component {
     super(props);
     this.AppStore = new AppStoreCreator();
     this.state = this.getStateFromStores();
-    let actions = new ActionCreator();
-    actions.connectAndSetupClient();
+    this.actions = new ActionCreator();
+    this.actions.connectAndSetupClient();
   }
 
   componentDidMount() {
@@ -36,6 +36,11 @@ export default class SculptureEmulator extends React.Component {
   _onChange() {
     console.log('State change captured.');
     this.setState(this.getStateFromStores);
+
+    if (this.AppStore.needsAnimation()) {
+      this.actions.playSuccessAnimation();
+    }
+
   }
 
   render() {
@@ -49,7 +54,7 @@ export default class SculptureEmulator extends React.Component {
     }
 
     // if (sculpture.isPlayingMoleGame) {
-    game = <MoleGame sculpture={sculpture} />;
+    game = <MoleGame appState={appState} sculpture={sculpture} />;
     // }
 
     return (

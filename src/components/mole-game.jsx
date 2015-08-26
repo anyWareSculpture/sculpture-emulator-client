@@ -3,10 +3,18 @@ let PanelStrip = require('./panel-strip');
 class MoleGame extends React.Component {
   static displayName = 'MoleGame';
   static propTypes = {
+    appState: React.PropTypes.object.isRequired,
     sculpture: React.PropTypes.object.isRequired
   };
   render() {
-    let lightArray = this.props.sculpture.data.get('lights');
+    let lightArray;
+
+    if (this.props.appState.isAnimating) {
+      lightArray = this.props.appState.animPanels;
+    }
+    else {
+      lightArray = this.props.sculpture.data.get('lights');
+    }
 
     let strips = [];
     for (let i = 0; i < lightArray.stripIds.length; i++) {
