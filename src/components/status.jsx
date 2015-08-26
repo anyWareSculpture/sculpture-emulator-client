@@ -1,3 +1,4 @@
+/*eslint no-extra-parens:0*/
 class Status extends React.Component {
   static displayName = 'Status';
   static propTypes = {
@@ -8,7 +9,7 @@ class Status extends React.Component {
     let msgs = _(this.props.commandLog).map((msg) => {
       return (
         <p>{msg}</p>
-      )
+      );
     }).reverse().value();
 
     return (

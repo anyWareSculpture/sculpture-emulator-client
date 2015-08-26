@@ -1,3 +1,4 @@
+/*eslint no-extra-parens:0*/
 let Panel = require('./panel');
 
 class Handshake extends React.Component {

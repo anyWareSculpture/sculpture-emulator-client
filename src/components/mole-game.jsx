@@ -1,3 +1,4 @@
+/*eslint no-extra-parens:0*/
 let PanelStrip = require('./panel-strip');
 
 class MoleGame extends React.Component {

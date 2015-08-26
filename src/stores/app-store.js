@@ -141,7 +141,7 @@ export default class AppStore extends EventEmitter {
     this.commandLog.push(msg);
 
     if (this.commandLog.length > 100) {
-      this.commandLog =  _.takeRight(this.commandLog, 100);
+      this.commandLog = _.takeRight(this.commandLog, 100);
     }
   }
 
@@ -152,7 +152,6 @@ export default class AppStore extends EventEmitter {
 
   _onStateUpdate(update, metadata) {
     update.metadata = metadata;
-
     this._log(`Got state update: ${JSON.stringify(update)}`);
     this.emitChange();
 

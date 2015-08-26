@@ -1,3 +1,4 @@
+/*eslint no-extra-parens:0*/
 let AppDispatcher = require('../dispatcher/app-dispatcher');
 let {PanelsActionCreator} = require('@anyware/game-logic');
 
@@ -8,8 +9,8 @@ class Panel extends React.Component {
     color: React.PropTypes.string,
     enableToggle: React.PropTypes.bool,
     intensity: React.PropTypes.number,
-    panelIdx: React.PropTypes.string,
     maxIntensity: React.PropTypes.number,
+    panelIdx: React.PropTypes.string,
     size: React.PropTypes.string,
     stripIdx: React.PropTypes.string
   }
@@ -39,23 +40,23 @@ class Panel extends React.Component {
     classList.push("panel-" + color);
     classList.push("panel-" + (this.props.size ? this.props.size : "def-size"));
 
-
-    let inlineStyle = {}
-    if (intensity == 0 && enableToggle) {
+    let inlineStyle = {};
+    if (intensity === 0 && enableToggle) {
       inlineStyle = {
         opactity: 1,
         backgroundColor: 'white'
-      }
+      };
     }
     else {
       inlineStyle = {
-        opacity: intensity / ( this.props.maxIntensity || 100 )
-      }
+        opacity: intensity / (this.props.maxIntensity || 100)
+      };
     }
 
     return (
-      <div className={ classList.join(' ') } style={inlineStyle}
+      <div className={ classList.join(' ') }
       onClick={this.props.enableToggle ? clickHandler.bind(this) : '' }
+      style={inlineStyle}
       ></div>
     );
   }

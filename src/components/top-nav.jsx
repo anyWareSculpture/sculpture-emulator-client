@@ -1,3 +1,4 @@
+/*eslint no-extra-parens:0*/
 let Login = require('./login');
 
 class TopNav extends React.Component {
