@@ -43,8 +43,8 @@ class Panel extends React.Component {
     let inlineStyle = {};
     if (intensity === 0 && enableToggle) {
       inlineStyle = {
-        opactity: 1,
-        backgroundColor: 'white'
+        opacity: 1,
+        backgroundColor: 'darkgrey'
       };
     }
     else {

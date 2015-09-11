@@ -3,6 +3,16 @@
 
 @import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap";
 
+
+// Colors
+$user0: orange;
+$user1: blue;
+$user2: purple;
+$black: black;
+$white: white;
+$success: green;
+$error: red;
+
 // TopNav
 nav.top-nav {
 	@extend .navbar;
@@ -67,22 +77,22 @@ nav.top-nav {
 	margin-bottom: 0px;
 
 	&.panel-active-white {
-		box-shadow: 0px 1px 10px grey inset, 0px 0px 10px purple;
+		box-shadow: 0px 1px 15px black inset, 0px 0px 15px $white;
 		border: none;
 	}
 
 	&.panel-active-user0 {
-		box-shadow: 0px 1px 10px blue inset, 0px 0px 10px blue;
+		box-shadow: 0px 1px 10px blue inset, 0px 0px 10px $user0;
 		border: none;
 	}
 
 	&.panel-active-user1 {
-		box-shadow: 0px 1px 10px red inset, 0px 0px 10px yellow;
+		box-shadow: 0px 1px 10px red inset, 0px 0px 10px $user1;
 		border: none;
 	}
 
 	&.panel-active-user2 {
-		box-shadow: 0px 1px 10px green inset, 0px 0px 10px orange;
+		box-shadow: 0px 1px 10px green inset, 0px 0px 10px $user2;
 		border: none;
 	}
 
@@ -91,31 +101,31 @@ nav.top-nav {
 	}
 
 	&.panel-black {
-		background-color: black;
+		background-color: $black;
 	}
 
 	&.panel-user0 {
-		background-color: blue;
+		background-color: $user0;
 	}
 
 	&.panel-user1 {
-		background-color: yellow;
+		background-color: $user1;
 	}
 
 	&.panel-user2 {
-		background-color: orange;
+		background-color: $user2;
 	}
 
 	&.panel-white {
-		background-color: purple;
+		background-color: $white;
 	}
 
 	&.panel-success {
-		background-color: green;
+		background-color: $success;
 	}
 
 	&.panel-error {
-		background-color: red;
+		background-color: $error;
 	}
 
 	&.panel-large {
@@ -141,7 +151,7 @@ nav.top-nav {
 	border: 1px solid black;
 	text-align: center;
 	margin-right: 25px;
-	background-color: lightgrey;
+	background-color: lightgray;
 }
 
 // Handshake
