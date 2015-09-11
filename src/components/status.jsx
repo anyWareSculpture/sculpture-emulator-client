@@ -6,9 +6,9 @@ class Status extends React.Component {
     sculpture: React.PropTypes.object.isRequired
   };
   render() {
-    let msgs = _(this.props.commandLog).map((msg) => {
+    let msgs = _(this.props.commandLog).map((msg, idx) => {
       return (
-        <p>{msg}</p>
+        <p key={idx}>{msg}</p>
       );
     }).reverse().value();
 
