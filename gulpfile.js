@@ -34,11 +34,11 @@ gulp.task('watch', ['watchJS', 'watchCSS']);
 
 gulp.task('watchJS', function() {
   gulp.watch(['bower_components/**/*.js', 'index.html'], ['build']);
-  gulp.watch(['src/**/*.jsx?'], ['build-app']);
+  gulp.watch(['src/**/*.js{,x}'], ['build-app']);
 });
 
 gulp.task('watchTests', function watchTests() {
-  gulp.watch(['src/**/*.jsx?', 'test/**/*.jsx?'], ['lint', 'test']);
+  gulp.watch(['src/**/*.js{,x}', 'test/**/*.js{,x}'], ['lint', 'test']);
 });
 
 gulp.task('watchCSS', function() {
@@ -66,7 +66,7 @@ gulp.task('build-app', function buildDependencies() {
     });
   });
 
-  return gulp.src(['src/**/*.jsx'])
+  return gulp.src(['src/**/*.js{,x}'])
     .pipe(browserified)
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(iife({useStrict: false}))
@@ -104,14 +104,14 @@ gulp.task('clean', function clean(callback) {
 });
 
 gulp.task('lint', function lint() {
-  return gulp.src(["src/**/*.jsx?", "test/**/*.jsx?"])
+  return gulp.src(["src/**/*.js{,x}", "test/**/*.js{,x}"])
     .pipe(eslint('node_modules/@anyware/coding-style/.eslintrc'))
     .pipe(eslint.format())
     .pipe(eslint.failOnError());
 });
 
 gulp.task('test', function test() {
-  return gulp.src('test/**/*-test.jsx?', {read: false})
+  return gulp.src('test/**/*-test.js{,x}', {read: false})
     .pipe(mocha({
       reporter: process.env.TRAVIS ? 'spec' : 'nyan',
       compilers: 'js:babel/register'
