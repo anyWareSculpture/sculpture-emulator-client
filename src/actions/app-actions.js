@@ -24,4 +24,10 @@ export default class AppActions {
       actionType: Actions.PLAY_SUCCESS_ANIM
     });
   }
+
+  playFailureAnimation() {
+    AppDispatcher.dispatch({
+      actionType: Actions.PLAY_FAIL_ANIM
+    });
+  }
 }

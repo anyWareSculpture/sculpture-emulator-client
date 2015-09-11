@@ -36,6 +36,9 @@ export default class AppStore extends EventEmitter {
         case Actions.PLAY_SUCCESS_ANIM:
           this.playSuccessAnimation();
           break;
+        case Actions.PLAY_FAIL_ANIM:
+          this.playFailureAnimation();
+          break;
 
         default:
           // nop
@@ -53,9 +56,15 @@ export default class AppStore extends EventEmitter {
     this.sculptureActionCreator = new SculptureActionCreator(AppDispatcher);
   }
 
-  needsAnimation() {
+  needsSuccessAnimation() {
     return this.sculpture.data.get("status")
       === SculptureStore.STATUS_SUCCESS
+      && this._animating === false;
+  }
+
+  needsFailureAnimation() {
+    return this.sculpture.data.get("status")
+      === SculptureStore.STATUS_FAILURE
       && this._animating === false;
   }
 
@@ -63,6 +72,15 @@ export default class AppStore extends EventEmitter {
     this._log("Playing success animation...");
     this._animating = true;
     PanelAnimations.playSuccessAnimation(
+      this.showAnimationFrame.bind(this),
+      this.animationComplete.bind(this)
+    );
+  }
+
+  playFailureAnimation() {
+    this._log("Playing failure animation...");
+    this._animating = true;
+    PanelAnimations.playFailureAnimation(
       this.showAnimationFrame.bind(this),
       this.animationComplete.bind(this)
     );

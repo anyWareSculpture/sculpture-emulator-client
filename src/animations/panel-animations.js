@@ -42,6 +42,28 @@ export default class PanelAnimations {
       [['0', '8'], ['1', '9']],
       [['0', '9']]
     ];
+    this.playAnimation(frames, 'success', 50, handleAnimationFrame, completeCallback);
+  }
+
+    static playFailureAnimation(handleAnimationFrame, completeCallback) {
+    // frames are a list of pairs for panel indices that are on
+    const frames = [
+    [['0', '0'], ['2', '0'],
+            ['1','1'],
+      ['0','2'], ['2', '2'],
+            ['1', '3'],
+      ['0','4'], ['2', '4'],
+            ['1', '5'],
+      ['0','6'], ['2', '6'],
+            ['1', '7'],
+      ['0','8'], ['2', '8'],
+            ['1', '9']
+    ]
+    ];
+    this.playAnimation(frames, 'error', 300, handleAnimationFrame, completeCallback);
+  }
+
+  static playAnimation(frames, color, timeout, handleAnimationFrame, completeCallback) {
 
     let Panels = new LightArray({
         // stripId : number of panels
@@ -57,6 +79,7 @@ export default class PanelAnimations {
       // for each light index in frame, set intensity in object
       _.each(frame, (light) => {
         Panels.setIntensity(light[0], light[1], 100);
+        Panels.setColor(light[0], light[1], color);
       }, this);
 
       handleAnimationFrame(Panels);
@@ -74,7 +97,7 @@ export default class PanelAnimations {
       else {
         nextFn = completeCallback;
       }
-      setTimeout(nextFn, 50);
+      setTimeout(nextFn, timeout);
     }.bind(this);
     playFrame(0);
   }
