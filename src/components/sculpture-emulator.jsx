@@ -3,7 +3,7 @@ let TopNav = require('./top-nav');
 let Handshake = require('./handshake');
 let Status = require('./status');
 let Warning = require('./warning');
-let MoleGame = require('./mole-game');
+let Lights = require('./lights');
 let AppStoreCreator = require('../stores/app-store');
 let ActionCreator = require('../actions/app-actions');
 
@@ -47,7 +47,7 @@ export default class SculptureEmulator extends React.Component {
   }
 
   render() {
-    let warning, game;
+    let warning, controls;
     let client = this.state.client || {};
     let sculpture = this.state.sculpture;
     let appState = this.state.appState;
@@ -56,9 +56,7 @@ export default class SculptureEmulator extends React.Component {
       warning = <Warning msg="disconnect" />;
     }
 
-    // if (sculpture.isPlayingMoleGame) {
-    game = <MoleGame appState={appState} sculpture={sculpture} />;
-    // }
+    controls = <Lights appState={appState} sculpture={sculpture} />;
 
     return (
       <span className="sculpture-emulator">
@@ -66,7 +64,7 @@ export default class SculptureEmulator extends React.Component {
         <div className="main-content" role="main">
           <div className="game-content">
             { warning }
-            { game }
+            { controls }
           </div>
           <div className="sidebar-content">
             <div className="well">

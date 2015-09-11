@@ -1,8 +1,8 @@
 /*eslint no-extra-parens:0*/
 let PanelStrip = require('./panel-strip');
 
-class MoleGame extends React.Component {
-  static displayName = 'MoleGame';
+class Lights extends React.Component {
+  static displayName = 'Lights';
   static propTypes = {
     appState: React.PropTypes.object.isRequired,
     sculpture: React.PropTypes.object.isRequired
@@ -29,11 +29,11 @@ class MoleGame extends React.Component {
       );
     }
     return (
-      <div className="mole-game">
+      <div className="lights">
         {strips}
       </div>
     );
   }
 }
 
-module.exports = MoleGame;
+module.exports = Lights;
