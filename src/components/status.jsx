@@ -13,7 +13,7 @@ class Status extends React.Component {
     }).reverse().value();
 
     let curGame = this.props.sculpture.data.get("currentGame");
-    let gameInfo = curGame ? this.props.sculpture.data.get(curGame) : undefined;
+    let gameInfo = curGame ? this.props.sculpture.data.get(curGame) : null;
     return (
       <div className="status"><h3>Status</h3>
         <p>Game: { curGame } | State: { this.props.sculpture.data.get("status") }</p>

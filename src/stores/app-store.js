@@ -124,8 +124,8 @@ export default class AppStore extends EventEmitter {
 
   /**
    * Handles showing the animation frame by updating the store and
-   * emitting a change, causing rerender.
-   * @param  {LightArray Object} panels LightArray to define current frame.
+   *   emitting a change, causing rerender.
+   * @param  {Object} panels LightArray to define current frame.
    */
   showAnimationFrame(panels) {
     // update temp panels to show next frame in an animation
@@ -135,7 +135,7 @@ export default class AppStore extends EventEmitter {
 
   /**
    * Getter for the sculpture store.
-   * @return {SculptureStore Object}
+   * @return {Object} SculptureStore
    */
   getSculpture() {
     return this.sculpture;
@@ -143,7 +143,7 @@ export default class AppStore extends EventEmitter {
 
   /**
    * Getter for the streaming client.
-   * @return {StreamingClient Object}
+   * @return {Object} StreamingClient
    */
   getClient() {
     return this.client;
@@ -247,8 +247,8 @@ export default class AppStore extends EventEmitter {
   /**
    * Handles state updates from the StreamingClient.
    * Logs it, bubbles change event up to emulator, and merges the state.
-   * @param  {Object} update
-   * @param  {Object} metadata
+   * @param  {Object} update to be merged.
+   * @param  {Object} metadata to add to the update.
    */
   _onStateUpdate(update, metadata) {
     update.metadata = metadata;

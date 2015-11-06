@@ -95,6 +95,9 @@ export default class PanelAnimations {
 
   /**
    * Plays a animation on the light-array given by frames object.
+   * @param  {Array} frames given as array of index pairs to update LightArray
+   * @param  {string} color of lights in animation
+   * @param  {Number} timeout Duration of each animation frame.
    * @param  {function} handleAnimationFrame is called for each frame of the
    *         animation for dislplaying the frame data.
    *         Signature: handleAnimaitionFrame({LightArray});
