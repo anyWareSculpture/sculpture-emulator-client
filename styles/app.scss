@@ -39,10 +39,12 @@ nav.top-nav {
 
 .game-content {
 	@extend .col-md-8;
+	margin-bottom: 15px;
 }
 
 .sidebar-content {
 	@extend .col-md-4;
+
 }
 
 // Login
