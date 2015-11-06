@@ -1,3 +1,6 @@
+/**
+ * @fileOverview defines valid app actions to be dispatched and handled.
+ */
 let keyMirror = require('keymirror');
 
 export default keyMirror({

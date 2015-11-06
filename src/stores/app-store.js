@@ -1,3 +1,7 @@
+/**
+ * @fileOverview contains the applciation to store, to handle dispatched events,
+ *               and maintain sculpture, application, and streaming client data.
+ */
 let AppDispatcher = require('../dispatcher/app-dispatcher');
 let EventEmitter = require('events').EventEmitter;
 let Actions = require('../constants/app-constants');
@@ -16,6 +20,11 @@ const DEFAULT_CLIENT_CONNECTION_OPTIONS = {
 export default class AppStore extends EventEmitter {
   static CHANGE_EVENT = 'change';
 
+  /**
+   * Initializes values, registers actions to the dispatcher, and registers
+   * callbacks to handle scultpture store actions.
+   * @constructor
+   */
   constructor() {
     super();
     this.client = null;
@@ -56,18 +65,33 @@ export default class AppStore extends EventEmitter {
     this.sculptureActionCreator = new SculptureActionCreator(AppDispatcher);
   }
 
+  /********* PUBLIC METHODS *********/
+
+  /**
+   * Determines if the sculpture needs to play a success animation based on its status.
+   * @return {boolean} Returns true if a success animation is required,
+   *                           false otherwise.
+   */
   needsSuccessAnimation() {
     return this.sculpture.data.get("status")
       === SculptureStore.STATUS_SUCCESS
       && this._animating === false;
   }
 
+  /**
+   * Determines if the sculpture needs to play a failure animation based on its status.
+   * @return {boolean} Returns true if a failure animation is required,
+   *                           false otherwise.
+   */
   needsFailureAnimation() {
     return this.sculpture.data.get("status")
       === SculptureStore.STATUS_FAILURE
       && this._animating === false;
   }
 
+  /**
+   * Triggers a success animation.
+   */
   playSuccessAnimation() {
     this._log("Playing success animation...");
     this._animating = true;
@@ -77,6 +101,9 @@ export default class AppStore extends EventEmitter {
     );
   }
 
+  /**
+   * Triggers a failure animation.
+   */
   playFailureAnimation() {
     this._log("Playing failure animation...");
     this._animating = true;
@@ -86,26 +113,53 @@ export default class AppStore extends EventEmitter {
     );
   }
 
+  /**
+   * Callback when an animation is complete notifies scultpture of status change.
+   */
   animationComplete() {
     this._log("Animation complete!");
     this._animating = false;
     this.sculptureActionCreator.sendFinishStatusAnimation();
   }
 
+  /**
+   * Handles showing the animation frame by updating the store and
+   * emitting a change, causing rerender.
+   * @param  {LightArray Object} panels LightArray to define current frame.
+   */
   showAnimationFrame(panels) {
     // update temp panels to show next frame in an animation
     this.animPanels = panels;
     this.emitChange();
   }
 
+  /**
+   * Getter for the sculpture store.
+   * @return {SculptureStore Object}
+   */
   getSculpture() {
     return this.sculpture;
   }
 
+  /**
+   * Getter for the streaming client.
+   * @return {StreamingClient Object}
+   */
   getClient() {
     return this.client;
   }
 
+  /**
+   * Determines which data within the store is state data.
+   * @return {Object} Object contains properties within the store that are
+   *                         important to the emulator.
+   *                         {
+   *                           isAnimating: {bool}
+   *                           commandLog: {array} array of strings
+   *                           animPanels: {LightArray} panels for use as
+   *                                                    animation frame
+   *                         }
+   */
   getAppState() {
     return {
       isAnimating: this._animating,
@@ -126,6 +180,15 @@ export default class AppStore extends EventEmitter {
     this.removeListender(this.CHANGE_EVENT, callback);
   }
 
+  /**
+   * Creates and connects to the StreamingClient.
+   * @param  {Object} options credentials for login
+   *                          {
+   *                            username: {string}
+   *                            password: {string}
+   *                            host: {string}
+   *                          }
+   */
   connectAndSetupClient(options) {
     options = _.defaults({}, options, DEFAULT_CLIENT_CONNECTION_OPTIONS);
 
@@ -153,11 +216,17 @@ export default class AppStore extends EventEmitter {
     this.client.on(StreamingClient.EVENT_STATE_UPDATE, this._onStateUpdate.bind(this));
   }
 
+  /********* PRIVATE METHODS ********/
+
   _onConnectionStatusChange() {
     this._log(`Client Connected: ${this.client.connected}`);
     this.emitChange();
   }
 
+  /**
+   * Adds message to the command log, maintaining a maximum history.
+   * @param  {string} msg Mesage to add.
+   */
   _log(msg) {
     this.commandLog.push(msg);
 
@@ -166,11 +235,21 @@ export default class AppStore extends EventEmitter {
     }
   }
 
+  /**
+   * Outputs error message to the console.
+   * @param  {Object} error contains the error data
+   */
   _error(error) {
     const errorMessage = error.stack || error.message || error;
     console.error(errorMessage);
   }
 
+  /**
+   * Handles state updates from the StreamingClient.
+   * Logs it, bubbles change event up to emulator, and merges the state.
+   * @param  {Object} update
+   * @param  {Object} metadata
+   */
   _onStateUpdate(update, metadata) {
     update.metadata = metadata;
     this._log(`Got state update: ${JSON.stringify(update)}`);
