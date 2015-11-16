@@ -1,3 +1,5 @@
+const React = require('react');
+
 /*eslint no-extra-parens:0*/
 class Warning extends React.Component {
   static displayName = 'Warning';

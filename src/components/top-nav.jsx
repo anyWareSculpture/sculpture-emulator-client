@@ -1,5 +1,6 @@
 /*eslint no-extra-parens:0*/
 let Login = require('./login');
+const React = require('react');
 
 class TopNav extends React.Component {
   static displayName = 'TopNav';

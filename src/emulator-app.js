@@ -3,9 +3,10 @@
  */
 require("babel/polyfill");
 let SculptureEmulator = require('./components/sculpture-emulator');
+const ReactDOM = require('react-dom');
 
 $(document).ready(() => {
-  React.render(
+  ReactDOM.render(
     <SculptureEmulator />,
     document.getElementById('container')
   );

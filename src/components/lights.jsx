@@ -1,4 +1,5 @@
 /*eslint no-extra-parens:0*/
+const React = require('react');
 let PanelStrip = require('./panel-strip');
 
 class Lights extends React.Component {

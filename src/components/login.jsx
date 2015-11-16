@@ -1,4 +1,5 @@
 /*eslint no-extra-parens:0*/
+const React = require('react');
 let ActionCreator = require('../actions/app-actions');
 
 export default class Login extends React.Component {

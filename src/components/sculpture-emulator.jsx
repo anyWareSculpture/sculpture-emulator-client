@@ -1,4 +1,5 @@
 /*eslint no-extra-parens:0*/
+const React = require('react');
 let TopNav = require('./top-nav');
 let Handshake = require('./handshake');
 let Status = require('./status');

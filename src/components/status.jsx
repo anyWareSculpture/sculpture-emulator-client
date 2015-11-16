@@ -1,4 +1,6 @@
 /*eslint no-extra-parens:0*/
+const React = require('react');
+
 class Status extends React.Component {
   static displayName = 'Status';
   static propTypes = {
