@@ -28,12 +28,16 @@ class Panel extends React.Component {
     let enableToggle = this.props.enableToggle;
     let color = this.props.color ? this.props.color : "black";
 
-    let clickHandler = function clickHandler() {
+    let mouseDownHandler = function mouseDownHandler() {
       this.panelActions.sendPanelPressed(stripIdx, panelIdx, true);
+    };
+
+    let mouseUpHandler = function mouseUpHandler() {
       window.setTimeout(() => {
-        // set timeout on turning toggling to inactive panel state
+        // set timeout to avoid an infinite loop when actions are
+        // received too close together
         this.panelActions.sendPanelPressed(stripIdx, panelIdx, false);
-      }, 750);
+      }, 300);
     };
 
     classList.push(active ? "panel-active-" + color : "panel-off");
@@ -55,7 +59,8 @@ class Panel extends React.Component {
 
     return (
       <div className={ classList.join(' ') }
-      onClick={this.props.enableToggle ? clickHandler.bind(this) : '' }
+      onMouseDown={this.props.enableToggle ? mouseDownHandler.bind(this) : '' }
+      onMouseUp={this.props.enableToggle ? mouseUpHandler.bind(this) : '' }
       style={inlineStyle}
       ></div>
     );
