@@ -66,7 +66,7 @@ gulp.task('build-app', function buildDependencies() {
     });
   });
 
-  return gulp.src(['src/**/*.js{,x}'])
+  return gulp.src(['src/emulator-app.js'])
     .pipe(browserified)
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(iife({useStrict: false}))
