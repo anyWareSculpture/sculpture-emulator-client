@@ -8,8 +8,9 @@ let Actions = require('../constants/app-constants');
 let PanelAnimations = require('../animations/panel-animations');
 
 const StreamingClient = require('@anyware/streaming-client');
-const {SculptureStore, SculptureActionCreator} = require('@anyware/game-logic');
-const {DefaultConfig} = require('@anyware/game-logic');
+const SculptureStore = require('@anyware/game-logic/lib/sculpture-store');
+const SculptureActionCreator = require('@anyware/game-logic/lib/actions/sculpture-action-creator');
+const DefaultConfig = require('@anyware/game-logic/lib/config/default-config');
 
 const DEFAULT_CLIENT_CONNECTION_OPTIONS = {
   username: "anyware",
@@ -54,7 +55,7 @@ export default class AppStore extends EventEmitter {
       }
     });
 
-    this.config = DefaultConfig;
+    this.config = new DefaultConfig();
 
     // Register callback to handle app Actions
     this.sculpture = new SculptureStore(AppDispatcher, this.config);

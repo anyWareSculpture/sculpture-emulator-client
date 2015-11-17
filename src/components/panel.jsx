@@ -1,6 +1,6 @@
 /*eslint no-extra-parens:0*/
 let AppDispatcher = require('../dispatcher/app-dispatcher');
-let {PanelsActionCreator} = require('@anyware/game-logic');
+let PanelsActionCreator = require('@anyware/game-logic/lib/actions/panels-action-creator');
 
 class Panel extends React.Component {
   static displayName = 'Panel';

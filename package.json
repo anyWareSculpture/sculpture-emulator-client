@@ -44,7 +44,7 @@
     "through2": "^0.6.5"
   },
   "dependencies": {
-    "@anyware/game-logic": "^10.0.0",
+    "@anyware/game-logic": "^11.1.0",
     "@anyware/streaming-client": "^2.0.0",
     "flux": "^2.0.3",
     "keymirror": "^0.1.1"
