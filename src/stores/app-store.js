@@ -43,13 +43,6 @@ export default class AppStore extends EventEmitter {
           this.connectAndSetupClient(action.loginOptions);
           break;
 
-        case Actions.PLAY_SUCCESS_ANIM:
-          this.playSuccessAnimation();
-          break;
-        case Actions.PLAY_FAIL_ANIM:
-          this.playFailureAnimation();
-          break;
-
         default:
           // nop
       }
@@ -63,77 +56,12 @@ export default class AppStore extends EventEmitter {
       this._log(`Sent state update: ${JSON.stringify(changes)}`);
       this.client.sendStateUpdate(changes);
       this.emitChange();
+      this._doAnimation();
     });
     this.sculptureActionCreator = new SculptureActionCreator(AppDispatcher);
   }
 
   /********* PUBLIC METHODS *********/
-
-  /**
-   * Determines if the sculpture needs to play a success animation based on its status.
-   * @return {boolean} Returns true if a success animation is required,
-   *                           false otherwise.
-   */
-  needsSuccessAnimation() {
-    return this.sculpture.data.get("status")
-      === SculptureStore.STATUS_SUCCESS
-      && this._animating === false;
-  }
-
-  /**
-   * Determines if the sculpture needs to play a failure animation based on its status.
-   * @return {boolean} Returns true if a failure animation is required,
-   *                           false otherwise.
-   */
-  needsFailureAnimation() {
-    return this.sculpture.data.get("status")
-      === SculptureStore.STATUS_FAILURE
-      && this._animating === false;
-  }
-
-  /**
-   * Triggers a success animation.
-   */
-  playSuccessAnimation() {
-    this._log("Playing success animation...");
-    this._animating = true;
-    PanelAnimations.playSuccessAnimation(
-      this.showAnimationFrame.bind(this),
-      this.animationComplete.bind(this)
-    );
-  }
-
-  /**
-   * Triggers a failure animation.
-   */
-  playFailureAnimation() {
-    this._log("Playing failure animation...");
-    this._animating = true;
-    PanelAnimations.playFailureAnimation(
-      this.showAnimationFrame.bind(this),
-      this.animationComplete.bind(this)
-    );
-  }
-
-  /**
-   * Callback when an animation is complete notifies scultpture of status change.
-   */
-  animationComplete() {
-    this._log("Animation complete!");
-    this._animating = false;
-    this.sculptureActionCreator.sendFinishStatusAnimation();
-  }
-
-  /**
-   * Handles showing the animation frame by updating the store and
-   *   emitting a change, causing rerender.
-   * @param  {Object} panels LightArray to define current frame.
-   */
-  showAnimationFrame(panels) {
-    // update temp panels to show next frame in an animation
-    this.animPanels = panels;
-    this.emitChange();
-  }
 
   /**
    * Getter for the sculpture store.
@@ -219,6 +147,68 @@ export default class AppStore extends EventEmitter {
   }
 
   /********* PRIVATE METHODS ********/
+
+  _doAnimation() {
+    let needsSuccessAnimation =
+      (this.sculpture.data.get("status") === SculptureStore.STATUS_SUCCESS) &&
+      this._animating === false;
+
+    let needsFailureAnimation =
+      (this.sculpture.data.get("status") === SculptureStore.STATUS_FAILURE) &&
+      this._animating === false;
+
+    if (needsSuccessAnimation) {
+      this._playSuccessAnimation();
+    }
+    else if (needsFailureAnimation) {
+      this._playFailureAnimation();
+    }
+  }
+
+    /**
+   * Triggers a success animation.
+   */
+  _playSuccessAnimation() {
+    this._log("Playing success animation...");
+    this._animating = true;
+    PanelAnimations.playSuccessAnimation(
+      this._showAnimationFrame.bind(this),
+      this._animationComplete.bind(this)
+    );
+  }
+
+  /**
+   * Triggers a failure animation.
+   */
+  _playFailureAnimation() {
+    this._log("Playing failure animation...");
+    this._animating = true;
+    PanelAnimations.playFailureAnimation(
+      this._showAnimationFrame.bind(this),
+      this._animationComplete.bind(this)
+    );
+  }
+
+  /**
+   * Callback when an animation is complete notifies scultpture of status change.
+   */
+  _animationComplete() {
+    this._log("Animation complete!");
+    this._animating = false;
+    this.sculptureActionCreator.sendFinishStatusAnimation();
+  }
+
+  /**
+   * Handles showing the animation frame by updating the store and
+   *   emitting a change, causing rerender.
+   * @param  {Object} panels LightArray to define current frame.
+   */
+  _showAnimationFrame(panels) {
+    // update temp panels to show next frame in an animation
+    console.log("showing frame");
+    this.animPanels = panels;
+    this.emitChange();
+  }
 
   _onConnectionStatusChange() {
     this._log(`Client Connected: ${this.client.connected}`);

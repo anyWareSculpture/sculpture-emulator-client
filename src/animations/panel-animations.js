@@ -87,7 +87,7 @@ export default class PanelAnimations {
     this.playAnimation(
       frames,
       'error',
-      300,
+      500,
       handleAnimationFrame,
       completeCallback
     );
@@ -113,7 +113,6 @@ export default class PanelAnimations {
         '1': 10,
         '2': 10
       });
-    console.log(Panels);
 
     const playFrame = (frameIdx) => {
       let frame = frames[frameIdx];
@@ -128,7 +127,6 @@ export default class PanelAnimations {
 
       // reset intensity to 0
       _.each(frame, (light) => {
-        console.log(light);
         Panels.setIntensity(light[0], light[1], 0);
       }, this);
 

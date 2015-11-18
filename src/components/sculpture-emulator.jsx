@@ -37,13 +37,6 @@ export default class SculptureEmulator extends React.Component {
   _onChange() {
     console.log('State change captured.');
     this.setState(this.getStateFromStores);
-
-    if (this.AppStore.needsSuccessAnimation()) {
-      this.actions.playSuccessAnimation();
-    }
-    else if (this.AppStore.needsFailureAnimation()) {
-      this.actions.playFailureAnimation();
-    }
   }
 
   render() {

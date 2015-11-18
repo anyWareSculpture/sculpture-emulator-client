@@ -36,22 +36,4 @@ export default class AppActions {
       }
     });
   }
-
-  /**
-   * Dispatches PLAY_SUCCESS_ANIM action
-   */
-  playSuccessAnimation() {
-    AppDispatcher.dispatch({
-      actionType: Actions.PLAY_SUCCESS_ANIM
-    });
-  }
-
-  /**
-   * Dispatches Play_FAIL_ANIM action
-   */
-  playFailureAnimation() {
-    AppDispatcher.dispatch({
-      actionType: Actions.PLAY_FAIL_ANIM
-    });
-  }
 }
