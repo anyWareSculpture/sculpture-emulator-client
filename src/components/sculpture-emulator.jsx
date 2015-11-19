@@ -45,6 +45,7 @@ export default class SculptureEmulator extends React.Component {
     let client = this.state.client || {};
     let sculpture = this.state.sculpture;
     let appState = this.state.appState;
+    let config = this.AppStore.config;
 
     if (!client.connected) {
       warning = <Warning msg="disconnect" />;
@@ -62,7 +63,7 @@ export default class SculptureEmulator extends React.Component {
           </div>
           <div className="sidebar-content">
             <div className="well">
-              <Handshake isSending={true} />
+              <Handshake username={config.username} status={[sculpture.data.get('handshakes').get(config.user0), sculpture.data.get('handshakes').get(config.user1), sculpture.data.get('handshakes').get(config.user2)]} />
             </div>
             <div className="well">
               <Status
