@@ -3,6 +3,7 @@
  */
 require("babel/polyfill");
 let SculptureEmulator = require('./components/sculpture-emulator');
+const React = require('react');
 const ReactDOM = require('react-dom');
 
 $(document).ready(() => {
