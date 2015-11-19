@@ -137,9 +137,10 @@ export default class AppStore extends EventEmitter {
 
     this.client.once(StreamingClient.EVENT_CONNECT, () => {
       // Temporarily here until the full game transitions are implemented
-      if (!this.sculpture.isPlayingMoleGame) {
-        this._log("Starting mole game...");
-        this.sculptureActionCreator.sendStartMoleGame();
+      if (this.sculpture.isPlayingNoGame) {
+        const game = this.config.GAMES_SEQUENCE[0];
+        this._log(`Starting ${game} game...`);
+        this.sculptureActionCreator.sendStartGame(game);
       }
     });
 
