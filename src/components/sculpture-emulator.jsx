@@ -7,6 +7,8 @@ let Warning = require('./warning');
 let Lights = require('./lights');
 let AppStoreCreator = require('../stores/app-store');
 let ActionCreator = require('../actions/app-actions');
+let AudioView = require('../audio-view');
+let AppDispatcher = require('../dispatcher/app-dispatcher');
 
 export default class SculptureEmulator extends React.Component {
   static displayName = 'SculptureEmulator';
@@ -14,6 +16,7 @@ export default class SculptureEmulator extends React.Component {
   constructor(props) {
     super(props);
     this.AppStore = new AppStoreCreator();
+    this.audioView = new AudioView(this.AppStore.sculpture, this.AppStore.config, AppDispatcher);
     this.state = this.getStateFromStores();
     this.actions = new ActionCreator();
     this.actions.connectAndSetupClient();
