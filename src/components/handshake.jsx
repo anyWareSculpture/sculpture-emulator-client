@@ -20,7 +20,7 @@ class Handshake extends React.Component {
     return (
       <div className="handshake">
         <Panel color="user0" intensity={this.props.status[0] ? 100 : 15} />
-        <Panel color="user1" intensity={this.props.status[1] ? 100 : 15 }/>
+        <Panel color="user1" intensity={this.props.status[1] ? 100 : 15} />
         <Panel color="user2" intensity={this.props.status[2] ? 100 : 15} />
         <button onClick={ e => this.handleHandshake() }>{ this.state.isSending ? "Revoke Handshake" : "Send Handshake"}</button>
       </div>
