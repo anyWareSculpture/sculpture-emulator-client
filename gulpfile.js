@@ -46,7 +46,7 @@ gulp.task('watchCSS', function() {
 });
 
 gulp.task('build', function build(callback) {
-  return runSequence('build-dependencies', 'build-app', 'build-index', callback);
+  return runSequence('build-dependencies', 'build-app', 'build-index', 'build-sounds', callback);
 });
 
 gulp.task('build-app', function buildDependencies() {
@@ -89,6 +89,11 @@ gulp.task('build-dependencies', function buildApp() {
 gulp.task('build-index', function buildIndex() {
   return gulp.src('index.html')
     .pipe(gulp.dest(gulpUtils.getDistPath()));
+});
+
+gulp.task('build-sounds', function buildIndex() {
+  return gulp.src(['node_modules/@anyware/sound-assets/**/*.wav'])
+    .pipe(gulp.dest(gulpUtils.getDistPath('sounds')));
 });
 
 gulp.task('css', function buildCSS() {
