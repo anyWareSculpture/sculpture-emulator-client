@@ -47,25 +47,31 @@ nav.top-nav {
 
 }
 
-// Login
-.form-login {
+form {
 	padding: 10px;
 	max-width: 400px;
-	input[type="username"] {
-		margin-bottom: -1px;
-		border-bottom-right-radius: 0px;
-		border-bottom-left-radius: 0px;
+
+	label {
+		margin-left: 10px;
 	}
-	input[type="password"] {
-		margin-bottom: 10px;
-		border-top-left-radius: 0px;
-		border-top-right-radius: 0px;
-	}
-	.submit {
-		@extend .btn;
-		@extend .btn-lg;
-		@extend .btn-primary;
-		@extend .btn-block;
+
+	&.form-login {
+		input[type="username"] {
+			margin-bottom: -1px;
+			border-bottom-right-radius: 0px;
+			border-bottom-left-radius: 0px;
+		}
+		input[type="password"] {
+			margin-bottom: 10px;
+			border-top-left-radius: 0px;
+			border-top-right-radius: 0px;
+		}
+		.submit {
+			@extend .btn;
+			@extend .btn-lg;
+			@extend .btn-primary;
+			@extend .btn-block;
+		}
 	}
 }
 
@@ -177,6 +183,6 @@ nav.top-nav {
 	.log {
 		overflow-y: scroll;
 		overflow-wrap: break-word;
-		height: 375px;
+		height: 345px;
 	}
 }

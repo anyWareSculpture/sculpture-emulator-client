@@ -1,11 +1,14 @@
 /*eslint no-extra-parens:0*/
 let Login = require('./login');
 const React = require('react');
+let GameSelector = require('./game-selector');
 
 class TopNav extends React.Component {
   static displayName = 'TopNav';
   static propTypes = {
+    currentGame: React.PropTypes.string,
     isLoggedIn: React.PropTypes.bool
+
   };
 
   _onDropdownSubmit(e) {
@@ -20,7 +23,9 @@ class TopNav extends React.Component {
           Login
           <span className="caret"></span>
         </a>
-        <div className="dropdown-menu"><Login parentSubmit={this._onDropdownSubmit.bind(this)} /></div>
+        <div className="dropdown-menu">
+          <Login parentSubmit={this._onDropdownSubmit.bind(this)} />
+        </div>
       </li>
     );
 
@@ -32,6 +37,18 @@ class TopNav extends React.Component {
       </li>
     );
 
+    let gameSelectorDropdown = (
+      <li className="dropdown">
+        <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+          Select Game
+          <span className="caret"></span>
+        </a>
+        <div className="dropdown-menu">
+          <GameSelector currentGame={ this.props.currentGame }/>
+        </div>
+      </li>
+    );
+
     return (
       <nav className="top-nav">
         <div className="container">
@@ -40,6 +57,7 @@ class TopNav extends React.Component {
           </div>
           <div id="navbar">
             <ul>
+              { gameSelectorDropdown }
               { this.props.isLoggedIn ? logoutButton : loginDropdown }
             </ul>
           </div>

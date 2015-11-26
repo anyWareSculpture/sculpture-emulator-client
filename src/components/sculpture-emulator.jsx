@@ -55,7 +55,9 @@ export default class SculptureEmulator extends React.Component {
 
     return (
       <span className="sculpture-emulator">
-        <TopNav isActive={false} isLoggedIn={false} /> // need to determine if connection is read only or not
+        <TopNav
+         currentGame={sculpture.data.get("currentGame")}
+         isActive={false} />
         <div className="main-content" role="main">
           <div className="game-content">
             { warning }
