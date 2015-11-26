@@ -65,7 +65,13 @@ export default class SculptureEmulator extends React.Component {
           </div>
           <div className="sidebar-content">
             <div className="well">
-              <Handshake username={config.username} status={[sculpture.data.get('handshakes').get(config.user0), sculpture.data.get('handshakes').get(config.user1), sculpture.data.get('handshakes').get(config.user2)]} />
+              <Handshake
+                status={[
+                  sculpture.data.get('handshakes').get(config.user0),
+                  sculpture.data.get('handshakes').get(config.user1),
+                  sculpture.data.get('handshakes').get(config.user2)
+                ]}
+                username={config.username} />
             </div>
             <div className="well">
               <Status
