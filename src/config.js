@@ -5,9 +5,7 @@ export default class Config extends DefaultConfig {
     super();
 
     this.username = "sculpture0";
-
   }
-
   // FIXME: Configure user colors here? How to communicate that to CSS?
 }
 

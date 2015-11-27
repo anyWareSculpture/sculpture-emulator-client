@@ -64,7 +64,9 @@ export default class SculptureEmulator extends React.Component {
 
     return (
       <span className="sculpture-emulator">
-        <TopNav isActive={false} isLoggedIn={false} /> // need to determine if connection is read only or not
+        <TopNav
+         currentGame={sculpture.data.get("currentGame")}
+         isActive={false} />
         <div className="main-content" role="main">
           <div className="game-content">
             { warning }
@@ -72,7 +74,13 @@ export default class SculptureEmulator extends React.Component {
           </div>
           <div className="sidebar-content">
             <div className="well">
-              <Handshake username={config.username} status={[sculpture.data.get('handshakes').get(config.user0), sculpture.data.get('handshakes').get(config.user1), sculpture.data.get('handshakes').get(config.user2)]} />
+              <Handshake
+                status={[
+                  sculpture.data.get('handshakes').get(config.user0),
+                  sculpture.data.get('handshakes').get(config.user1),
+                  sculpture.data.get('handshakes').get(config.user2)
+                ]}
+                username={config.username} />
             </div>
             <div className="well">
               <Status

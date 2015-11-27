@@ -150,13 +150,13 @@ export default class AppStore extends EventEmitter {
   /********* PRIVATE METHODS ********/
 
   _doAnimation() {
-    let needsSuccessAnimation =
-      (this.sculpture.data.get("status") === SculptureStore.STATUS_SUCCESS) &&
-      this._animating === false;
+    let needsSuccessAnimation
+      = this.sculpture.data.get("status") === SculptureStore.STATUS_SUCCESS
+      && this._animating === false;
 
-    let needsFailureAnimation =
-      (this.sculpture.data.get("status") === SculptureStore.STATUS_FAILURE) &&
-      this._animating === false;
+    let needsFailureAnimation
+      = this.sculpture.data.get("status") === SculptureStore.STATUS_FAILURE
+      && this._animating === false;
 
     if (needsSuccessAnimation) {
       this._playSuccessAnimation();
