@@ -11,6 +11,7 @@ const StreamingClient = require('@anyware/streaming-client');
 const SculptureStore = require('@anyware/game-logic/lib/sculpture-store');
 const SculptureActionCreator = require('@anyware/game-logic/lib/actions/sculpture-action-creator');
 const Config = require('../config');
+const AudioView = require('@anyware/shared-views/lib/audio-view');
 
 const DEFAULT_CLIENT_CONNECTION_OPTIONS = {
   username: "anyware",
@@ -59,6 +60,17 @@ export default class AppStore extends EventEmitter {
       this._doAnimation();
     });
     this.sculptureActionCreator = new SculptureActionCreator(AppDispatcher);
+
+    this.audioInitialized = false;
+    this.audioView = new AudioView(this.sculpture, this.config, AppDispatcher);
+    this.audioView.load(err => {
+      if (err) {
+         return console.log(`AudioView error: ${err}`);
+      }
+      this.audioInitialized = true;
+      this._beginFirstGame();
+      console.log('Loaded sounds');
+    });
   }
 
   /********* PUBLIC METHODS *********/
@@ -135,14 +147,7 @@ export default class AppStore extends EventEmitter {
 
     this.client.on(StreamingClient.EVENT_ERROR, this._error.bind(this));
 
-    this.client.once(StreamingClient.EVENT_CONNECT, () => {
-      // Temporarily here until the full game transitions are implemented
-      if (this.sculpture.isPlayingNoGame) {
-        const game = this.config.GAMES_SEQUENCE[0];
-        this._log(`Starting ${game} game...`);
-        this.sculptureActionCreator.sendStartGame(game);
-      }
-    });
+    this.client.once(StreamingClient.EVENT_CONNECT, this._beginFirstGame.bind(this));
 
     this.client.on(StreamingClient.EVENT_STATE_UPDATE, this._onStateUpdate.bind(this));
   }
@@ -249,5 +254,18 @@ export default class AppStore extends EventEmitter {
     this.emitChange();
 
     this.sculptureActionCreator.sendMergeState(update);
+  }
+
+  _beginFirstGame() {
+    if (!this.client || !this.client.connected || !this.audioInitialized) {
+      return;
+    }
+
+    // Temporarily here until the full game transitions are implemented
+    if (this.sculpture.isPlayingNoGame) {
+      const game = this.config.GAMES_SEQUENCE[0];
+      this._log(`Starting ${game} game...`);
+      this.sculptureActionCreator.sendStartGame(game);
+    }
   }
 }

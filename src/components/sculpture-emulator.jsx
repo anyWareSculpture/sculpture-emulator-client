@@ -7,7 +7,6 @@ let Warning = require('./warning');
 let Lights = require('./lights');
 let AppStoreCreator = require('../stores/app-store');
 let ActionCreator = require('../actions/app-actions');
-let AudioView = require('@anyware/shared-views/lib/audio-view');
 let AppDispatcher = require('../dispatcher/app-dispatcher');
 
 export default class SculptureEmulator extends React.Component {
@@ -16,13 +15,6 @@ export default class SculptureEmulator extends React.Component {
   constructor(props) {
     super(props);
     this.AppStore = new AppStoreCreator();
-    this.audioView = new AudioView(this.AppStore.sculpture, this.AppStore.config, AppDispatcher);
-    this.audioView.load(err => {
-      if (err) {
-         return console.log(`AudioView error: ${err}`);
-      }
-      console.log('Loaded sounds');
-    });
     this.state = this.getStateFromStores();
     this.actions = new ActionCreator();
     this.actions.connectAndSetupClient();

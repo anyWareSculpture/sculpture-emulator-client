@@ -1,13 +1,12 @@
-var es = require('event-stream');
-
 var gulp = require('gulp');
 var browserify = require('browserify');
-var babelify = require("babelify");
-var through = require('through2');
+var babelify = require('babelify');
+var brfs = require('brfs');
+var watchify = require('watchify');
 
 var concat = require('gulp-concat');
+var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
-var addsrc = require('gulp-add-src');
 var iife = require("gulp-iife");
 var runSequence = require('run-sequence');
 var bowerFiles = require('bower-files')();
@@ -17,8 +16,12 @@ var mocha = require('gulp-spawn-mocha');
 var eslint = require('gulp-eslint');
 var codecov = require('gulp-codecov.io');
 var notify = require("gulp-notify");
+var buffer = require('vinyl-buffer');
+var source = require('vinyl-source-stream');
 
 var gulpUtils = require('@anyware/gulp-utils');
+
+var browserSync = require('browser-sync').create();
 
 gulp.task('default', function(callback) {
   return runSequence('clean', 'lint', 'test', 'css', 'build', callback);
@@ -30,47 +33,85 @@ gulp.task('submit-coverage', function submitCoverage() {
     .pipe(codecov());
 });
 
-gulp.task('watch', ['watchJS', 'watchCSS']);
-
-gulp.task('watchJS', function() {
-  gulp.watch(['bower_components/**/*.js', 'index.html'], ['build']);
-  gulp.watch(['src/**/*.js{,x}'], ['build-app']);
+gulp.task('watch', ['build-dependencies', 'build-watch', 'css', 'build-index', 'collect-sounds'], function() {
+  gulp.watch(['bower_components/**/*.js'], ['build-dependencies']);
+  gulp.watch(['index.html'], ['build-index']);
+  gulp.watch(['styles/**/*.scss'], ['css']);
 });
 
 gulp.task('watchTests', function watchTests() {
   gulp.watch(['src/**/*.js{,x}', 'test/**/*.js{,x}'], ['lint', 'test']);
 });
 
-gulp.task('watchCSS', function() {
-  gulp.watch(['styles/**/*.scss'], ['css']);
-});
-
 gulp.task('build', function build(callback) {
-  return runSequence('build-dependencies', 'build-app', 'build-index', 'build-sounds', callback);
+  return runSequence('build-dependencies', 'build-nowatch', 'build-index', 'collect-sounds', callback);
 });
 
-gulp.task('build-app', function buildDependencies() {
-  var browserified = through.obj(function (file, enc, next){
-    browserify(file.path, {
-      debug: true,
-      extensions: ['.jsx']
-    }).transform(babelify.configure({
-      stage: 0
-    })).bundle(function(err, res){
-      // assumes file.contents is a Buffer
-      if (err) {
-        throw err;
-      }
-      file.contents = res;
-      next(null, file);
-    });
-  });
+/*
+  Creates a browserified stream of the given files and calls the passed bundle function.a
+  if watch is true, will automatically watch and rebuild using the passed bundle function.
 
-  return gulp.src(['src/emulator-app.js'])
-    .pipe(browserified)
+  The bundle function must take a stream as parameter and produce the appropriate output.
+*/
+function createBrowserifiedStream(files, watch, bundle) {
+  var b = browserify({entries: files,
+// Disabling until this is fixed: https://github.com/substack/node-browserify/issues/1386
+//                      debug: true,
+                      extensions: ['.jsx']
+                     })
+    .transform(babelify.configure({ stage: 0 }))
+    .transform(brfs);
+  
+  if (watch) {
+    var w = watchify(b, {ignoreWatch: false});
+    w.on('update', function() {
+      console.log("Updating...");
+      return bundle(b);
+    });
+  }
+  return bundle(b);
+}
+
+/*
+  Takes a browserify stream as input and produces a bundled output
+*/
+ function bundleApp(b) {
+  return b.bundle()
+    .on('error', function(err) {
+      return notify().write(err);
+    })
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(debug({title: 'A'}))
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(iife({useStrict: false}))
-    .pipe(concat('app.js'))
+    .pipe(uglify())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(gulpUtils.getDistPath()))
+    .pipe(notify("Build app done!"))
+    .pipe(browserSync.reload({stream: true, once: true}));
+}
+
+var browserify_files = ['src/emulator-app.js'];
+gulp.task('build-nowatch', function() {
+  return createBrowserifiedStream(browserify_files, false, bundleApp);
+});
+
+gulp.task('build-watch', function() {
+  return createBrowserifiedStream(browserify_files, true, bundleApp);
+});
+
+var debug = require('gulp-debug');
+gulp.task('build-app', function buildDependencies() {
+  return gulp.src(['src/emulator-app.js'])
+    .pipe(debug({title: 'A'}))
+    .pipe(browserified)
+    .pipe(debug({title: 'B'}))
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(iife({useStrict: false}))
+// concat isn't necessary since browserified outputs a single file
+//    .pipe(concat('app.js'))
+    .pipe(rename('app.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(gulpUtils.getDistPath()))
@@ -91,7 +132,7 @@ gulp.task('build-index', function buildIndex() {
     .pipe(gulp.dest(gulpUtils.getDistPath()));
 });
 
-gulp.task('build-sounds', function buildIndex() {
+gulp.task('collect-sounds', function collectSounds() {
   return gulp.src(['node_modules/@anyware/sound-assets/**/*.wav'])
     .pipe(gulp.dest(gulpUtils.getDistPath('sounds')));
 });
@@ -121,4 +162,16 @@ gulp.task('test', function test() {
       reporter: process.env.TRAVIS ? 'spec' : 'nyan',
       compilers: 'js:babel/register'
     }));
+});
+
+gulp.task('serve', ['watch'], function () {
+  browserSync.init(null, {
+    server: {
+      baseDir: 'dist'
+    },
+    startPath: 'index.html',
+    debugInfo: false,
+    open: true,
+    hostnameSuffix: ""
+  });
 });
