@@ -13,9 +13,10 @@ const SculptureActionCreator = require('@anyware/game-logic/lib/actions/sculptur
 const Config = require('../config');
 
 const DEFAULT_CLIENT_CONNECTION_OPTIONS = {
+  protocol: "ws",
   username: "anyware",
   password: "anyware",
-  host: "connect.shiftr.io"
+  host: "broker.shiftr.io"
 };
 
 export default class AppStore extends EventEmitter {
