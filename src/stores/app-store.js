@@ -14,9 +14,10 @@ const Config = require('../config');
 const AudioView = require('@anyware/shared-views/lib/audio-view');
 
 const DEFAULT_CLIENT_CONNECTION_OPTIONS = {
+  protocol: "ws",
   username: "anyware",
   password: "anyware",
-  host: "connect.shiftr.io"
+  host: "broker.shiftr.io"
 };
 
 export default class AppStore extends EventEmitter {
