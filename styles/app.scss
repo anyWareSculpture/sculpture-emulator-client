@@ -81,7 +81,7 @@ form {
 	display: inline-block;
 	margin-right: 10px;
 	vertical-align: middle;
-	border: 1px solid grey;
+	//border: 1px solid grey;
 	margin-bottom: 0px;
 
 	&.panel-active-white {
@@ -137,20 +137,35 @@ form {
 	}
 
 	&.panel-large {
+		width: 48px;
+		height: 48px;
+	}
+
+	&.panel-def-size {
+		width: 28px;
+		height: 28px;
+	}
+}
+
+.panel-border {
+	&.panel-border-large {
 		width: 50px;
 		height: 50px;
 	}
 
-	&.panel-def-size {
+	&.panel-border-def {
 		width: 30px;
 		height: 30px;
 	}
+	border: 1px solid grey;
+	border-radius: 50%;
+	margin: 5px;
+	display:inline-block;
 }
 
 // PanelStrip
 .panel-strip {
 	.panel {
-		margin-top: 5px;
 		margin-bottom:5px;
 		margin-right: 0px;
 	}

@@ -58,12 +58,19 @@ class Panel extends React.Component {
       };
     }
 
+    let borderClasses = [
+      "panel-border",
+      "panel-border-" + (this.props.size ? this.props.size : "def")
+    ];
+
     return (
-      <div className={ classList.join(' ') }
-      onMouseDown={this.props.enableToggle ? mouseDownHandler.bind(this) : '' }
-      onMouseUp={this.props.enableToggle ? mouseUpHandler.bind(this) : '' }
-      style={inlineStyle}
-      ></div>
+      <div className={borderClasses.join(' ')}>
+        <div className={ classList.join(' ') }
+        onMouseDown={this.props.enableToggle ? mouseDownHandler.bind(this) : '' }
+        onMouseUp={this.props.enableToggle ? mouseUpHandler.bind(this) : '' }
+        style={inlineStyle}
+        ></div>
+      </div>
     );
   }
 }
