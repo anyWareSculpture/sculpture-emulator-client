@@ -6,6 +6,7 @@ let Status = require('./status');
 let Warning = require('./warning');
 let Lights = require('./lights');
 let DiskGroup = require('./disk-group');
+let DiskPositionForm = require('./disk-position-form');
 let AppStoreCreator = require('../stores/app-store');
 let ActionCreator = require('../actions/app-actions');
 
@@ -65,6 +66,7 @@ export default class SculptureEmulator extends React.Component {
             { warning }
             { controls }
             { disks }
+            <DiskPositionForm />
           </div>
           <div className="sidebar-content">
             <div className="well">

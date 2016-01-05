@@ -213,13 +213,13 @@ form {
     height: 300px;
 
     .panel-border {
-      position:absolute;
+    //  position:absolute;
     }
 }
 
 // Status
 .status {
-	height: 470px;
+	height: 502px;
 	h3 {
 		margin-top: 0px;
 	}
@@ -244,6 +244,9 @@ form {
 			max-width: 100%;
 		}
 	}
-	height: 602px;
+	height: 350px;
+}
 
+.disk-position-form {
+	display: inline-block;
 }
