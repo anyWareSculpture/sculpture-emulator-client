@@ -8,8 +8,8 @@
 $user0: orange;
 $user1: blue;
 $user2: purple;
-$black: black;
-$white: white;
+$black: white;
+$white: black;
 $success: green;
 $error: red;
 
@@ -40,6 +40,14 @@ nav.top-nav {
 .game-content {
 	@extend .col-md-8;
 	margin-bottom: 15px;
+
+	.lights {
+		@extend .col-md-6;
+	}
+
+	.disk-group {
+		@extend .col-md-6;
+	}
 }
 
 .sidebar-content {
@@ -80,7 +88,7 @@ form {
 	border-radius: 50%;
 	display: inline-block;
 	margin-right: 10px;
-	vertical-align: middle;
+	//vertical-align: middle;
 	//border: 1px solid grey;
 	margin-bottom: 0px;
 
@@ -141,6 +149,11 @@ form {
 		height: 48px;
 	}
 
+	&.panel-small {
+		width: 14px;
+		height: 14px;
+	}
+
 	&.panel-def-size {
 		width: 28px;
 		height: 28px;
@@ -157,6 +170,12 @@ form {
 		width: 30px;
 		height: 30px;
 	}
+
+	&.panel-border-small {
+		width: 15px;
+		height: 15px;
+	}
+
 	border: 1px solid grey;
 	border-radius: 50%;
 	margin: 5px;
@@ -175,6 +194,7 @@ form {
 	text-align: center;
 	margin-right: 25px;
 	background-color: lightgray;
+	vertical-align: top;
 }
 
 // Handshake
@@ -184,6 +204,17 @@ form {
 		@extend .btn-default;
 		@extend .pull-right;
 	}
+}
+
+// PerimeterLights
+.perimeter-lights {
+	  position: absolute;
+    width: 300px;
+    height: 300px;
+
+    .panel-border {
+      position:absolute;
+    }
 }
 
 // Status
@@ -200,4 +231,23 @@ form {
 		overflow-wrap: break-word;
 		height: 345px;
 	}
+}
+
+// Disks
+.disk-group {
+	.disk {
+		position: absolute;
+		height: 300px;
+		img {
+			display: none;
+			max-height: 100%;
+			max-width: 100%;
+		}
+		canvas {
+			height: 300px;
+			width: 300px;
+		}
+	}
+	height: 602px;
+
 }

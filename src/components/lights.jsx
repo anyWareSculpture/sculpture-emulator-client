@@ -19,7 +19,7 @@ class Lights extends React.Component {
     }
 
     let strips = [];
-    for (let i = 0; i < lightArray.stripIds.length; i++) {
+    for (let i = 0; i < 3; i++) {
       let idx = lightArray.stripIds[i];
       let strip = lightArray.get(idx);
       strips.push(<PanelStrip

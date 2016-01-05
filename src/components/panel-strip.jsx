@@ -7,7 +7,7 @@ class PanelStrip extends React.Component {
   static propTypes = {
     size: React.PropTypes.string.isRequired,
     strip: React.PropTypes.object.isRequired,
-    stripIdx: React.PropTypes.string.isRequired
+    stripIdx: React.PropTypes.string
   }
   render() {
     let panels = this.props.strip.get('panels');

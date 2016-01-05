@@ -5,6 +5,7 @@ let Handshake = require('./handshake');
 let Status = require('./status');
 let Warning = require('./warning');
 let Lights = require('./lights');
+let DiskGroup = require('./disk-group');
 let AppStoreCreator = require('../stores/app-store');
 let ActionCreator = require('../actions/app-actions');
 
@@ -41,7 +42,7 @@ export default class SculptureEmulator extends React.Component {
   }
 
   render() {
-    let warning, controls;
+    let warning, controls, disks;
     let client = this.state.client || {};
     let sculpture = this.state.sculpture;
     let appState = this.state.appState;
@@ -52,6 +53,8 @@ export default class SculptureEmulator extends React.Component {
     }
 
     controls = <Lights appState={appState} sculpture={sculpture} />;
+    console.log(DiskGroup);
+    disks = <DiskGroup sculpture={sculpture} />;
 
     return (
       <span className="sculpture-emulator">
@@ -62,6 +65,7 @@ export default class SculptureEmulator extends React.Component {
           <div className="game-content">
             { warning }
             { controls }
+            { disks }
           </div>
           <div className="sidebar-content">
             <div className="well">
