@@ -26,18 +26,22 @@ export default class DiskView extends React.Component {
     let i = document.getElementById(this.imgId);
     let ctx = c.getContext("2d");
 
+    let scale = 0.3;
+    let i_width = i.width * scale;
+    let i_height = i.height * scale;
+
     // clear canvas of previous contents
     ctx.clearRect(0,0,c.width,c.height);
     ctx.save();
-    ctx.translate(i.width/2,i.height/2);
+    ctx.translate(c.width/2,c.height/2);
     // rotate the canvas to the specified degrees
     console.log("disk position");
     console.log(this.disk.get("position"));
-    ctx.rotate(this.disk.get("position")*180/30*Math.PI/180);
+    ctx.rotate(this.disk.get("position")*360/30*Math.PI/180);
 
 
-    let scale = 0.3;
-    ctx.drawImage(i, -i.width/2, -i.height/2, i.width * scale, i.height * scale);
+
+    ctx.drawImage(i, -i_width/2, -i_height/2, i_width, i_height);
     ctx.restore();
 
   }
