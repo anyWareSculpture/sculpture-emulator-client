@@ -2,11 +2,13 @@
 const React = require('react');
 let AppDispatcher = require('../dispatcher/app-dispatcher');
 let DisksActionCreator = require('@anyware/game-logic/lib/actions/disks-action-creator');
+const Disk = require('@anyware/game-logic/lib/utils/disk');
 
-export default class Disk extends React.Component {
-  static displayName = 'Disk';
+export default class DiskView extends React.Component {
+  static displayName = 'DiskView';
   static propTypes = {
-    diskNum: React.PropTypes.string.isRequired,
+    disk: React.PropTypes.object.isRequired,
+    diskId: React.PropTypes.string.isRequired,
     imgUrl: React.PropTypes.string
   };
 
@@ -15,28 +17,52 @@ export default class Disk extends React.Component {
     this.diskActions = new DisksActionCreator(AppDispatcher);
   }
 
+  componentDidUpdate() {
+    this.drawCanvas();
+  }
+
+  drawCanvas() {
+    let c = document.getElementById(this.canvasId);
+    let i = document.getElementById(this.imgId);
+    let ctx = c.getContext("2d");
+
+    // clear canvas of previous contents
+    ctx.clearRect(0,0,c.width,c.height);
+    ctx.save();
+    ctx.translate(i.width/2,i.height/2);
+    // rotate the canvas to the specified degrees
+    console.log("disk position");
+    console.log(this.disk.get("position"));
+    ctx.rotate(this.disk.get("position")*180/30*Math.PI/180);
+
+
+    let scale = 0.3;
+    ctx.drawImage(i, -i.width/2, -i.height/2, i.width * scale, i.height * scale);
+    ctx.restore();
+
+  }
+
   render() {
     let classList = [
       "disk",
-      "disk-" + this.props.diskNum
+      this.props.diskId
     ];
 
-    let canvasId = "canvas-disk-" + this.props.diskNum;
-    let imgId = "img-disk-" + this.props.diskNum;
+    this.canvasId = "canvas-" + this.props.diskId;
+    this.imgId = "img-" + this.props.diskId;
+    this.disk = this.props.disk;
 
-    let drawCanvas = function() {
-      console.log("drawCanvas");
-      let cc = document.getElementById(canvasId);
-      let i = document.getElementById(imgId);
-      let ctx = cc.getContext("2d");
-      let scale = 0.3;
-      ctx.drawImage(i, 0, 0, i.width * scale, i.height * scale);
+
+
+    let onImageLoad = function() {
+      this.imgLoaded = true;
+      this.drawCanvas();
     };
 
     return (
-      <div className={classList.join(' ')} onLoad={drawCanvas.bind(this)}>
-      <canvas width="300" height="300" id={canvasId}></canvas>
-      <img id={imgId} src={this.props.imgUrl}/>
+      <div className={classList.join(' ')} >
+      <canvas width="300" height="300" id={this.canvasId}></canvas>
+      <img id={this.imgId} src={this.props.imgUrl} onLoad={onImageLoad.bind(this)}/>
       </div>
     );
   }

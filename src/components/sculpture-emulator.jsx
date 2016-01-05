@@ -53,7 +53,6 @@ export default class SculptureEmulator extends React.Component {
     }
 
     controls = <Lights appState={appState} sculpture={sculpture} />;
-    console.log(DiskGroup);
     disks = <DiskGroup sculpture={sculpture} />;
 
     return (
