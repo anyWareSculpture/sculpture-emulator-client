@@ -3,13 +3,15 @@ const React = require('react');
 let AppDispatcher = require('../dispatcher/app-dispatcher');
 let DisksActionCreator = require('@anyware/game-logic/lib/actions/disks-action-creator');
 const Disk = require('@anyware/game-logic/lib/utils/disk');
+const SculptureStore = require('@anyware/game-logic/lib/sculpture-store');
 
 export default class DiskView extends React.Component {
   static displayName = 'DiskView';
   static propTypes = {
     disk: React.PropTypes.object.isRequired,
     diskId: React.PropTypes.string.isRequired,
-    imgUrl: React.PropTypes.string
+    imgUrl: React.PropTypes.string,
+    sculpture: React.PropTypes.object
   };
 
   constructor() {
@@ -17,8 +19,39 @@ export default class DiskView extends React.Component {
     this.diskActions = new DisksActionCreator(AppDispatcher);
   }
 
+  componentDidMount() {
+    this.props.sculpture.on(SculptureStore.EVENT_CHANGE, this._moveDisks.bind(this));
+  }
+
+  componentWillUnmount() {
+    this.props.sculpture.removeListener(SculptureStore.EVENT_CHANGE, this._moveDisks.bind(this));
+  }
+
   componentDidUpdate() {
     this.drawCanvas();
+  }
+
+  _moveDisks() {
+    setTimeout(() => {
+      let disk = this.props.disk;
+      let dir = disk.get("direction");
+      if(disk.get("state") == Disk.STATE_READY
+        &&  dir != Disk.STOPPED) {
+        // send a disk update
+        let rotFactor = 3;
+        let pos = disk.get("position") + (dir === Disk.CLOCKWISE ? 1 : -1) * rotFactor;
+
+        if (pos < 0) {
+          pos += 360; // todo grab this from config? make it yourself..... do the disk positiono have to be between 0-30 or is this just sunjays text emulator
+        }
+        else {
+          pos %= 360;
+        }
+        this.diskActions.sendDiskUpdate(this.props.diskId, {
+          position: pos
+        });
+      }
+    }, 750);
   }
 
   drawCanvas() {
@@ -39,7 +72,6 @@ export default class DiskView extends React.Component {
 
     ctx.drawImage(i, -i_width/2, -i_height/2, i_width, i_height);
     ctx.restore();
-
   }
 
   render() {
@@ -51,8 +83,6 @@ export default class DiskView extends React.Component {
     this.canvasId = "canvas-" + this.props.diskId;
     this.imgId = "img-" + this.props.diskId;
     this.disk = this.props.disk;
-
-
 
     let onImageLoad = function() {
       this.imgLoaded = true;

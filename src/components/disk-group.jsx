@@ -22,9 +22,18 @@ export default class DiskGroup extends React.Component {
 
     return (
       <div className="disk-group">
-        <Disk disk={disks.get("disk0")} diskId="disk0" imgUrl="../../images/Puzzle_12_disk0.png" />
-        <Disk disk={disks.get("disk1")} diskId="disk1" imgUrl="../../images/Puzzle_12_disk1.png" />
-        <Disk disk={disks.get("disk2")} diskId="disk2" imgUrl="../../images/Puzzle_12_disk2.png" />
+        <Disk disk={disks.get("disk0")}
+              diskId="disk0"
+              imgUrl="../../images/Puzzle_12_disk0.png"
+              sculpture={this.props.sculpture} />
+        <Disk disk={disks.get("disk1")}
+              diskId="disk1"
+              imgUrl="../../images/Puzzle_12_disk1.png"
+              sculpture={this.props.sculpture} />
+        <Disk disk={disks.get("disk2")}
+              diskId="disk2"
+              imgUrl="../../images/Puzzle_12_disk2.png"
+              sculpture={this.props.sculpture} />
         <PerimeterLights lights={lights}/>
       </div>
     );
