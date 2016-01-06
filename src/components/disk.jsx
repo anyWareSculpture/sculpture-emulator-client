@@ -52,7 +52,7 @@ export default class DiskView extends React.Component {
 
         if (pos < 0) {
           pos += maxPosition;
-        else {
+        } else {
           pos %= maxPosition;
         }
         this.diskActions.sendDiskUpdate(this.props.diskId, {
