@@ -10,14 +10,10 @@ export default class PerimeterLights extends React.Component {
   render() {
     let panelIds = this.props.lights.panelIds;
     let panels = this.props.lights.get("panels");
-console.log("klights");
-console.log(this.props.lights.get("maxIntensity"));
-
 
     let reactPanels = [];
     panelIds.forEach((idx) => {
       let panel = panels.get(idx);
-      console.log(panel.get("intensity"));
       reactPanels.unshift(<Panel
         active={panel.get('active')}
         color={panel.get('color')}

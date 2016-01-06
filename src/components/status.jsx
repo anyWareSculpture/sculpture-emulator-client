@@ -22,7 +22,6 @@ class Status extends React.Component {
     let diskInfo = {};
     for (let diskId of Object.keys(disks._data)) {
       let disk = disks.get(diskId);
-      console.log(disk);
       diskInfo[diskId] = {
         position: disk.get("position")
       }

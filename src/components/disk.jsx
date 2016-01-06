@@ -20,11 +20,17 @@ export default class DiskView extends React.Component {
   }
 
   componentDidMount() {
-    this.props.sculpture.on(SculptureStore.EVENT_CHANGE, this._moveDisks.bind(this));
+    this.props.sculpture.on(
+      SculptureStore.EVENT_CHANGE,
+      this._moveDisks.bind(this)
+    );
   }
 
   componentWillUnmount() {
-    this.props.sculpture.removeListener(SculptureStore.EVENT_CHANGE, this._moveDisks.bind(this));
+    this.props.sculpture.removeListener(
+      SculptureStore.EVENT_CHANGE,
+      this._moveDisks.bind(this)
+    );
   }
 
   componentDidUpdate() {
@@ -38,14 +44,16 @@ export default class DiskView extends React.Component {
       if(disk.get("state") == Disk.STATE_READY
         &&  dir != Disk.STOPPED) {
         // send a disk update
+        // TODO: Put rotFactor and maxPosition into config
         let rotFactor = 3;
-        let pos = disk.get("position") + (dir === Disk.CLOCKWISE ? 1 : -1) * rotFactor;
+        let maxPosition = 360;
+        let dirFactor = (dir === Disk.CLOCKWISE ? 1 : -1);
+        let pos = disk.get("position") + dirFactor * rotFactor;
 
         if (pos < 0) {
-          pos += 360; // todo grab this from config? make it yourself..... do the disk positiono have to be between 0-30 or is this just sunjays text emulator
-        }
+          pos += maxPosition;
         else {
-          pos %= 360;
+          pos %= maxPosition;
         }
         this.diskActions.sendDiskUpdate(this.props.diskId, {
           position: pos
