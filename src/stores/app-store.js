@@ -120,7 +120,7 @@ export default class AppStore extends EventEmitter {
   }
 
   removeChangeListener(callback) {
-    this.removeListender(this.CHANGE_EVENT, callback);
+    this.removeListener(this.CHANGE_EVENT, callback);
   }
 
   /**
@@ -212,7 +212,6 @@ export default class AppStore extends EventEmitter {
    */
   _showAnimationFrame(panels) {
     // update temp panels to show next frame in an animation
-    console.log("showing frame");
     this.animPanels = panels;
     this.emitChange();
   }

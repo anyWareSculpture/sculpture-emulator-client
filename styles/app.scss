@@ -8,8 +8,8 @@
 $user0: orange;
 $user1: blue;
 $user2: purple;
-$black: black;
-$white: white;
+$black: white;
+$white: black;
 $success: green;
 $error: red;
 
@@ -40,6 +40,14 @@ nav.top-nav {
 .game-content {
 	@extend .col-md-8;
 	margin-bottom: 15px;
+
+	.lights {
+		@extend .col-md-6;
+	}
+
+	.disk-group {
+		@extend .col-md-6;
+	}
 }
 
 .sidebar-content {
@@ -80,8 +88,8 @@ form {
 	border-radius: 50%;
 	display: inline-block;
 	margin-right: 10px;
-	vertical-align: middle;
-	border: 1px solid grey;
+	//vertical-align: middle;
+	//border: 1px solid grey;
 	margin-bottom: 0px;
 
 	&.panel-active-white {
@@ -137,20 +145,46 @@ form {
 	}
 
 	&.panel-large {
+		width: 48px;
+		height: 48px;
+	}
+
+	&.panel-small {
+		width: 14px;
+		height: 14px;
+	}
+
+	&.panel-def-size {
+		width: 28px;
+		height: 28px;
+	}
+}
+
+.panel-border {
+	&.panel-border-large {
 		width: 50px;
 		height: 50px;
 	}
 
-	&.panel-def-size {
+	&.panel-border-def {
 		width: 30px;
 		height: 30px;
 	}
+
+	&.panel-border-small {
+		width: 15px;
+		height: 15px;
+	}
+
+	border: 1px solid grey;
+	border-radius: 50%;
+	margin: 5px;
+	display:inline-block;
 }
 
 // PanelStrip
 .panel-strip {
 	.panel {
-		margin-top: 5px;
 		margin-bottom:5px;
 		margin-right: 0px;
 	}
@@ -160,6 +194,7 @@ form {
 	text-align: center;
 	margin-right: 25px;
 	background-color: lightgray;
+	vertical-align: top;
 }
 
 // Handshake
@@ -171,9 +206,21 @@ form {
 	}
 }
 
+// PerimeterLights
+.perimeter-lights {
+	  position: absolute;
+    width: 300px;
+    height: 300px;
+
+    .panel-border {
+    // TODO: Position individual perimeter lights
+    //  position:absolute;
+    }
+}
+
 // Status
 .status {
-	height: 470px;
+	height: 502px;
 	h3 {
 		margin-top: 0px;
 	}
@@ -185,4 +232,22 @@ form {
 		overflow-wrap: break-word;
 		height: 345px;
 	}
+}
+
+// Disks
+.disk-group {
+	.disk {
+		position: absolute;
+		height: 300px;
+		img {
+			display: none;
+			max-height: 100%;
+			max-width: 100%;
+		}
+	}
+	height: 350px;
+}
+
+.disk-position-form {
+	display: inline-block;
 }

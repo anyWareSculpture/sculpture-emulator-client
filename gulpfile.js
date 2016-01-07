@@ -24,7 +24,7 @@ var gulpUtils = require('@anyware/gulp-utils');
 var browserSync = require('browser-sync').create();
 
 gulp.task('default', function(callback) {
-  return runSequence('clean', 'lint', 'test', 'css', 'build', callback);
+  return runSequence('clean', 'lint', 'test', 'css', 'images', 'build', callback);
 });
 
 /* This task will only work from a Travis like CI environment */
@@ -143,6 +143,11 @@ gulp.task('css', function buildCSS() {
     .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(gulpUtils.getDistPath('css')));
+});
+
+gulp.task('images', function distImages() {
+  return gulp.src('images/*.png')
+    .pipe(gulp.dest(gulpUtils.getDistPath('images')));
 });
 
 gulp.task('clean', function clean(callback) {
