@@ -35,6 +35,10 @@ Run any server from the `dist/` directory to see the app:
     cd dist
     sudo python -m SimpleHTTPServer 80
 
+It's also possible to use the built-in server:
+    $ gulp serve
+
+
 You may have to leave the directory and enter it again and then call the above command if you run `gulp` or `gulp clean` since those commands delete the `dist/` directory.
 
 While developing, instead of running all the individual build commands over and over again you can use `watch` commands.
