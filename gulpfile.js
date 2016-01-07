@@ -33,7 +33,7 @@ gulp.task('submit-coverage', function submitCoverage() {
     .pipe(codecov());
 });
 
-gulp.task('watch', ['build-dependencies', 'build-watch', 'css', 'build-index', 'collect-sounds'], function() {
+gulp.task('watch', ['build-dependencies', 'build-watch', 'css', 'build-index', 'images', 'collect-sounds'], function() {
   gulp.watch(['bower_components/**/*.js'], ['build-dependencies']);
   gulp.watch(['index.html'], ['build-index']);
   gulp.watch(['styles/**/*.scss'], ['css']);
@@ -44,7 +44,7 @@ gulp.task('watchTests', function watchTests() {
 });
 
 gulp.task('build', function build(callback) {
-  return runSequence('build-dependencies', 'build-nowatch', 'build-index', 'collect-sounds', callback);
+  return runSequence('build-dependencies', 'build-nowatch', 'build-index', 'images', 'collect-sounds', callback);
 });
 
 /*
