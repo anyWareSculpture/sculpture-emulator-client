@@ -4,6 +4,14 @@ let AppDispatcher = require('../dispatcher/app-dispatcher');
 let DisksActionCreator = require('@anyware/game-logic/lib/actions/disks-action-creator');
 const Disk = require('@anyware/game-logic/lib/utils/disk');
 
+/**
+ * @class DiskPositionForm
+ * @extends React.Component
+ * @public
+ *
+ * Form to allow user to enter the exact disk positions.
+ * This is primarily for testing purposes.
+ */
 export default class DiskPositionForm extends React.Component {
   static displayName = 'DiskPositionForm';
 

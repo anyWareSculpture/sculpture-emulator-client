@@ -2,6 +2,13 @@
 const React = require('react');
 let Panel = require('./panel');
 
+/**
+ * @class PerimeterLights
+ * @extends React.Component
+ * @public
+ *
+ * Lights positioned around the disks.
+ */
 export default class PerimeterLights extends React.Component {
   static displayName = "PerimeterLights";
   static PropTypes = {

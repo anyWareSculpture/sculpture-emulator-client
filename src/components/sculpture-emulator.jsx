@@ -10,6 +10,13 @@ let DiskPositionForm = require('./disk-position-form');
 let AppStoreCreator = require('../stores/app-store');
 let ActionCreator = require('../actions/app-actions');
 
+/**
+ * @class SculptureEmulator
+ * @extends React.Component
+ * @public
+ *
+ * Top level view for the application.
+ */
 export default class SculptureEmulator extends React.Component {
   static displayName = 'SculptureEmulator';
 

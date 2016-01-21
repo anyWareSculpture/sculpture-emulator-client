@@ -2,6 +2,13 @@
 const React = require('react');
 let ActionCreator = require('../actions/app-actions');
 
+/**
+ * @class Login
+ * @extends React.Component
+ * @public
+ *
+ * Login view to allow user to login.
+ */
 export default class Login extends React.Component {
   static displayName = 'Login';
   static propTypes = {

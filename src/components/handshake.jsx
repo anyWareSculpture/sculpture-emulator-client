@@ -4,7 +4,14 @@ const Panel = require('./panel');
 const AppDispatcher = require('../dispatcher/app-dispatcher');
 const SculptureActionCreator = require('@anyware/game-logic/lib/actions/sculpture-action-creator');
 
-class Handshake extends React.Component {
+/**
+ * @class Handshake
+ * @extends React.Component
+ * @public
+ *
+ * Displays handshake panels, and provides a button to send a handshake.
+ */
+export default class Handshake extends React.Component {
 
   static displayName = 'Handshake';
   // FIXME: implement proptypes
@@ -60,5 +67,3 @@ class Handshake extends React.Component {
     );
   }
 }
-
-module.exports = Handshake;

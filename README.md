@@ -52,6 +52,12 @@ Look through [gulpfile.js](gulpfile.js) to see all the commands that are availab
 
 ## How to update disk images
 
-To update the disk images, add the files to the `images/` directory. Image files may be `.png`, `.jpg`, or `.gif`. Run `gulp images`, or have `gulp watch` running prior to making changes.
+To update the disk images, add the files to the `images/` directory.  Run `gulp images`, or have `gulp watch` running prior to making changes.
+
+Disk images must meet the following criteria:
+ + Provide images in their respective 'zeroed' positions;
+ + Images must be square;
+ + All three must have same dimensions;
+ + Image files may be `.png`, `.jpg`, or `.gif`.
 
 The application looks for files named `disk0.png`, `disk1.png`, and `disk2.png` as the default disk images. These filenames are configurable in `config.js` under `diskUrls`.

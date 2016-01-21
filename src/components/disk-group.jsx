@@ -4,6 +4,13 @@ let Disk = require('./disk');
 let PerimeterLights = require('./perimeter-lights');
 const Config = require('../config');
 
+/**
+ * @class DiskGroup
+ * @extends React.Component
+ * @public
+ *
+ * Creates a group of disks for the disk game.
+ */
 export default class DiskGroup extends React.Component {
   static displayName = 'DiskGroup';
   static propTypes = {
