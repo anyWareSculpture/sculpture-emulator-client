@@ -55,6 +55,11 @@ export default class SculptureEmulator extends React.Component {
 
     controls = <Lights appState={appState} sculpture={sculpture} />;
     disks = <DiskGroup sculpture={sculpture} />;
+    let handshakelights = sculpture.data
+      .get("lights")
+      .get(config.LIGHTS.HANDSHAKE_STRIP);
+
+      console.log(sculpture);
 
     return (
       <span className="sculpture-emulator">
@@ -71,11 +76,8 @@ export default class SculptureEmulator extends React.Component {
           <div className="sidebar-content">
             <div className="well">
               <Handshake
-                status={[
-                  sculpture.data.get('handshakes').get(config.user0),
-                  sculpture.data.get('handshakes').get(config.user1),
-                  sculpture.data.get('handshakes').get(config.user2)
-                ]}
+                handshakes={sculpture.data.get("handshakes")}
+                lights={handshakelights}
                 username={config.username} />
             </div>
             <div className="well">
