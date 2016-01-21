@@ -30,7 +30,7 @@ gulp.task('submit-coverage', function submitCoverage() {
     .pipe(codecov());
 });
 
-gulp.task('watch', ['watchJS', 'watchCSS']);
+gulp.task('watch', ['watchJS', 'watchCSS', 'watchImages']);
 
 gulp.task('watchJS', function() {
   gulp.watch(['bower_components/**/*.js', 'index.html'], ['build']);
@@ -43,6 +43,10 @@ gulp.task('watchTests', function watchTests() {
 
 gulp.task('watchCSS', function() {
   gulp.watch(['styles/**/*.scss'], ['css']);
+});
+
+gulp.task('watchImages', function() {
+  gulp.watch(['images/*.png'], ['images']);
 });
 
 gulp.task('build', function build(callback) {
