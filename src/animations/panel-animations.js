@@ -108,11 +108,11 @@ export default class PanelAnimations {
     frames, color, timeout, handleAnimationFrame, completeCallback
   ) {
     let Panels = new LightArray({
-        // stripId : number of panels
-        '0': 10,
-        '1': 10,
-        '2': 10
-      });
+      // stripId : number of panels
+      '0': 10,
+      '1': 10,
+      '2': 10
+    });
 
     const playFrame = (frameIdx) => {
       let frame = frames[frameIdx];
