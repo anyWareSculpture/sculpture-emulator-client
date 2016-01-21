@@ -46,7 +46,7 @@ gulp.task('watchCSS', function() {
 });
 
 gulp.task('watchImages', function() {
-  gulp.watch(['images/*.png'], ['images']);
+  gulp.watch(['images/*.png', 'images/*.jpg', 'images/*.gif'], ['images']);
 });
 
 gulp.task('build', function build(callback) {

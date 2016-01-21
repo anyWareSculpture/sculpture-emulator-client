@@ -5,6 +5,12 @@ export default class Config extends DefaultConfig {
     super();
 
     this.username = "sculpture0";
+
+    this.diskUrls =  {
+      disk0: 'images/disk0.png',
+      disk1: 'images/disk1.png',
+      disk2: 'images/disk2.png'
+    };
   }
   // FIXME: Configure user colors here? How to communicate that to CSS?
 }
