@@ -11,6 +11,12 @@ export default class Config extends DefaultConfig {
       disk1: 'images/disk1.png',
       disk2: 'images/disk2.png'
     };
+
+    this.handshakeStatusPanels = [
+      "1",
+      "2",
+      "3"
+    ];
   }
   // FIXME: Configure user colors here? How to communicate that to CSS?
 }

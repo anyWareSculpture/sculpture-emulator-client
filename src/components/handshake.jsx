@@ -3,6 +3,8 @@ const React = require('react');
 const Panel = require('./panel');
 const AppDispatcher = require('../dispatcher/app-dispatcher');
 const SculptureActionCreator = require('@anyware/game-logic/lib/actions/sculpture-action-creator');
+const PanelsActionCreator = require('@anyware/game-logic/lib/actions/panels-action-creator');
+const Config = require('../config');
 
 /**
  * @class Handshake
@@ -24,32 +26,50 @@ export default class Handshake extends React.Component {
   constructor(props) {
     super(props);
     this.sculptureActions = new SculptureActionCreator(AppDispatcher);
+    this.panelActions = new PanelsActionCreator(AppDispatcher);
+    this.config = new Config();
+    this.state = {
+      "sculpture0": {
+        isActive: false,
+        color: "user0"
+      },
+      "sculpture1": {
+        isActive: false,
+        color: "user1"
+      },
+      "sculpture2": {
+        isActive: false,
+        color: "user2"
+      }
+    };
   }
 
   activateHandshake() {
     const user = this.props.username;
-    this.sculptureActions.sendHandshakeDeactivate(user);
+    this.sculptureActions.sendHandshakeActivate(user);
+    let data = {};
+    data[this.props.username] = { isActive: true, color: "user0" };
+    this.setState(data);
   }
 
   deactivateHandshake() {
     const user = this.props.username;
-    this.sculptureActions.sendHandshakeActivate(user);
+    this.sculptureActions.sendHandshakeDeactivate(user);
   }
 
   render() {
-    console.log(this.props.handshakes);
-    let panelIds = this.props.lights.panelIds;
-    let panels = this.props.lights.get("panels");
+    let panelIds = this.config.handshakeStatusPanels;
+    let panels = this.props.lights.get('panels');
 
     let reactPanels = [];
     panelIds.forEach((idx) => {
-      if (idx === "0") return;
+      let username = "sculpture" + (idx-1)
       let panel = panels.get(idx);
       reactPanels.unshift(<Panel
-        active={panel.get('active')}
-        color={panel.get('color')}
+        active={false}
+        color={this.state[username].color}
         enableToggle={false}
-        intensity={panel.get('intensity')}
+        intensity={this.state[username].isActive ? 100 : 15}
         key={idx}
         maxintensity={this.props.lights.get("maxIntensity")}
         panelIdx={idx} />

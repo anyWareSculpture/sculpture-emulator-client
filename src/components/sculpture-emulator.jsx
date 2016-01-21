@@ -66,8 +66,6 @@ export default class SculptureEmulator extends React.Component {
       .get("lights")
       .get(config.LIGHTS.HANDSHAKE_STRIP);
 
-      console.log(sculpture);
-
     return (
       <span className="sculpture-emulator">
         <TopNav
