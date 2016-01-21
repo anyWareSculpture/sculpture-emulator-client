@@ -60,7 +60,8 @@ class Panel extends React.Component {
 
     let borderClasses = [
       "panel-border",
-      "panel-border-" + (this.props.size ? this.props.size : "def")
+      "panel-border-" + (this.props.size ? this.props.size : "def"),
+      "panel-" + panelIdx
     ];
 
     return (
