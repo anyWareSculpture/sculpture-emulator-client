@@ -27,6 +27,7 @@ There are also more specific tasks if you only want to perform some actions:
     $ gulp clean
     $ gulp css
     $ gulp build
+    $ gulp images
 
 See the gulpfile.js for more details and for all the tasks.
 
@@ -48,3 +49,9 @@ Will watch everything but tests and then rebuild automatically whenever a file c
 Will watch source files and tests only for when you're doing test development. It will lint and test the files.
 
 Look through [gulpfile.js](gulpfile.js) to see all the commands that are available.
+
+## How to update disk images
+
+To update the disk images, add the files to the `images/` directory. Image files may be `.png`, `.jpg`, or `.gif`. Run `gulp images`, or have `gulp watch` running prior to making changes.
+
+The application looks for files named `disk0.png`, `disk1.png`, and `disk2.png` as the default disk images. These filenames are configurable in `config.js` under `diskUrls`.
