@@ -115,8 +115,7 @@ gulp.task('clean', function clean(callback) {
 gulp.task('lint', function lint() {
   return gulp.src(["src/**/*.js{,x}", "test/**/*.js{,x}"])
     .pipe(eslint('node_modules/@anyware/coding-style/.eslintrc'))
-    .pipe(eslint.format())
-    .pipe(eslint.failOnError());
+    .pipe(eslint.format());
 });
 
 gulp.task('test', function test() {
