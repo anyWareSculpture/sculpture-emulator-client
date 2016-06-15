@@ -2,7 +2,15 @@
 const React = require('react');
 let PanelStrip = require('./panel-strip');
 
-class Lights extends React.Component {
+/**
+ * @class Lights
+ * @extends React.Component
+ * @public
+ *
+ * Contains all primary input PanelStrips, and determines when to override
+ * sculpture data with animated lightArray data.
+ */
+export default class Lights extends React.Component {
   static displayName = 'Lights';
   static propTypes = {
     appState: React.PropTypes.object.isRequired,
@@ -36,5 +44,3 @@ class Lights extends React.Component {
     );
   }
 }
-
-module.exports = Lights;

@@ -15,239 +15,270 @@ $error: red;
 
 // TopNav
 nav.top-nav {
-	@extend .navbar;
-	@extend .navbar-inverse;
-	@extend .navbar-fixed-top;
+  @extend .navbar;
+  @extend .navbar-inverse;
+  @extend .navbar-fixed-top;
 
-	#navbar {
-		@extend .collapse;
-		@extend .navbar-collapse;
-		@extend .navbar-right;
+  #navbar {
+    @extend .collapse;
+    @extend .navbar-collapse;
+    @extend .navbar-right;
 
-		ul {
-			@extend .nav;
-			@extend .navbar-nav;
-		}
-	}
+    ul {
+      @extend .nav;
+      @extend .navbar-nav;
+    }
+  }
 }
 
 .main-content {
-	@extend .container;
-	@extend .theme-showcase;
-	padding-top: 65px;
+  @extend .container;
+  @extend .theme-showcase;
+  padding-top: 65px;
 }
 
 .game-content {
-	@extend .col-md-8;
-	margin-bottom: 15px;
+  @extend .col-md-8;
+  margin-bottom: 15px;
 
-	.lights {
-		@extend .col-md-6;
-	}
+  .lights {
+    @extend .col-md-6;
+  }
 
-	.disk-group {
-		@extend .col-md-6;
-	}
+  .disk-group {
+    @extend .col-md-6;
+  }
 }
 
 .sidebar-content {
-	@extend .col-md-4;
+  @extend .col-md-4;
 
 }
 
 form {
-	padding: 10px;
-	max-width: 400px;
+  padding: 10px;
+  max-width: 400px;
 
-	label {
-		margin-left: 10px;
-	}
+  label {
+    margin-left: 10px;
+  }
 
-	&.form-login {
-		input[type="username"] {
-			margin-bottom: -1px;
-			border-bottom-right-radius: 0px;
-			border-bottom-left-radius: 0px;
-		}
-		input[type="password"] {
-			margin-bottom: 10px;
-			border-top-left-radius: 0px;
-			border-top-right-radius: 0px;
-		}
-		.submit {
-			@extend .btn;
-			@extend .btn-lg;
-			@extend .btn-primary;
-			@extend .btn-block;
-		}
-	}
+  &.form-login {
+    input[type="username"] {
+      margin-bottom: -1px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+    input[type="password"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+    }
+    .submit {
+      @extend .btn;
+      @extend .btn-lg;
+      @extend .btn-primary;
+      @extend .btn-block;
+    }
+  }
 }
 
 // Panel
 .panel {
-	border-radius: 50%;
-	display: inline-block;
-	margin-right: 10px;
-	//vertical-align: middle;
-	//border: 1px solid grey;
-	margin-bottom: 0px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+  //vertical-align: middle;
+  //border: 1px solid grey;
+  margin-bottom: 0px;
 
-	&.panel-active-white {
-		box-shadow: 0px 1px 15px black inset, 0px 0px 15px $white;
-		border: none;
-	}
+  &.panel-active-white {
+    box-shadow: 0px 1px 15px black inset, 0px 0px 15px $white;
+    border: none;
+  }
 
-	&.panel-active-user0 {
-		box-shadow: 0px 1px 10px blue inset, 0px 0px 10px $user0;
-		border: none;
-	}
+  &.panel-active-user0 {
+    box-shadow: 0px 1px 10px blue inset, 0px 0px 10px $user0;
+    border: none;
+  }
 
-	&.panel-active-user1 {
-		box-shadow: 0px 1px 10px red inset, 0px 0px 10px $user1;
-		border: none;
-	}
+  &.panel-active-user1 {
+    box-shadow: 0px 1px 10px red inset, 0px 0px 10px $user1;
+    border: none;
+  }
 
-	&.panel-active-user2 {
-		box-shadow: 0px 1px 10px green inset, 0px 0px 10px $user2;
-		border: none;
-	}
+  &.panel-active-user2 {
+    box-shadow: 0px 1px 10px green inset, 0px 0px 10px $user2;
+    border: none;
+  }
 
-	&.panel-off {
-		box-shadow: none;
-	}
+  &.panel-off {
+    box-shadow: none;
+  }
 
-	&.panel-black {
-		background-color: $black;
-	}
+  &.panel-black {
+    background-color: $black;
+  }
 
-	&.panel-user0 {
-		background-color: $user0;
-	}
+  &.panel-user0 {
+    background-color: $user0;
+  }
 
-	&.panel-user1 {
-		background-color: $user1;
-	}
+  &.panel-user1 {
+    background-color: $user1;
+  }
 
-	&.panel-user2 {
-		background-color: $user2;
-	}
+  &.panel-user2 {
+    background-color: $user2;
+  }
 
-	&.panel-white {
-		background-color: $white;
-	}
+  &.panel-white {
+    background-color: $white;
+  }
 
-	&.panel-success {
-		background-color: $success;
-	}
+  &.panel-success {
+    background-color: $success;
+  }
 
-	&.panel-error {
-		background-color: $error;
-	}
+  &.panel-error {
+    background-color: $error;
+  }
 
-	&.panel-large {
-		width: 48px;
-		height: 48px;
-	}
+  &.panel-large {
+    width: 48px;
+    height: 48px;
+  }
 
-	&.panel-small {
-		width: 14px;
-		height: 14px;
-	}
+  &.panel-small {
+    width: 14px;
+    height: 14px;
+  }
 
-	&.panel-def-size {
-		width: 28px;
-		height: 28px;
-	}
+  &.panel-def-size {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .panel-border {
-	&.panel-border-large {
-		width: 50px;
-		height: 50px;
-	}
+  &.panel-border-large {
+    width: 50px;
+    height: 50px;
+  }
 
-	&.panel-border-def {
-		width: 30px;
-		height: 30px;
-	}
+  &.panel-border-def {
+    width: 30px;
+    height: 30px;
+  }
 
-	&.panel-border-small {
-		width: 15px;
-		height: 15px;
-	}
+  &.panel-border-small {
+    width: 15px;
+    height: 15px;
+  }
 
-	border: 1px solid grey;
-	border-radius: 50%;
-	margin: 5px;
-	display:inline-block;
+  border: 1px solid grey;
+  border-radius: 50%;
+  margin: 5px;
+  display:inline-block;
 }
 
 // PanelStrip
 .panel-strip {
-	.panel {
-		margin-bottom:5px;
-		margin-right: 0px;
-	}
-	width: 70px;
-	display: inline-block;
-	border: 1px solid black;
-	text-align: center;
-	margin-right: 25px;
-	background-color: lightgray;
-	vertical-align: top;
+  .panel {
+    margin-bottom:5px;
+    margin-right: 0px;
+  }
+  width: 70px;
+  display: inline-block;
+  border: 1px solid black;
+  text-align: center;
+  margin-right: 25px;
+  background-color: lightgray;
+  vertical-align: top;
 }
 
 // Handshake
 .handshake {
-	button {
-		@extend .btn;
-		@extend .btn-default;
-		@extend .pull-right;
-	}
+  button {
+    @extend .btn;
+    @extend .btn-default;
+    @extend .pull-right;
+  }
 }
 
 // PerimeterLights
 .perimeter-lights {
-	  position: absolute;
+    position: absolute;
     width: 300px;
     height: 300px;
 
     .panel-border {
     // TODO: Position individual perimeter lights
-    //  position:absolute;
+      position:absolute;
+
+      &.panel-0 {
+        top: 125px;
+        left: 265px;
+      }
+
+      &.panel-1 {
+        top: 35px;
+        left: 215px;
+      }
+
+      &.panel-2 {
+        top: 40px;
+        left: 55px;
+      }
+
+      &.panel-3 {
+        top: 120px;
+        left: 10px;
+      }
+
+      &.panel-4 {
+        top: 245px;
+        left: 70px;
+      }
+
+      &.panel-5 {
+        top: 258px;
+        left: 178px;
+      }
+
     }
 }
 
 // Status
 .status {
-	height: 502px;
-	h3 {
-		margin-top: 0px;
-	}
-	hr {
-		border-color: grey;
-	}
-	.log {
-		overflow-y: scroll;
-		overflow-wrap: break-word;
-		height: 345px;
-	}
+  height: 502px;
+  h3 {
+    margin-top: 0px;
+  }
+  hr {
+    border-color: grey;
+  }
+  .log {
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+    height: 345px;
+  }
 }
 
 // Disks
 .disk-group {
-	.disk {
-		position: absolute;
-		height: 300px;
-		img {
-			display: none;
-			max-height: 100%;
-			max-width: 100%;
-		}
-	}
-	height: 350px;
+  .disk {
+    position: absolute;
+    height: 300px;
+    img {
+      display: none;
+      max-height: 100%;
+      max-width: 100%;
+    }
+  }
+  height: 350px;
 }
 
 .disk-position-form {
-	display: inline-block;
+  display: inline-block;
 }

@@ -1,9 +1,15 @@
 /*eslint no-extra-parens:0*/
+
 let Login = require('./login');
 const React = require('react');
 let GameSelector = require('./game-selector');
 
-class TopNav extends React.Component {
+/**
+ * @class TopNav
+ * @extends React.Component
+ * @public
+ */
+export default class TopNav extends React.Component {
   static displayName = 'TopNav';
   static propTypes = {
     currentGame: React.PropTypes.string,
@@ -66,5 +72,3 @@ class TopNav extends React.Component {
     );
   }
 }
-
-module.exports = TopNav;

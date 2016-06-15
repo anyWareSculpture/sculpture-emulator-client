@@ -1,7 +1,15 @@
 /*eslint no-extra-parens:0*/
 const React = require('react');
 
-class Status extends React.Component {
+/**
+ * @class Status
+ * @extends React.Component
+ * @public
+ *
+ * Displays information about the current sculpture data,
+ * recent state udpates, and actions.
+ */
+export default class Status extends React.Component {
   static displayName = 'Status';
   static propTypes = {
     commandLog: React.PropTypes.array,
@@ -38,5 +46,3 @@ class Status extends React.Component {
     );
   }
 }
-
-module.exports = Status;

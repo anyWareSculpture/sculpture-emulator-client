@@ -2,7 +2,14 @@
 const React = require('react');
 let Panel = require('./panel');
 
-class PanelStrip extends React.Component {
+/**
+ * @class PanelStrip
+ * @extends React.Component
+ * @public
+ *
+ * Strip of main input panels.
+ */
+export default class PanelStrip extends React.Component {
   static displayName = 'PanelStrip';
   static propTypes = {
     size: React.PropTypes.string.isRequired,
@@ -34,5 +41,3 @@ class PanelStrip extends React.Component {
     );
   }
 }
-
-module.exports = PanelStrip;

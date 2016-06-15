@@ -5,6 +5,14 @@ let DisksActionCreator = require('@anyware/game-logic/lib/actions/disks-action-c
 const Disk = require('@anyware/game-logic/lib/utils/disk');
 const SculptureStore = require('@anyware/game-logic/lib/sculpture-store');
 
+/**
+ * @class DiskView
+ * @extends React.Component
+ * @public
+ *
+ * Disk to rotate in disk game.
+ * Draws the given image onto a canvas and rotates appropriately.
+ */
 export default class DiskView extends React.Component {
   static displayName = 'DiskView';
   static propTypes = {

@@ -3,45 +3,87 @@ const React = require('react');
 const Panel = require('./panel');
 const AppDispatcher = require('../dispatcher/app-dispatcher');
 const SculptureActionCreator = require('@anyware/game-logic/lib/actions/sculpture-action-creator');
+const PanelsActionCreator = require('@anyware/game-logic/lib/actions/panels-action-creator');
+const Config = require('../config');
 
-class Handshake extends React.Component {
+/**
+ * @class Handshake
+ * @extends React.Component
+ * @public
+ *
+ * Displays handshake panels, and provides a button to send a handshake.
+ */
+export default class Handshake extends React.Component {
 
   static displayName = 'Handshake';
   // FIXME: implement proptypes
   static propTypes = {
-    status: React.PropTypes.array.isRequired,
+    handshakes: React.PropTypes.object.isRequired,
+    lights: React.PropTypes.object.isRequired,
     username: React.PropTypes.string.isRequired
   };
 
   constructor(props) {
     super(props);
-    this.state = {isSending: false};
     this.sculptureActions = new SculptureActionCreator(AppDispatcher);
+    this.panelActions = new PanelsActionCreator(AppDispatcher);
+    this.config = new Config();
+    this.state = {
+      "sculpture0": {
+        isActive: false,
+        color: "user0"
+      },
+      "sculpture1": {
+        isActive: false,
+        color: "user1"
+      },
+      "sculpture2": {
+        isActive: false,
+        color: "user2"
+      }
+    };
   }
 
-  handleHandshake() {
-    this.setState({isSending: !this.state.isSending});
+  activateHandshake() {
     const user = this.props.username;
-    if (this.state.isSending) {
-      this.sculptureActions.sendHandshakeDeactivate(user);
-    }
-    else {
-      this.sculptureActions.sendHandshakeActivate(user);
-    }
+    this.sculptureActions.sendHandshakeActivate(user);
+    let data = {};
+    data[this.props.username] = { isActive: true, color: "user0" };
+    this.setState(data);
+  }
+
+  deactivateHandshake() {
+    const user = this.props.username;
+    this.sculptureActions.sendHandshakeDeactivate(user);
   }
 
   render() {
+    let panelIds = this.config.handshakeStatusPanels;
+    let panels = this.props.lights.get('panels');
+
+    let reactPanels = [];
+    panelIds.forEach((idx) => {
+      let username = "sculpture" + (idx-1)
+      let panel = panels.get(idx);
+      reactPanels.unshift(<Panel
+        active={false}
+        color={this.state[username].color}
+        enableToggle={false}
+        intensity={this.state[username].isActive ? 100 : 15}
+        key={idx}
+        maxintensity={this.props.lights.get("maxIntensity")}
+        panelIdx={idx} />
+      );
+    });
+
     return (
       <div className="handshake">
-        <Panel color="user0" intensity={this.props.status[0] ? 100 : 15} />
-        <Panel color="user1" intensity={this.props.status[1] ? 100 : 15} />
-        <Panel color="user2" intensity={this.props.status[2] ? 100 : 15} />
-        <button onClick={ () => this.handleHandshake() }>
-          { this.state.isSending ? "Revoke Handshake" : "Send Handshake"}
+        {reactPanels}
+        <button onMouseDown={ () => this.activateHandshake() }
+          onMouseUp={ () => this.deactivateHandshake() } >
+          Send Handshake
         </button>
       </div>
     );
   }
 }
-
-module.exports = Handshake;

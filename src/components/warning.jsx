@@ -1,6 +1,14 @@
+/*eslint no-extra-parens:0*/
+
 const React = require('react');
 
-/*eslint no-extra-parens:0*/
+/**
+ * @class Warning
+ * @extends React.Component
+ * @public
+ *
+ * Warning box displayed at the top of the page.
+ */
 class Warning extends React.Component {
   static displayName = 'Warning';
   static propTypes = {

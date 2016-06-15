@@ -3,6 +3,14 @@ const React = require('react');
 let AppDispatcher = require('../dispatcher/app-dispatcher');
 const SculptureActionCreator = require('@anyware/game-logic/lib/actions/sculpture-action-creator');
 
+/**
+ * @class GameSelector
+ * @extends React.Component
+ * @public
+ *
+ * Allows user to select a game to start (and end the previous game).
+ * Primarily for testing purposes.
+ */
 export default class GameSelector extends React.Component {
   static displayName = 'GameSelector';
   static propTypes = {

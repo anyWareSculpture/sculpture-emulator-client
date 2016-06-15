@@ -11,6 +11,13 @@ let AppStoreCreator = require('../stores/app-store');
 let ActionCreator = require('../actions/app-actions');
 let AppDispatcher = require('../dispatcher/app-dispatcher');
 
+/**
+ * @class SculptureEmulator
+ * @extends React.Component
+ * @public
+ *
+ * Top level view for the application.
+ */
 export default class SculptureEmulator extends React.Component {
   static displayName = 'SculptureEmulator';
 
@@ -56,6 +63,9 @@ export default class SculptureEmulator extends React.Component {
 
     controls = <Lights appState={appState} sculpture={sculpture} />;
     disks = <DiskGroup sculpture={sculpture} />;
+    let handshakelights = sculpture.data
+      .get("lights")
+      .get(config.LIGHTS.HANDSHAKE_STRIP);
 
     return (
       <span className="sculpture-emulator">
@@ -72,11 +82,8 @@ export default class SculptureEmulator extends React.Component {
           <div className="sidebar-content">
             <div className="well">
               <Handshake
-                status={[
-                  sculpture.data.get('handshakes').get(config.user0),
-                  sculpture.data.get('handshakes').get(config.user1),
-                  sculpture.data.get('handshakes').get(config.user2)
-                ]}
+                handshakes={sculpture.data.get("handshakes")}
+                lights={handshakelights}
                 username={config.username} />
             </div>
             <div className="well">

@@ -3,7 +3,14 @@ const React = require('react');
 let AppDispatcher = require('../dispatcher/app-dispatcher');
 let PanelsActionCreator = require('@anyware/game-logic/lib/actions/panels-action-creator');
 
-class Panel extends React.Component {
+/**
+ * @class Panel
+ * @extends React.Component
+ * @public
+ *
+ * View for each light, with an optional toggle to send panel press when clicked.
+ */
+export default class Panel extends React.Component {
   static displayName = 'Panel';
   static propTypes = {
     active: React.PropTypes.bool,
@@ -60,7 +67,8 @@ class Panel extends React.Component {
 
     let borderClasses = [
       "panel-border",
-      "panel-border-" + (this.props.size ? this.props.size : "def")
+      "panel-border-" + (this.props.size ? this.props.size : "def"),
+      "panel-" + panelIdx
     ];
 
     return (
@@ -74,5 +82,3 @@ class Panel extends React.Component {
     );
   }
 }
-
-module.exports = Panel;

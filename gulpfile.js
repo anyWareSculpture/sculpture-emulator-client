@@ -82,7 +82,6 @@ function createBrowserifiedStream(files, watch, bundle) {
     })
     .pipe(source('app.js'))
     .pipe(buffer())
-    .pipe(debug({title: 'A'}))
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(iife({useStrict: false}))
     .pipe(uglify())
@@ -104,9 +103,7 @@ gulp.task('build-watch', function() {
 var debug = require('gulp-debug');
 gulp.task('build-app', function buildDependencies() {
   return gulp.src(['src/emulator-app.js'])
-    .pipe(debug({title: 'A'}))
     .pipe(browserified)
-    .pipe(debug({title: 'B'}))
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(iife({useStrict: false}))
 // concat isn't necessary since browserified outputs a single file
@@ -146,7 +143,7 @@ gulp.task('css', function buildCSS() {
 });
 
 gulp.task('images', function distImages() {
-  return gulp.src('images/*.png')
+  return gulp.src(['images/*.png', 'images/*.jpg', 'images/*.gif'])
     .pipe(gulp.dest(gulpUtils.getDistPath('images')));
 });
 
@@ -157,8 +154,7 @@ gulp.task('clean', function clean(callback) {
 gulp.task('lint', function lint() {
   return gulp.src(["src/**/*.js{,x}", "test/**/*.js{,x}"])
     .pipe(eslint('node_modules/@anyware/coding-style/.eslintrc'))
-    .pipe(eslint.format())
-    .pipe(eslint.failOnError());
+    .pipe(eslint.format());
 });
 
 gulp.task('test', function test() {
