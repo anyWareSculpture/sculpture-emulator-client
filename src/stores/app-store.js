@@ -14,7 +14,7 @@ const Config = require('../config');
 const AudioView = require('@anyware/shared-views/lib/audio-view');
 
 const DEFAULT_CLIENT_CONNECTION_OPTIONS = {
-  protocol: "ws",
+  protocol: "wss",
   username: "anyware",
   password: "anyware",
   host: "broker.shiftr.io"
