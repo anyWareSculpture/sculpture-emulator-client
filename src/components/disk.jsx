@@ -53,7 +53,7 @@ export default class DiskView extends React.Component {
         &&  dir != Disk.STOPPED) {
         // send a disk update
         // TODO: Put rotFactor and maxPosition into config
-        let rotFactor = 3;
+        let rotFactor = 1;
         let maxPosition = 360;
         let dirFactor = (dir === Disk.CLOCKWISE ? 1 : -1);
         let pos = disk.get("position") + dirFactor * rotFactor;
@@ -67,7 +67,7 @@ export default class DiskView extends React.Component {
           position: pos
         });
       }
-    }, 750);
+    }, 100);
   }
 
   drawCanvas() {
@@ -75,7 +75,7 @@ export default class DiskView extends React.Component {
     let i = document.getElementById(this.imgId);
     let ctx = c.getContext("2d");
 
-    let scale = 0.3;
+    let scale = 0.15;
     let i_width = i.width * scale;
     let i_height = i.height * scale;
 
