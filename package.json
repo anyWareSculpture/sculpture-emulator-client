@@ -43,7 +43,6 @@
   },
   "dependencies": {
     "anyware": "*",
-    "@anyware/game-logic": "^11.1.0",
     "babel-eslint": "^5.0.4",
     "brfs": "^1.4.3",
     "browser-sync": "^2.13.0",

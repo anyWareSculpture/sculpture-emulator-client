@@ -11,7 +11,7 @@ const StreamingClient = require('anyware/lib/streaming-client');
 const SculptureStore = require('anyware/lib/game-logic/sculpture-store');
 const SculptureActionCreator = require('anyware/lib/game-logic/actions/sculpture-action-creator');
 const Config = require('../config');
-const AudioView = require('@anyware/shared-views/lib/audio-view');
+const AudioView = require('anyware/lib/views/audio-view');
 
 const DEFAULT_CLIENT_CONNECTION_OPTIONS = {
   protocol: "wss",
