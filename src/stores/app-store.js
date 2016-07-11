@@ -7,9 +7,9 @@ let EventEmitter = require('events').EventEmitter;
 let Actions = require('../constants/app-constants');
 let PanelAnimations = require('../animations/panel-animations');
 
-const StreamingClient = require('@anyware/streaming-client');
-const SculptureStore = require('@anyware/game-logic/lib/sculpture-store');
-const SculptureActionCreator = require('@anyware/game-logic/lib/actions/sculpture-action-creator');
+const StreamingClient = require('anyware/lib/streaming-client');
+const SculptureStore = require('anyware/lib/game-logic/sculpture-store');
+const SculptureActionCreator = require('anyware/lib/game-logic/actions/sculpture-action-creator');
 const Config = require('../config');
 const AudioView = require('@anyware/shared-views/lib/audio-view');
 

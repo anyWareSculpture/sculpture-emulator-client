@@ -1,8 +1,8 @@
 /*eslint no-extra-parens:0*/
 const React = require('react');
 let AppDispatcher = require('../dispatcher/app-dispatcher');
-let DisksActionCreator = require('@anyware/game-logic/lib/actions/disks-action-creator');
-const Disk = require('@anyware/game-logic/lib/utils/disk');
+let DisksActionCreator = require('anyware/lib/game-logic/actions/disks-action-creator');
+const Disk = require('anyware/lib/game-logic/utils/disk');
 
 /**
  * @class DiskPositionForm

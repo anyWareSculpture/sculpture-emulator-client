@@ -19,7 +19,7 @@ var notify = require("gulp-notify");
 var buffer = require('vinyl-buffer');
 var source = require('vinyl-source-stream');
 
-var gulpUtils = require('@anyware/gulp-utils');
+var gulpUtils = require('anyware/gulp-utils');
 
 var browserSync = require('browser-sync').create();
 
@@ -153,7 +153,7 @@ gulp.task('clean', function clean(callback) {
 
 gulp.task('lint', function lint() {
   return gulp.src(["src/**/*.js{,x}", "test/**/*.js{,x}"])
-    .pipe(eslint('node_modules/@anyware/coding-style/.eslintrc'))
+    .pipe(eslint('node_modules/anyware/.eslintrc'))
     .pipe(eslint.format());
 });
 

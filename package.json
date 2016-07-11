@@ -19,8 +19,6 @@
     "url": "https://github.com/anyWareSculpture/sculpture-emulator-client/issues"
   },
   "devDependencies": {
-    "@anyware/coding-style": "^1.6.0",
-    "@anyware/gulp-utils": "^1.3.4",
     "babel": "~5.2.17",
     "babel-eslint": "^4.1.6",
     "babelify": "^6.4.0",
@@ -44,8 +42,8 @@
     "through2": "^0.6.5"
   },
   "dependencies": {
+    "anyware": "*",
     "@anyware/game-logic": "^11.1.0",
-    "@anyware/streaming-client": "^2.0.0",
     "babel-eslint": "^5.0.4",
     "brfs": "^1.4.3",
     "browser-sync": "^2.13.0",

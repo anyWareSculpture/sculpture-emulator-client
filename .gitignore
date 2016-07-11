@@ -27,7 +27,8 @@ build/Release
 node_modules
 bower_components
 
-dist/
+/dist
+/lib
 
 # Created by https://www.gitignore.io
 

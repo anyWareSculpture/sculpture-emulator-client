@@ -2,8 +2,8 @@
 const React = require('react');
 const Panel = require('./panel');
 const AppDispatcher = require('../dispatcher/app-dispatcher');
-const SculptureActionCreator = require('@anyware/game-logic/lib/actions/sculpture-action-creator');
-const PanelsActionCreator = require('@anyware/game-logic/lib/actions/panels-action-creator');
+const SculptureActionCreator = require('anyware/lib/game-logic/actions/sculpture-action-creator');
+const PanelsActionCreator = require('anyware/lib/game-logic/actions/panels-action-creator');
 const Config = require('../config');
 
 /**
