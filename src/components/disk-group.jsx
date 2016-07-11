@@ -1,8 +1,8 @@
 /*eslint no-extra-parens:0*/
 const React = require('react');
-let Disk = require('./disk');
-let PerimeterLights = require('./perimeter-lights');
-const Config = require('../config');
+import Disk from './disk';
+import PerimeterLights from './perimeter-lights';
+import Config from '../config';
 
 /**
  * @class DiskGroup

@@ -1,8 +1,8 @@
 /*eslint no-extra-parens:0*/
 
-let Login = require('./login');
+import Login from './login';
 const React = require('react');
-let GameSelector = require('./game-selector');
+import GameSelector from './game-selector';
 
 /**
  * @class TopNav

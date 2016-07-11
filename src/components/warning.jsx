@@ -9,7 +9,7 @@ const React = require('react');
  *
  * Warning box displayed at the top of the page.
  */
-class Warning extends React.Component {
+export default class Warning extends React.Component {
   static displayName = 'Warning';
   static propTypes = {
     msg: React.PropTypes.string.isRequired
@@ -28,5 +28,3 @@ class Warning extends React.Component {
     );
   }
 }
-
-module.exports = Warning;

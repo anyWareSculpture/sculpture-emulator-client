@@ -2,7 +2,7 @@
  * @fileOverview Calls initial app render when the page is ready.
  */
 import 'babel-polyfill';
-let SculptureEmulator = require('./components/sculpture-emulator');
+import SculptureEmulator from './components/sculpture-emulator';
 const React = require('react');
 const ReactDOM = require('react-dom');
 

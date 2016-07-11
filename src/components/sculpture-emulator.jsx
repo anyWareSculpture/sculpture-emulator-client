@@ -1,15 +1,15 @@
 /*eslint no-extra-parens:0*/
 const React = require('react');
-let TopNav = require('./top-nav');
-let Handshake = require('./handshake');
-let Status = require('./status');
-let Warning = require('./warning');
-let Lights = require('./lights');
-let DiskGroup = require('./disk-group');
-let DiskPositionForm = require('./disk-position-form');
-let AppStoreCreator = require('../stores/app-store');
-let ActionCreator = require('../actions/app-actions');
-let AppDispatcher = require('../dispatcher/app-dispatcher');
+import TopNav from './top-nav';
+import Handshake from './handshake';
+import Status from './status';
+import Warning from './warning';
+import Lights from './lights';
+import DiskGroup from './disk-group';
+import DiskPositionForm from './disk-position-form';
+import AppStoreCreator from '../stores/app-store';
+import ActionCreator from '../actions/app-actions';
+import AppDispatcher from '../dispatcher/app-dispatcher';
 
 /**
  * @class SculptureEmulator

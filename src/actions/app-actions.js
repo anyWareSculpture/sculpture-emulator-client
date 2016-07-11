@@ -2,8 +2,8 @@
  * @fileOverview Dispatches valid actions from within the app to the dispatcher.
  */
 
-let AppDispatcher = require('../dispatcher/app-dispatcher');
-let Actions = require('../constants/app-constants');
+import AppDispatcher from '../dispatcher/app-dispatcher';
+import Actions from '../constants/app-constants';
 
 export default class AppActions {
   /**

@@ -1,6 +1,6 @@
 /*eslint no-extra-parens:0*/
 const React = require('react');
-let PanelStrip = require('./panel-strip');
+import PanelStrip from './panel-strip';
 
 /**
  * @class Lights

@@ -1,7 +1,7 @@
 /*eslint no-extra-parens:0*/
 const React = require('react');
-let AppDispatcher = require('../dispatcher/app-dispatcher');
-const SculptureActionCreator = require('anyware/lib/game-logic/actions/sculpture-action-creator');
+import AppDispatcher from '../dispatcher/app-dispatcher';
+import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-action-creator';
 
 /**
  * @class GameSelector

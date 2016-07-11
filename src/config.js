@@ -1,4 +1,4 @@
-const DefaultConfig = require('anyware/lib/game-logic/config/default-config');
+import DefaultConfig from 'anyware/lib/game-logic/config/default-config';
 
 export default class Config extends DefaultConfig {
   constructor() {

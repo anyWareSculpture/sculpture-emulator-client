@@ -1,9 +1,9 @@
 /*eslint no-extra-parens:0*/
 const React = require('react');
-let AppDispatcher = require('../dispatcher/app-dispatcher');
-let DisksActionCreator = require('anyware/lib/game-logic/actions/disks-action-creator');
-const Disk = require('anyware/lib/game-logic/utils/disk');
-const SculptureStore = require('anyware/lib/game-logic/sculpture-store');
+import AppDispatcher from '../dispatcher/app-dispatcher';
+import DisksActionCreator from 'anyware/lib/game-logic/actions/disks-action-creator';
+import Disk from 'anyware/lib/game-logic/utils/disk';
+import SculptureStore from 'anyware/lib/game-logic/sculpture-store';
 
 /**
  * @class DiskView

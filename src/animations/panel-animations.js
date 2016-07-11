@@ -1,7 +1,7 @@
 /**
  * @fileOverview Handles playing animations on the light-array frame by frame.
  */
-const LightArray = require('anyware/lib/game-logic/utils/light-array');
+import LightArray from 'anyware/lib/game-logic/utils/light-array';
 
 
 export default class PanelAnimations {
