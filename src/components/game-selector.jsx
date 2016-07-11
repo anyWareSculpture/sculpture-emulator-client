@@ -1,5 +1,5 @@
 /*eslint no-extra-parens:0*/
-const React = require('react');
+import React from 'react';
 import AppDispatcher from '../dispatcher/app-dispatcher';
 import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-action-creator';
 

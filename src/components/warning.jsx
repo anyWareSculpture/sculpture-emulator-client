@@ -1,6 +1,6 @@
 /*eslint no-extra-parens:0*/
 
-const React = require('react');
+import React from 'react';
 
 /**
  * @class Warning

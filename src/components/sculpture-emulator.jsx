@@ -1,5 +1,6 @@
 /*eslint no-extra-parens:0*/
-const React = require('react');
+import React from 'react';
+
 import TopNav from './top-nav';
 import Handshake from './handshake';
 import Status from './status';

@@ -1,7 +1,8 @@
 /*eslint no-extra-parens:0*/
-const React = require('react');
-import AppDispatcher from '../dispatcher/app-dispatcher';
+import React from 'react';
 import PanelsActionCreator from 'anyware/lib/game-logic/actions/panels-action-creator';
+
+import AppDispatcher from '../dispatcher/app-dispatcher';
 
 /**
  * @class Panel

@@ -1,5 +1,5 @@
 /**
  * @fileOverview creates a dispatcher for the application.
  */
-let Dispatcher = require('flux').Dispatcher;
+import {Dispatcher} from 'flux';
 export default new Dispatcher();

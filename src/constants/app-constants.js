@@ -1,7 +1,7 @@
 /**
  * @fileOverview defines valid app actions to be dispatched and handled.
  */
-let keyMirror = require('keymirror');
+import keyMirror from 'keymirror';
 
 export default keyMirror({
   APP_CLIENT_SETUP: null,

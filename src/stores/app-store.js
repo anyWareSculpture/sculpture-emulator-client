@@ -2,16 +2,16 @@
  * @fileOverview contains the applciation to store, to handle dispatched events,
  *               and maintain sculpture, application, and streaming client data.
  */
-import AppDispatcher from '../dispatcher/app-dispatcher';
-let EventEmitter = require('events').EventEmitter;
-import Actions from '../constants/app-constants';
-import PanelAnimations from '../animations/panel-animations';
-
+import {EventEmitter} from 'events';
 import StreamingClient from 'anyware/lib/streaming-client';
 import SculptureStore from 'anyware/lib/game-logic/sculpture-store';
 import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-action-creator';
-import Config from '../config';
 import AudioView from 'anyware/lib/views/audio-view';
+
+import AppDispatcher from '../dispatcher/app-dispatcher';
+import Actions from '../constants/app-constants';
+import PanelAnimations from '../animations/panel-animations';
+import Config from '../config';
 
 const DEFAULT_CLIENT_CONNECTION_OPTIONS = {
   protocol: "wss",

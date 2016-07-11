@@ -1,5 +1,5 @@
 /*eslint no-extra-parens:0*/
-const React = require('react');
+import React from 'react';
 import AppDispatcher from '../dispatcher/app-dispatcher';
 import DisksActionCreator from 'anyware/lib/game-logic/actions/disks-action-creator';
 import Disk from 'anyware/lib/game-logic/utils/disk';

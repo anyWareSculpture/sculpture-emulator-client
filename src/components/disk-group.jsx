@@ -1,5 +1,5 @@
 /*eslint no-extra-parens:0*/
-const React = require('react');
+import React from 'react';
 import Disk from './disk';
 import PerimeterLights from './perimeter-lights';
 import Config from '../config';

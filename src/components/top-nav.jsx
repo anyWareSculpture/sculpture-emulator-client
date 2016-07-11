@@ -1,7 +1,8 @@
 /*eslint no-extra-parens:0*/
 
+import React from 'react';
+
 import Login from './login';
-const React = require('react');
 import GameSelector from './game-selector';
 
 /**
