@@ -171,7 +171,7 @@ gulp.task('test', function test() {
 gulp.task('serve', ['watch'], function () {
   browserSync.init(null, {
     server: {
-      baseDir: 'dist'
+      baseDir: 'lib'
     },
     startPath: 'index.html',
     debugInfo: false,
