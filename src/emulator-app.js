@@ -1,7 +1,7 @@
 /**
  * @fileOverview Calls initial app render when the page is ready.
  */
-require("babel/polyfill");
+import 'babel-polyfill';
 let SculptureEmulator = require('./components/sculpture-emulator');
 const React = require('react');
 const ReactDOM = require('react-dom');

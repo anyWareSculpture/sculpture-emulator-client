@@ -114,7 +114,7 @@ export default class PanelAnimations {
       '2': 10
     });
 
-    const playFrame = (frameIdx) => {
+    const playFrame = ((frameIdx) => {
       let frame = frames[frameIdx];
       // translate indices into panel intensities
       // for each light index in frame, set intensity in object
@@ -138,7 +138,7 @@ export default class PanelAnimations {
         nextFn = completeCallback;
       }
       setTimeout(nextFn, timeout);
-    }.bind(this);
+    }).bind(this);
     playFrame(0);
   }
 }

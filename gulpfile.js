@@ -59,7 +59,10 @@ function createBrowserifiedStream(files, watch, bundle) {
 //                      debug: true,
                       extensions: ['.jsx']
                      })
-    .transform(babelify.configure({ stage: 0 }))
+    .transform(babelify.configure({
+      presets: ['react', 'es2015'],
+      plugins: ['transform-class-properties']
+    }))
     .transform(brfs);
   
   if (watch) {
@@ -161,7 +164,7 @@ gulp.task('test', function test() {
   return gulp.src('test/**/*-test.js{,x}', {read: false})
     .pipe(mocha({
       reporter: process.env.TRAVIS ? 'spec' : 'nyan',
-      compilers: 'js:babel/register'
+      compilers: 'js:babel-register'
     }));
 });
 
