@@ -33,10 +33,11 @@ See the gulpfile.js for more details and for all the tasks.
 
 Run any server from the `dist/` directory to see the app:
 
-    cd dist
-    sudo python -m SimpleHTTPServer 80
+    $ cd dist
+    $ sudo python -m SimpleHTTPServer 80
 
 It's also possible to use the built-in server:
+
     $ gulp serve
 
 
