@@ -55,8 +55,7 @@ gulp.task('build', function build(callback) {
 */
 function createBrowserifiedStream(files, watch, bundle) {
   var b = browserify({entries: files,
-// Disabling until this is fixed: https://github.com/substack/node-browserify/issues/1386
-//                      debug: true,
+                      debug: true,
                       extensions: ['.jsx']
                      })
     .transform(babelify.configure({
@@ -88,7 +87,7 @@ function createBrowserifiedStream(files, watch, bundle) {
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(iife({useStrict: false}))
     .pipe(uglify())
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(gulpUtils.getDistPath()))
     .pipe(notify("Build app done!"))
     .pipe(browserSync.reload({stream: true, once: true}));
