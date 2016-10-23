@@ -13,13 +13,6 @@ import Actions from '../constants/app-constants';
 import PanelAnimations from '../animations/panel-animations';
 import Config from '../config';
 
-const DEFAULT_CLIENT_CONNECTION_OPTIONS = {
-  protocol: "wss",
-  username: "anyware",
-  password: "anyware",
-  host: "broker.shiftr.io"
-};
-
 export default class AppStore extends EventEmitter {
   static CHANGE_EVENT = 'change';
 
@@ -133,7 +126,7 @@ export default class AppStore extends EventEmitter {
    *                          }
    */
   connectAndSetupClient(options) {
-    options = _.defaults({}, options, DEFAULT_CLIENT_CONNECTION_OPTIONS);
+    options = _.defaults({}, options, this.config.CLIENT_CONNECTION_OPTIONS);
 
     if (this.client) {
       console.log('Closing existing client connection.');
