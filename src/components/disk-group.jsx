@@ -1,8 +1,9 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
-import Disk from './disk';
+import DiskView from './DiskView';
 import PerimeterLights from './perimeter-lights';
 import Config from '../config';
+import AppDispatcher from '../dispatcher/app-dispatcher';
 
 /**
  * @class DiskGroup
@@ -30,18 +31,7 @@ export default class DiskGroup extends React.Component {
 
     return (
       <div className="disk-group">
-        <Disk disk={disks.get("disk0")}
-              diskId="disk0"
-              imgUrl={urls.disk0}
-              sculpture={this.props.sculpture} />
-        <Disk disk={disks.get("disk1")}
-              diskId="disk1"
-              imgUrl={urls.disk1}
-              sculpture={this.props.sculpture} />
-        <Disk disk={disks.get("disk2")}
-              diskId="disk2"
-              imgUrl={urls.disk2}
-              sculpture={this.props.sculpture} />
+        <DiskView sculpture={this.props.sculpture} config={this.config} dispatcher={AppDispatcher}/>
         <PerimeterLights lights={lights}/>
       </div>
     );
