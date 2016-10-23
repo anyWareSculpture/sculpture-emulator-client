@@ -13,6 +13,7 @@ module.exports = {
 
   "env": {
     "shared-node-browser": true,
+    "es6": true, // Necessary for ES global symbols like Set, Symbol
   },
 
   "plugins": [
