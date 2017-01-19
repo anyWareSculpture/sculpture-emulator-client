@@ -26,10 +26,10 @@ export default class Config extends DefaultConfig {
       "3"
     ];
 
-    this.GAMES_SEQUENCE = [
-      GAMES.DISK,
+//    this.GAMES_SEQUENCE = [
+//      GAMES.DISK,
 //      GAMES.SIMON
-    ];
+//    ];
 
   }
 
