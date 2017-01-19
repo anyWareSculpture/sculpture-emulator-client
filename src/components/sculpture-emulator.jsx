@@ -75,7 +75,6 @@ export default class SculptureEmulator extends React.Component {
          isActive={false} />
         <div className="main-content" role="main">
           <div className="game-content">
-            { warning }
             { controls }
             { disks }
             <DiskPositionForm />
@@ -94,6 +93,7 @@ export default class SculptureEmulator extends React.Component {
             </div>
           </div>
         </div>
+        { /*warning*/ }
       </span>
     );
   }

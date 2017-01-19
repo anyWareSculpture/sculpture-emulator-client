@@ -6,5 +6,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import SculptureEmulator from './components/sculpture-emulator';
+import './styles';
 
-ReactDOM.render(<SculptureEmulator />, document.getElementById('container'));
+ReactDOM.render(<SculptureEmulator />, document.getElementById('content'));

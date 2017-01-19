@@ -1,4 +1,5 @@
 import DefaultConfig from 'anyware/lib/game-logic/config/default-config';
+import GAMES from 'anyware/lib/game-logic/constants/games';
 
 export default class Config extends DefaultConfig {
   constructor() {
@@ -24,7 +25,14 @@ export default class Config extends DefaultConfig {
       "2",
       "3"
     ];
+
+    this.GAMES_SEQUENCE = [
+      GAMES.DISK,
+//      GAMES.SIMON
+    ];
+
   }
+
   // FIXME: Configure user colors here? How to communicate that to CSS?
 }
 

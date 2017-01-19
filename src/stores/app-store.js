@@ -3,6 +3,7 @@
  *               and maintain sculpture, application, and streaming client data.
  */
 import {EventEmitter} from 'events';
+import _ from 'lodash';
 import StreamingClient from 'anyware/lib/streaming-client';
 import SculptureStore from 'anyware/lib/game-logic/sculpture-store';
 import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-action-creator';
@@ -219,11 +220,14 @@ export default class AppStore extends EventEmitter {
    * @param  {string} msg Mesage to add.
    */
   _log(msg) {
+    console.log(msg);
+/*
     this.commandLog.push(msg);
 
     if (this.commandLog.length > 100) {
       this.commandLog = _.takeRight(this.commandLog, 100);
     }
+*/
   }
 
   /**

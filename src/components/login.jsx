@@ -1,6 +1,7 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
 import ActionCreator from '../actions/app-actions';
+import _ from 'lodash';
 
 /**
  * @class Login

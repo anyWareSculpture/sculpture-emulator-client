@@ -29,6 +29,7 @@ bower_components
 
 /dist
 /lib
+/public
 
 # Created by https://www.gitignore.io
 

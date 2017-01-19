@@ -2,7 +2,7 @@
  * @fileOverview Handles playing animations on the light-array frame by frame.
  */
 import LightArray from 'anyware/lib/game-logic/utils/light-array';
-
+import _ from 'lodash';
 
 export default class PanelAnimations {
   /**
