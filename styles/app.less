@@ -1,57 +1,34 @@
-// Main sass entry point for all CSS.
-// Use @import to import sass partials in the correct order.
-
-@import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap";
+@import "../node_modules/bootstrap/less/bootstrap.less";
 
 
 // Colors
-$user0: orange;
-$user1: blue;
-$user2: purple;
-$black: white;
-$white: black;
-$success: green;
-$error: red;
+@user0: orange;
+@user1: blue;
+@user2: purple;
+@black: white;
+@white: black;
+@success: green;
+@error: red;
 
-// TopNav
-nav.top-nav {
-  @extend .navbar;
-  @extend .navbar-inverse;
-  @extend .navbar-fixed-top;
-
-  #navbar {
-    @extend .collapse;
-    @extend .navbar-collapse;
-    @extend .navbar-right;
-
-    ul {
-      @extend .nav;
-      @extend .navbar-nav;
-    }
-  }
-}
-
-.main-content {
-  @extend .container;
+.main-content:extend(.container) {
   padding-top: 65px;
 }
 
 .game-content {
-  @extend .col-md-8;
+  .make-md-column(8);
   margin-bottom: 15px;
 
   .lights {
-    @extend .col-md-6;
+    .make-md-column(6);
   }
 
   .disk-group {
-    @extend .col-md-6;
+    .make-md-column(6);
   }
 }
 
 .sidebar-content {
-  @extend .col-md-4;
-
+  .make-md-column(4);
 }
 
 form {
@@ -73,11 +50,7 @@ form {
       border-top-left-radius: 0px;
       border-top-right-radius: 0px;
     }
-    .submit {
-      @extend .btn;
-      @extend .btn-lg;
-      @extend .btn-primary;
-      @extend .btn-block;
+    .submit:extend(.btn,.btn-lg,.btn-primary,.btn-block) {
     }
   }
 }
@@ -92,22 +65,22 @@ form {
   margin-bottom: 0px;
 
   &.panel-active-white {
-    box-shadow: 0px 1px 15px black inset, 0px 0px 15px $white;
+    box-shadow: 0px 1px 15px black inset, 0px 0px 15px @white;
     border: none;
   }
 
   &.panel-active-user0 {
-    box-shadow: 0px 1px 10px blue inset, 0px 0px 10px $user0;
+    box-shadow: 0px 1px 10px blue inset, 0px 0px 10px @user0;
     border: none;
   }
 
   &.panel-active-user1 {
-    box-shadow: 0px 1px 10px red inset, 0px 0px 10px $user1;
+    box-shadow: 0px 1px 10px red inset, 0px 0px 10px @user1;
     border: none;
   }
 
   &.panel-active-user2 {
-    box-shadow: 0px 1px 10px green inset, 0px 0px 10px $user2;
+    box-shadow: 0px 1px 10px green inset, 0px 0px 10px @user2;
     border: none;
   }
 
@@ -116,31 +89,31 @@ form {
   }
 
   &.panel-black {
-    background-color: $black;
+    background-color: @black;
   }
 
   &.panel-user0 {
-    background-color: $user0;
+    background-color: @user0;
   }
 
   &.panel-user1 {
-    background-color: $user1;
+    background-color: @user1;
   }
 
   &.panel-user2 {
-    background-color: $user2;
+    background-color: @user2;
   }
 
   &.panel-white {
-    background-color: $white;
+    background-color: @white;
   }
 
   &.panel-success {
-    background-color: $success;
+    background-color: @success;
   }
 
   &.panel-error {
-    background-color: $error;
+    background-color: @error;
   }
 
   &.panel-large {
@@ -198,10 +171,7 @@ form {
 
 // Handshake
 .handshake {
-  button {
-    @extend .btn;
-    @extend .btn-default;
-    @extend .pull-right;
+  button:extend(.btn,.btn-default,.pull-right) {
   }
 }
 

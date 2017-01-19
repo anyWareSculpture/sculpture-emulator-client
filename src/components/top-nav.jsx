@@ -57,13 +57,13 @@ export default class TopNav extends React.Component {
     );
 
     return (
-      <nav className="top-nav">
+      <nav className="top-nav navbar navbar-inverse navbar-fixed-top">
         <div className="container">
           <div className="navbar-header">
             <a className="navbar-brand" href="#">anyWare Sculpture</a>
           </div>
-          <div id="navbar">
-            <ul>
+          <div id="navbar" className="collapse navbar-collapse navbar-right">
+            <ul className="nav navbar-nav">
               { gameSelectorDropdown }
               { this.props.isLoggedIn ? logoutButton : loginDropdown }
             </ul>

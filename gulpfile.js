@@ -11,7 +11,7 @@ var iife = require("gulp-iife");
 var runSequence = require('run-sequence');
 var bowerFiles = require('bower-files')();
 var uglify = require('gulp-uglify');
-var sass = require('gulp-sass');
+var less = require('gulp-less');
 var mocha = require('gulp-spawn-mocha');
 var eslint = require('gulp-eslint');
 var codecov = require('gulp-codecov.io');
@@ -137,9 +137,9 @@ gulp.task('collect-sounds', function collectSounds() {
 });
 
 gulp.task('css', function buildCSS() {
-  return gulp.src('styles/app.scss')
+  return gulp.src('styles/app.less')
     .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(less())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(gulpUtils.getDistPath('css')));
 });

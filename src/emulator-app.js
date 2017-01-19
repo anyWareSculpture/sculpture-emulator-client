@@ -7,9 +7,4 @@ import ReactDOM from 'react-dom';
 
 import SculptureEmulator from './components/sculpture-emulator';
 
-$(document).ready(() => {
-  ReactDOM.render(
-    <SculptureEmulator />,
-    document.getElementById('container')
-  );
-});
+ReactDOM.render(<SculptureEmulator />, document.getElementById('container'));
