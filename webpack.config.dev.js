@@ -7,7 +7,7 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client',
     'webpack/hot/only-dev-server',
     './src/emulator-app.js'
   ],
@@ -38,7 +38,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: false, // Done by html-webpack-template
       template: require('html-webpack-template'),
-      title: 'anyWare Emylator',
+      title: 'anyWare Emulator',
       appMountId: 'content',
       favicon: 'images/favicon.ico',
     }),

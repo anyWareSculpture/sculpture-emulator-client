@@ -9,10 +9,12 @@ import SculptureStore from 'anyware/lib/game-logic/sculpture-store';
 import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-action-creator';
 import AudioView from 'anyware/lib/views/audio-view';
 
-import AppDispatcher from '../dispatcher/app-dispatcher';
+import dispatcher from '../dispatcher';
 import Actions from '../constants/app-constants';
 import PanelAnimations from '../animations/panel-animations';
-import Config from '../config';
+import config from '../config';
+
+import sculptureStore from './sculpture-store';
 
 export default class AppStore extends EventEmitter {
   static CHANGE_EVENT = 'change';
@@ -28,7 +30,7 @@ export default class AppStore extends EventEmitter {
     this.commandLog = [];
     this._animating = false;
 
-    AppDispatcher.register((action) => {
+    dispatcher.register((action) => {
       this._log(`Sent action: ${JSON.stringify(action)}`);
       switch (action.actionType) {
         case Actions.APP_CLIENT_SETUP:
@@ -44,20 +46,17 @@ export default class AppStore extends EventEmitter {
       }
     });
 
-    this.config = new Config();
-
     // Register callback to handle app Actions
-    this.sculpture = new SculptureStore(AppDispatcher, this.config);
-    this.sculpture.on(SculptureStore.EVENT_CHANGE, (changes) => {
+    sculptureStore.on(SculptureStore.EVENT_CHANGE, (changes) => {
       this._log(`Sent state update: ${JSON.stringify(changes)}`);
       this.client.sendStateUpdate(changes);
       this.emitChange();
       this._doAnimation();
     });
-    this.sculptureActionCreator = new SculptureActionCreator(AppDispatcher);
+    this.sculptureActionCreator = new SculptureActionCreator(dispatcher);
 
     this.audioInitialized = false;
-    this.audioView = new AudioView(this.sculpture, this.config, AppDispatcher);
+    this.audioView = new AudioView(sculptureStore, config, dispatcher);
     this.audioView.load(err => {
       if (err) {
          return console.log(`AudioView error: ${err}`);
@@ -75,7 +74,7 @@ export default class AppStore extends EventEmitter {
    * @return {Object} SculptureStore
    */
   getSculpture() {
-    return this.sculpture;
+    return sculptureStore;
   }
 
   /**
@@ -127,7 +126,7 @@ export default class AppStore extends EventEmitter {
    *                          }
    */
   connectAndSetupClient(options) {
-    options = _.defaults({}, options, this.config.CLIENT_CONNECTION_OPTIONS);
+    options = _.defaults({}, options, config.CLIENT_CONNECTION_OPTIONS);
 
     if (this.client) {
       console.log('Closing existing client connection.');
@@ -151,11 +150,11 @@ export default class AppStore extends EventEmitter {
 
   _doAnimation() {
     let needsSuccessAnimation
-      = this.sculpture.data.get("status") === SculptureStore.STATUS_SUCCESS
+      = sculptureStore.data.get("status") === SculptureStore.STATUS_SUCCESS
       && this._animating === false;
 
     let needsFailureAnimation
-      = this.sculpture.data.get("status") === SculptureStore.STATUS_FAILURE
+      = sculptureStore.data.get("status") === SculptureStore.STATUS_FAILURE
       && this._animating === false;
 
     if (needsSuccessAnimation) {
@@ -259,8 +258,8 @@ export default class AppStore extends EventEmitter {
     }
 
     // Temporarily here until the full game transitions are implemented
-    if (this.sculpture.isPlayingNoGame) {
-      const game = this.config.GAMES_SEQUENCE[0];
+    if (sculptureStore.isPlayingNoGame) {
+      const game = config.GAMES_SEQUENCE[0];
       this._log(`Starting ${game} game...`);
       this.sculptureActionCreator.sendStartGame(game);
     }

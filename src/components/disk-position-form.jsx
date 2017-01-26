@@ -1,6 +1,6 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
-import AppDispatcher from '../dispatcher/app-dispatcher';
+import dispatcher from '../dispatcher';
 import DisksActionCreator from 'anyware/lib/game-logic/actions/disks-action-creator';
 import Disk from 'anyware/lib/game-logic/utils/disk';
 
@@ -17,11 +17,11 @@ export default class DiskPositionForm extends React.Component {
 
   constructor() {
     super();
-    this.diskActions = new DisksActionCreator(AppDispatcher);
+    this.diskActions = new DisksActionCreator(dispatcher);
     this.state = {
       disk0: 0,
       disk1: 0,
-      disk2: 0
+      disk2: 0,
     };
   }
 
@@ -29,17 +29,13 @@ export default class DiskPositionForm extends React.Component {
     e.preventDefault();
 
     for (let diskId of ["disk0", "disk1", "disk2"]) {
-      this.diskActions.sendDiskUpdate(diskId, {
-        position: this.state[diskId]
-      });
+      const val = parseInt(this.state[diskId]);
+      if (!isNaN(val)) this.diskActions.sendDiskUpdate(diskId, {position: val});
     }
   }
 
   handleChange(e) {
-    let key = e.target.id;
-    let update = {};
-    update[key] = e.target.value;
-    this.setState(update);
+    this.setState({[e.target.id]: e.target.value});
   }
 
   render() {

@@ -8,9 +8,10 @@ import Warning from './warning';
 import Lights from './lights';
 import DiskGroup from './disk-group';
 import DiskPositionForm from './disk-position-form';
-import AppStoreCreator from '../stores/app-store';
 import ActionCreator from '../actions/app-actions';
-import AppDispatcher from '../dispatcher/app-dispatcher';
+
+import {appStore, sculptureStore} from '../stores';
+import config from '../config';
 
 /**
  * @class SculptureEmulator
@@ -24,25 +25,24 @@ export default class SculptureEmulator extends React.Component {
 
   constructor(props) {
     super(props);
-    this.AppStore = new AppStoreCreator();
     this.state = this.getStateFromStores();
     this.actions = new ActionCreator();
     this.actions.connectAndSetupClient();
   }
 
   componentDidMount() {
-    this.AppStore.addChangeListener(this._onChange.bind(this));
+    appStore.addChangeListener(this._onChange.bind(this));
   }
 
   componentWillUnmount() {
-    this.AppStore.removeChangeListener(this._onChange.bind(this));
+    appStore.removeChangeListener(this._onChange.bind(this));
   }
 
   getStateFromStores() {
     return {
-      sculpture: this.AppStore.getSculpture(),
-      client: this.AppStore.getClient(),
-      appState: this.AppStore.getAppState()
+      sculptureStore,
+      client: appStore.getClient(),
+      appState: appStore.getAppState()
     };
   }
 
@@ -54,24 +54,23 @@ export default class SculptureEmulator extends React.Component {
   render() {
     let warning, controls, disks;
     let client = this.state.client || {};
-    let sculpture = this.state.sculpture;
+    let sculptureStore = this.state.sculptureStore;
     let appState = this.state.appState;
-    let config = this.AppStore.config;
 
     if (!client.connected) {
       warning = <Warning msg="disconnect" />;
     }
 
-    controls = <Lights appState={appState} sculpture={sculpture} />;
-    disks = <DiskGroup sculpture={sculpture} />;
-    let handshakelights = sculpture.data
+    controls = <Lights appState={appState} sculpture={sculptureStore} />;
+    disks = <DiskGroup/>;
+    let handshakelights = sculptureStore.data
       .get("lights")
       .get(config.LIGHTS.HANDSHAKE_STRIP);
 
     return (
       <span className="sculpture-emulator">
         <TopNav
-         currentGame={sculpture.data.get("currentGame")}
+         currentGame={sculptureStore.data.get("currentGame")}
          isActive={false} />
         <div className="main-content" role="main">
           <div className="game-content">
@@ -82,14 +81,14 @@ export default class SculptureEmulator extends React.Component {
           <div className="sidebar-content">
             <div className="well">
               <Handshake
-                handshakes={sculpture.data.get("handshakes")}
+                handshakes={sculptureStore.data.get("handshakes")}
                 lights={handshakelights}
                 username={config.username} />
             </div>
             <div className="well">
               <Status
                 commandLog={ this.state.appState.commandLog }
-                sculpture={sculpture} />
+                sculpture={sculptureStore} />
             </div>
           </div>
         </div>

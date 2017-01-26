@@ -1,10 +1,10 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
 import Panel from './panel';
-import AppDispatcher from '../dispatcher/app-dispatcher';
+import dispatcher from '../dispatcher';
 import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-action-creator';
 import PanelsActionCreator from 'anyware/lib/game-logic/actions/panels-action-creator';
-import Config from '../config';
+import config from '../config';
 
 /**
  * @class Handshake
@@ -25,9 +25,8 @@ export default class Handshake extends React.Component {
 
   constructor(props) {
     super(props);
-    this.sculptureActions = new SculptureActionCreator(AppDispatcher);
-    this.panelActions = new PanelsActionCreator(AppDispatcher);
-    this.config = new Config();
+    this.sculptureActions = new SculptureActionCreator(dispatcher);
+    this.panelActions = new PanelsActionCreator(dispatcher);
     this.state = {
       "sculpture0": {
         isActive: false,
@@ -58,7 +57,7 @@ export default class Handshake extends React.Component {
   }
 
   render() {
-    let panelIds = this.config.handshakeStatusPanels;
+    let panelIds = config.handshakeStatusPanels;
     let panels = this.props.lights.get('panels');
 
     let reactPanels = [];

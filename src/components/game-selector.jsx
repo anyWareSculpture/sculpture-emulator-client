@@ -1,6 +1,6 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
-import AppDispatcher from '../dispatcher/app-dispatcher';
+import dispatcher from '../dispatcher';
 import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-action-creator';
 
 /**
@@ -18,7 +18,7 @@ export default class GameSelector extends React.Component {
   }
   constructor() {
     super();
-    this.sculptureActionCreator = new SculptureActionCreator(AppDispatcher);
+    this.sculptureActionCreator = new SculptureActionCreator(dispatcher);
   }
 
   _onSelectionChange(e) {

@@ -2,7 +2,7 @@
 import React from 'react';
 import PanelsActionCreator from 'anyware/lib/game-logic/actions/panels-action-creator';
 
-import AppDispatcher from '../dispatcher/app-dispatcher';
+import dispatcher from '../dispatcher';
 
 /**
  * @class Panel
@@ -25,7 +25,7 @@ export default class Panel extends React.Component {
   }
   constructor() {
     super();
-    this.panelActions = new PanelsActionCreator(AppDispatcher);
+    this.panelActions = new PanelsActionCreator(dispatcher);
   }
 
   render() {
@@ -46,7 +46,7 @@ export default class Panel extends React.Component {
         // set timeout to avoid an infinite loop when actions are
         // received too close together
         this.panelActions.sendPanelPressed(stripIdx, panelIdx, false);
-      }, 300);
+      }, 50);
     };
 
     classList.push(active ? "panel-active-" + color : "panel-off");

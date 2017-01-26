@@ -2,7 +2,7 @@
  * @fileOverview Dispatches valid actions from within the app to the dispatcher.
  */
 
-import AppDispatcher from '../dispatcher/app-dispatcher';
+import dispatcher from '../dispatcher';
 import Actions from '../constants/app-constants';
 
 export default class AppActions {
@@ -16,7 +16,7 @@ export default class AppActions {
    *                  Optional argument, app logs in as read only by default
    */
   connectAndSetupClient(options) {
-    AppDispatcher.dispatch({
+    dispatcher.dispatch({
       actionType: Actions.APP_CLIENT_SETUP,
       loginOptions: options
     });
@@ -28,7 +28,7 @@ export default class AppActions {
    * @param  {string} pass is the password used for login.
    */
   login(user, pass) {
-    AppDispatcher.dispatch({
+    dispatcher.dispatch({
       actionType: Actions.APP_LOGIN,
       loginOptions: {
         username: user,

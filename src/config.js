@@ -1,7 +1,7 @@
 import DefaultConfig from 'anyware/lib/game-logic/config/default-config';
 import GAMES from 'anyware/lib/game-logic/constants/games';
 
-export default class Config extends DefaultConfig {
+class Config extends DefaultConfig {
   constructor() {
     super();
 
@@ -20,6 +20,12 @@ export default class Config extends DefaultConfig {
       disk2: 'images/disk2.png'
     };
 
+    this.initialDiskPositions = {
+      disk0: 90,
+      disk1: 0,
+      disk2: 270,
+    };
+
     this.handshakeStatusPanels = [
       "1",
       "2",
@@ -36,3 +42,4 @@ export default class Config extends DefaultConfig {
   // FIXME: Configure user colors here? How to communicate that to CSS?
 }
 
+export default new Config();
