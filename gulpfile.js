@@ -9,9 +9,7 @@ var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var iife = require("gulp-iife");
 var runSequence = require('run-sequence');
-var bowerFiles = require('bower-files')();
 var uglify = require('gulp-uglify');
-var less = require('gulp-less');
 var mocha = require('gulp-spawn-mocha');
 var eslint = require('gulp-eslint');
 var codecov = require('gulp-codecov.io');
@@ -24,7 +22,7 @@ var gulpUtils = require('anyware/gulp-utils');
 var browserSync = require('browser-sync').create();
 
 gulp.task('default', function(callback) {
-  return runSequence('clean', 'lint', 'test', 'css', 'images', 'build', callback);
+  return runSequence('clean', 'lint', 'test', 'images', 'build', callback);
 });
 
 /* This task will only work from a Travis like CI environment */
@@ -33,10 +31,8 @@ gulp.task('submit-coverage', function submitCoverage() {
     .pipe(codecov());
 });
 
-gulp.task('watch', ['build-dependencies', 'build-watch', 'css', 'build-index', 'images', 'collect-sounds'], function() {
-  gulp.watch(['bower_components/**/*.js'], ['build-dependencies']);
+gulp.task('watch', ['build-watch', 'build-index', 'images', 'collect-sounds'], function() {
   gulp.watch(['index.html'], ['build-index']);
-  gulp.watch(['styles/**/*.scss'], ['css']);
 });
 
 gulp.task('watchTests', function watchTests() {
@@ -44,7 +40,7 @@ gulp.task('watchTests', function watchTests() {
 });
 
 gulp.task('build', function build(callback) {
-  return runSequence('build-dependencies', 'build-nowatch', 'build-index', 'images', 'collect-sounds', callback);
+  return runSequence('build-nowatch', 'build-index', 'images', 'collect-sounds', callback);
 });
 
 /*
@@ -103,7 +99,7 @@ gulp.task('build-watch', function() {
 });
 
 var debug = require('gulp-debug');
-gulp.task('build-app', function buildDependencies() {
+gulp.task('build-app', function() {
   return gulp.src(['src/emulator-app.js'])
     .pipe(browserified)
     .pipe(sourcemaps.init({loadMaps: true}))
@@ -117,15 +113,6 @@ gulp.task('build-app', function buildDependencies() {
     .pipe(notify("Build app done!"));
 });
 
-gulp.task('build-dependencies', function buildApp() {
-  return gulp.src(bowerFiles.ext('js').files)
-    .pipe(sourcemaps.init())
-    .pipe(concat('dependencies.js'))
-    .pipe(uglify())
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(gulpUtils.getDistPath()));
-});
-
 gulp.task('build-index', function buildIndex() {
   return gulp.src('index.html')
     .pipe(gulp.dest(gulpUtils.getDistPath()));
@@ -134,14 +121,6 @@ gulp.task('build-index', function buildIndex() {
 gulp.task('collect-sounds', function collectSounds() {
   return gulp.src(['node_modules/@anyware/sound-assets/**/*.wav'])
     .pipe(gulp.dest(gulpUtils.getDistPath('sounds')));
-});
-
-gulp.task('css', function buildCSS() {
-  return gulp.src('styles/app.less')
-    .pipe(sourcemaps.init())
-    .pipe(less())
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(gulpUtils.getDistPath('css')));
 });
 
 gulp.task('images', function distImages() {
