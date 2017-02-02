@@ -1,5 +1,6 @@
 import React from 'react';
 import DiskView from './DiskView';
+import config from '../config';
 
 /**
  * @class DiskGroup
@@ -9,16 +10,12 @@ import DiskView from './DiskView';
  * Creates a group of disks for the disk game.
  */
 export default class DiskGroup extends React.Component {
-  static displayName = 'DiskGroup';
-
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <div className="disk-group">
-        <DiskView/>
+        <div className="sculpture-screen">
+          <DiskView {...config.projectionParameters}/>
+        </div>
       </div>
     );
   }

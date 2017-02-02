@@ -7,7 +7,6 @@ import dispatcher from '../dispatcher';
 import {sculptureStore} from '../stores';
 import config from '../config';
 import Graphics from './disk-game.svg';
-import './DiskView.css';
 
 const SingleDisk = ({position, url}) => {
   return <image xlinkHref={url} x={0} y={0} height={100} width={100}
@@ -21,6 +20,12 @@ SingleDisk.propTypes = {
 
 export default class DiskView extends React.Component {
   static propTypes = {
+    scale: React.PropTypes.number,
+    translate: React.PropTypes.arrayOf(React.PropTypes.number),
+  };
+  static defaultProps = {
+    scale: 1,
+    translate: [0, 0],
   };
 
   constructor(props) {
@@ -141,27 +146,20 @@ export default class DiskView extends React.Component {
 
   render() {
     return this.state.active && <svg id="disk-view" viewBox="0 0 700 700" style={{
-      position: "absolute",
+      position: "relative",
       width: "100%",
       height: "100%",
       left: 0,
       top: 0,
-      zIndex: -1,
     }}>
       <g display="none"><Graphics/></g>
-      <g className="transformOrigin">
-        <use xlinkHref="#circle"/>
-        <use xlinkHref="#disk0" style={{transform: `rotate(${this.state.disk0}deg)`}}/>
-        <use xlinkHref="#disk1" style={{transform: `rotate(${this.state.disk1}deg)`}}/>
-        <use xlinkHref="#disk2" style={{transform: `rotate(${this.state.disk2}deg)`}}/>
-        <use xlinkHref={`#level${this.state.level + 1}`}/>
+      <g className="transformOrigin" style={{transform: `translate(${this.props.translate[0]}px, ${this.props.translate[1]}px) scale(${this.props.scale})`}}>
+          <use xlinkHref="#circle"/>
+          <use xlinkHref="#disk0" style={{transform: `rotate(${this.state.disk0}deg)`}}/>
+          <use xlinkHref="#disk1" style={{transform: `rotate(${this.state.disk1}deg)`}}/>
+          <use xlinkHref="#disk2" style={{transform: `rotate(${this.state.disk2}deg)`}}/>
+          <use xlinkHref={`#level${this.state.level + 1}`}/>
       </g>
-{/*      <g x="50%" y="50%" transform="scale(0.8 0.8)">
-        <circle cx="0" cy="0" r="50" style={{fill: "white"}}/>
-        {this.state.active && <SingleDisk position={this.state.disk0} url={config.diskUrls.disk0}/>}
-        {this.state.active && <SingleDisk position={this.state.disk1} url={config.diskUrls.disk1}/>}
-        {this.state.active && <SingleDisk position={this.state.disk2} url={config.diskUrls.disk2}/>}
-      </g> */}
     </svg>;
   }
 }

@@ -61,8 +61,6 @@ export default class SculptureEmulator extends React.Component {
       warning = <Warning msg="disconnect" />;
     }
 
-    controls = <Lights appState={appState} sculpture={sculptureStore} />;
-    disks = <DiskGroup/>;
     let handshakelights = sculptureStore.data
       .get("lights")
       .get(config.LIGHTS.HANDSHAKE_STRIP);
@@ -74,8 +72,8 @@ export default class SculptureEmulator extends React.Component {
          isActive={false} />
         <div className="main-content" role="main">
           <div className="game-content">
-            { controls }
-            { disks }
+            <Lights appState={appState} sculpture={sculptureStore} />
+            <DiskGroup/>
             <DiskPositionForm />
           </div>
           <div className="sidebar-content">
