@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "build": "webpack --config webpack.config.dev.js",
     "dev": "webpack-dev-server --config webpack.config.dev.js --open",
     "lint": "eslint --ext=.js,.jsx src",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -59,6 +60,7 @@
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
     "react-hot-loader": "^3.0.0-beta.6",
+    "react-svg-loader": "^1.1.1",
     "run-sequence": "~1.1.0",
     "style-loader": "^0.13.1",
     "through2": "^0.6.5",
