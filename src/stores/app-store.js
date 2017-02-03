@@ -31,7 +31,7 @@ export default class AppStore extends EventEmitter {
     this._animating = false;
 
     dispatcher.register((action) => {
-      this._log(`Sent action: ${JSON.stringify(action)}`);
+//      this._log(`Sent action: ${JSON.stringify(action)}`);
       switch (action.actionType) {
         case Actions.APP_CLIENT_SETUP:
           this.connectAndSetupClient(action.loginOptions);
@@ -48,7 +48,7 @@ export default class AppStore extends EventEmitter {
 
     // Register callback to handle app Actions
     sculptureStore.on(SculptureStore.EVENT_CHANGE, (changes) => {
-      this._log(`Sent state update: ${JSON.stringify(changes)}`);
+//      this._log(`Sent state update: ${JSON.stringify(changes)}`);
       this.client.sendStateUpdate(changes);
       this.emitChange();
       this._doAnimation();
@@ -246,7 +246,7 @@ export default class AppStore extends EventEmitter {
    */
   _onStateUpdate(update, metadata) {
     update.metadata = metadata;
-    this._log(`Got state update: ${JSON.stringify(update)}`);
+//    this._log(`Got state update: ${JSON.stringify(update)}`);
     this.emitChange();
 
     this.sculptureActionCreator.sendMergeState(update);

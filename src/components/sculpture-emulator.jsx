@@ -47,7 +47,6 @@ export default class SculptureEmulator extends React.Component {
   }
 
   _onChange() {
-    console.log('State change captured.');
     this.setState(this.getStateFromStores);
   }
 
