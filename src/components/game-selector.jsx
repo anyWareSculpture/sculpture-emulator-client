@@ -1,5 +1,6 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
+import {NavDropdown, MenuItem} from 'react-bootstrap';
 import dispatcher from '../dispatcher';
 import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-action-creator';
 
@@ -12,41 +13,24 @@ import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-act
  * Primarily for testing purposes.
  */
 export default class GameSelector extends React.Component {
-  static displayName = 'GameSelector';
   static propTypes = {
     currentGame: React.PropTypes.string
   }
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.sculptureActionCreator = new SculptureActionCreator(dispatcher);
   }
 
-  _onSelectionChange(e) {
-    this.game = e.target.value;
-
-    this.sculptureActionCreator.sendStartGame(this.game);
+  _onSelectionChange(game) {
+    this.sculptureActionCreator.sendStartGame(game);
   }
 
   render() {
-    this.game = this.props.currentGame;
-    return (
-      <form>
-        <input checked={ this.game === "mole" ? "checked" : ""} id="mole"
-          name="gameSelector" onChange={ this._onSelectionChange.bind(this) }
-          type="radio" value="mole" />
-        <label htmlFor="mole">Mole Game</label>
-        <br/>
-        <input checked={ this.game === "disk" ? "checked" : ""} id="disk"
-          name="gameSelector" onChange={ this._onSelectionChange.bind(this) }
-          type="radio" value="disk" />
-        <label htmlFor="disk">Disk Game</label>
-        <br/>
-        <input checked={ this.game === "simon" ? "checked" : ""} id="simon"
-          name="gameSelector" onChange={ this._onSelectionChange.bind(this) }
-          type="radio" value="simon" />
-        <label htmlFor="simon">Simon Game</label>
-        <br/>
-      </form>
-    );
+    const game = this.props.currentGame;
+    return <NavDropdown id="game-selector" title="Select Game" onSelect={this._onSelectionChange.bind(this)}>
+      <MenuItem eventKey="mole" id="mole" active={game === "mole"}>Mole Game</MenuItem>
+      <MenuItem eventKey="disk" id="disk" active={game === "disk"}>Disk Game</MenuItem>
+      <MenuItem eventKey="simon" id="simon" active={game === "simon"}>Simon Game</MenuItem>
+    </NavDropdown>;
   }
 }

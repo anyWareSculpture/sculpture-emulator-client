@@ -11,16 +11,16 @@ import _ from 'lodash';
  * Login view to allow user to login.
  */
 export default class Login extends React.Component {
-  static displayName = 'Login';
   static propTypes = {
-    parentSubmit: React.PropTypes.func
+    onSelect: React.PropTypes.func,
   }
-  constructor() {
-    super();
+
+  constructor(props) {
+    super(props);
     this.Actions = new ActionCreator();
     this.state = {
       username: "",
-      password: ""
+      password: "",
     };
   }
 
@@ -28,9 +28,7 @@ export default class Login extends React.Component {
     e.preventDefault();
     e.stopPropagation();
 
-    if (_.isFunction(this.props.parentSubmit)) {
-      this.props.parentSubmit(e);
-    }
+    if (_.isFunction(this.props.onSelect)) this.props.onSelect();
     this.Actions.login(this.state.username, this.state.password);
     // TODO: Clear these values on submit
   }

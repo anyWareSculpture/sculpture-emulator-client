@@ -1,6 +1,7 @@
 /*eslint no-extra-parens:0*/
 
 import React from 'react';
+import {Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap';
 
 import Login from './login';
 import GameSelector from './game-selector';
@@ -15,61 +16,24 @@ export default class TopNav extends React.Component {
   static propTypes = {
     currentGame: React.PropTypes.string,
     isLoggedIn: React.PropTypes.bool
-
   };
 
-  _onDropdownSubmit(e) {
-    // close dropdown on submit
-    $(e.target.parentNode.parentNode).find('[data-toggle="dropdown"]').dropdown('toggle');
-  }
-
   render() {
-    let loginDropdown = (
-      <li className="dropdown">
-        <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-          Login
-          <span className="caret"></span>
-        </a>
-        <div className="dropdown-menu">
-          <Login parentSubmit={this._onDropdownSubmit.bind(this)} />
-        </div>
-      </li>
-    );
-
-    let logoutButton = (
-      <li className="">
-        <a className="" href="#" role="button">
-          Logout
-        </a>
-      </li>
-    );
-
-    let gameSelectorDropdown = (
-      <li className="dropdown">
-        <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-          Select Game
-          <span className="caret"></span>
-        </a>
-        <div className="dropdown-menu">
-          <GameSelector currentGame={ this.props.currentGame }/>
-        </div>
-      </li>
-    );
-
-    return (
-      <nav className="top-nav navbar navbar-inverse navbar-fixed-top">
-        <div className="container">
-          <div className="navbar-header">
-            <a className="navbar-brand" href="#">anyWare Sculpture</a>
-          </div>
-          <div id="navbar" className="collapse navbar-collapse navbar-right">
-            <ul className="nav navbar-nav">
-              { gameSelectorDropdown }
-              { this.props.isLoggedIn ? logoutButton : loginDropdown }
-            </ul>
-          </div>
-        </div>
-      </nav>
-    );
+    return <Navbar className="navbar-inverse navbar-fixed-top">
+        <Navbar.Header>
+          <Navbar.Brand><a href="#">anyWare Sculpture</a></Navbar.Brand>
+        </Navbar.Header>
+        <Nav>
+          <GameSelector currentGame={this.props.currentGame}/>
+          { this.props.isLoggedIn ?
+            <li className="">
+              <a className="" href="#" role="button">Logout</a>
+            </li> :
+            <NavDropdown id="login-dropdown" title="Login" bsRole="toggle">
+              <Login/>
+            </NavDropdown>
+          }
+        </Nav>
+      </Navbar>;
   }
 }
