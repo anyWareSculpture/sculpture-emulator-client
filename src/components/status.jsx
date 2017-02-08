@@ -32,14 +32,14 @@ export default class Status extends React.Component {
       let disk = disks.get(diskId);
       diskInfo[diskId] = {
         position: disk.get("position")
-      }
+      };
     }
 
     return (
       <div className="status"><h3>Status</h3>
         <p>Game: { curGame } | State: { this.props.sculpture.data.get("status") }</p>
-        <p>Game Info: { gameInfo ? JSON.stringify(gameInfo._data) : ""}</p>
-        <p>Disk Info: {JSON.stringify(diskInfo)}</p>
+        <pre>Game Info: { gameInfo ? JSON.stringify(gameInfo.pretty(), null, 2) : ""}</pre>
+        <pre>Disk Info: {JSON.stringify(diskInfo, null, 2)}</pre>
         <hr/>
         <div className="log">{ msgs }</div>
       </div>
