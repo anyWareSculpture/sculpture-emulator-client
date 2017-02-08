@@ -9,8 +9,8 @@ class Config extends DefaultConfig {
 
     this.CLIENT_CONNECTION_OPTIONS = {
       protocol: "wss",
-      username: "sculpture0",
-      password: "7f24a3e73b91dc9f51f15861d75c888a",
+      username: "anyware",
+      password: "anyware",
       host: "broker.shiftr.io"
     };
 
