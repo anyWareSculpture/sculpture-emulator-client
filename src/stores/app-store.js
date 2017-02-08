@@ -33,15 +33,15 @@ export default class AppStore extends EventEmitter {
     dispatcher.register((action) => {
 //      this._log(`Sent action: ${JSON.stringify(action)}`);
       switch (action.actionType) {
-        case Actions.APP_CLIENT_SETUP:
-          this.connectAndSetupClient(action.loginOptions);
-          break;
+      case Actions.APP_CLIENT_SETUP:
+        this.connectAndSetupClient(action.loginOptions);
+        break;
 
-        case Actions.APP_LOGIN:
-          this.connectAndSetupClient(action.loginOptions);
-          break;
+      case Actions.APP_LOGIN:
+        this.connectAndSetupClient(action.loginOptions);
+        break;
 
-        default:
+      default:
           // nop
       }
     });
@@ -211,6 +211,9 @@ export default class AppStore extends EventEmitter {
 
   _onConnectionStatusChange() {
     this._log(`Client Connected: ${this.client.connected}`);
+    if (this.client.connected) {
+      this.sculptureActionCreator.sendLogin(this.client.username);
+    }
     this.emitChange();
   }
 
