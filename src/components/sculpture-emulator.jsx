@@ -60,9 +60,7 @@ export default class SculptureEmulator extends React.Component {
       warning = <Warning msg="disconnect" />;
     }
 
-    let handshakelights = sculptureStore.data
-      .get("lights")
-      .get(config.LIGHTS.HANDSHAKE_STRIP);
+    let handshakelights = sculptureStore.data.get("lights").get(config.LIGHTS.HANDSHAKE_STRIP);
 
     return (
       <span className="sculpture-emulator">
