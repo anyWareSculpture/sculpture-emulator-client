@@ -57,7 +57,7 @@ export default class Panel extends React.Component {
     if (intensity === 0 && enableToggle) {
       inlineStyle = {
         opacity: 1,
-        backgroundColor: 'lightgrey'
+        backgroundColor: 'black'
       };
     }
     else {
