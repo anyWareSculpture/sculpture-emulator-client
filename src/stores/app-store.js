@@ -48,7 +48,7 @@ export default class AppStore extends EventEmitter {
 
     // Register callback to handle app Actions
     sculptureStore.on(SculptureStore.EVENT_CHANGE, (changes) => {
-//      this._log(`Sent state update: ${JSON.stringify(changes)}`);
+      this._debug(`Sent state update: ${JSON.stringify(changes)}`);
       this.client.sendStateUpdate(changes);
       this.emitChange();
       this._doAnimation();
@@ -232,6 +232,10 @@ export default class AppStore extends EventEmitter {
 */
   }
 
+  _debug(msg) {
+    console.log(msg);
+  }
+
   /**
    * Outputs error message to the console.
    * @param  {Object} error contains the error data
@@ -249,7 +253,7 @@ export default class AppStore extends EventEmitter {
    */
   _onStateUpdate(update, metadata) {
     update.metadata = metadata;
-//    this._log(`Got state update: ${JSON.stringify(update)}`);
+    this._debug(`Got state update: ${JSON.stringify(update)}`);
     this.emitChange();
 
     this.sculptureActionCreator.sendMergeState(update);
