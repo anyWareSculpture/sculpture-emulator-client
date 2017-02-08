@@ -31,12 +31,6 @@ class Config extends DefaultConfig {
       translate: [0, 0],
     };
 
-    this.handshakeStatusPanels = [
-      "1",
-      "2",
-      "3"
-    ];
-
 //    this.GAMES_SEQUENCE = [
 //      GAMES.DISK,
 //      GAMES.SIMON
