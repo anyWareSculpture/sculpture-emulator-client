@@ -5,8 +5,6 @@ class Config extends DefaultConfig {
   constructor() {
     super();
 
-    this.username = "sculpture0";
-
     this.CLIENT_CONNECTION_OPTIONS = {
       protocol: "wss",
       username: "anyware",
