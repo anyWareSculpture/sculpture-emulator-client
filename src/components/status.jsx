@@ -38,8 +38,8 @@ export default class Status extends React.Component {
     return (
       <div className="status"><h3>Status</h3>
         <p>Game: { curGame } | State: { this.props.sculpture.data.get("status") }</p>
-        <pre>Game Info: { gameInfo ? JSON.stringify(gameInfo.pretty(), null, 2) : ""}</pre>
-        <pre>Disk Info: {JSON.stringify(diskInfo, null, 2)}</pre>
+        <pre>Game Info: { gameInfo ? JSON.stringify(gameInfo.pretty(), null, 2) : "" }</pre>
+        <pre>Disk Info: { JSON.stringify(disks.pretty(), null, 2) }</pre>
         <hr/>
         <div className="log">{ msgs }</div>
       </div>
