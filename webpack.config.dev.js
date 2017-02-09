@@ -17,6 +17,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   devServer: {
+    host: '0.0.0.0',
     hot: true,
     contentBase: resolve(__dirname, 'public'),
     publicPath: '/',
