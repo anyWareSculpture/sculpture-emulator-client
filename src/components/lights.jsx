@@ -16,6 +16,34 @@ export default class Lights extends React.Component {
     appState: React.PropTypes.object.isRequired,
     sculpture: React.PropTypes.object.isRequired
   };
+
+  renderRGBStrips() {
+    const lightArray = this.props.sculpture.data.get('lights');
+    let renderedstrips = [];
+    for (let i=0;i<2;i++) {
+      const color = lightArray.getColor(this.props.sculpture.config.LIGHTS.RGB_STRIPS, ''+i);
+      const intensity = lightArray.getIntensity(this.props.sculpture.config.LIGHTS.RGB_STRIPS, ''+i);
+      const classList = ['panel', 'rgbstrip'];
+
+      let inlineStyle = {};
+      if (intensity === 0) {
+        inlineStyle = {
+          opacity: 1,
+          backgroundColor: 'black'
+        };
+      }
+      else {
+        inlineStyle = {
+          opacity: intensity / (lightArray.getMaxIntensity(this.props.sculpture.config.LIGHTS.RGB_STRIPS) || 100)
+        };
+      }
+      
+      classList.push(`panel-${color}`);
+      renderedstrips.push(<div key={i} className={classList.join(' ')} style={inlineStyle}/>);
+    }
+    return renderedstrips;
+  }
+
   render() {
     let lightArray;
 
@@ -37,10 +65,13 @@ export default class Lights extends React.Component {
         stripIdx={idx} />
       );
     }
-    return (
+    return <div>
+      <div>
+        {this.renderRGBStrips()}
+      </div>
       <div className="lights">
         {strips}
       </div>
-    );
+    </div>;
   }
 }

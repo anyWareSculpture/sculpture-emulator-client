@@ -9,6 +9,8 @@
 @white: white;
 @success: green;
 @error: red;
+@rgb0: #001493;
+@rgb1: #ff0000;
 
 .main-content:extend(.container) {
   padding-top: 65px;
@@ -116,6 +118,14 @@ form {
     background-color: @error;
   }
 
+  &.panel-rgb0 {
+    background-color: @rgb0;
+  }
+
+  &.panel-rgb1 {
+    background-color: @rgb1;
+  }
+
   &.panel-large {
     width: 48px;
     height: 48px;
@@ -217,6 +227,11 @@ form {
 
     }
 }
+
+.rgbstrip {
+    width: 50px;
+    height: 50px;
+  }
 
 // Status
 .status {
