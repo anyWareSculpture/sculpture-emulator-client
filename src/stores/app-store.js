@@ -133,7 +133,7 @@ export default class AppStore extends EventEmitter {
       this.client.close();
     }
 
-    this._log("Connecting using username " + options.username);
+    this._log("Streaming client: Connecting using username " + options.username);
 
     this.client = new StreamingClient(options);
     this.client.on(StreamingClient.EVENT_CONNECT, this._onConnectionStatusChange.bind(this));

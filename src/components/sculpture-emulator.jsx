@@ -78,7 +78,7 @@ export default class SculptureEmulator extends React.Component {
               <Handshake
                 handshakes={sculptureStore.data.get("handshakes")}
                 lights={handshakelights}
-                username={sculptureStore.username} />
+                sculptureId={sculptureStore.me} />
             </div>
             <div className="well">
               <Status

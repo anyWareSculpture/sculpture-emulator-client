@@ -17,7 +17,7 @@ export default class Handshake extends React.Component {
   static propTypes = {
     handshakes: React.PropTypes.object.isRequired,
     lights: React.PropTypes.object.isRequired,
-    username: React.PropTypes.string.isRequired
+    sculptureId: React.PropTypes.string.isRequired
   };
 
   constructor(props) {
@@ -27,11 +27,11 @@ export default class Handshake extends React.Component {
   }
 
   activateHandshake() {
-    this.sculptureActions.sendHandshakeActivate(this.props.username);
+    this.sculptureActions.sendHandshakeActivate(this.props.sculptureId);
   }
 
   deactivateHandshake() {
-    this.sculptureActions.sendHandshakeDeactivate(this.props.username);
+    this.sculptureActions.sendHandshakeDeactivate(this.props.sculptureId);
   }
 
   render() {
@@ -41,10 +41,10 @@ export default class Handshake extends React.Component {
     for (let i = 0; i < this.props.lights.panelIds.length; i++) {
       let idx = this.props.lights.panelIds[i];
       let panel = panels.get(idx);
-      reactPanels.unshift(
+      reactPanels.push(
         <Panel active={false}
-               color={panel.get('color')}
                enableToggle={false}
+               color={panel.get('color')}
                intensity={panel.get('intensity')}
                key={i}
                maxintensity={panels.maxintensity}/>
@@ -55,7 +55,7 @@ export default class Handshake extends React.Component {
       <div className="handshake">
         {reactPanels}
         <button onMouseDown={ () => this.activateHandshake() }
-          onMouseUp={ () => this.deactivateHandshake() } >
+                onMouseUp={ () => this.deactivateHandshake() } >
           Send Handshake
         </button>
       </div>
