@@ -2,6 +2,7 @@
 import React from 'react';
 import Panel from './panel';
 import dispatcher from '../dispatcher';
+import SculptureStore from 'anyware/lib/game-logic/sculpture-store';
 import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-action-creator';
 import PanelsActionCreator from 'anyware/lib/game-logic/actions/panels-action-creator';
 import config from '../config';
@@ -27,11 +28,11 @@ export default class Handshake extends React.Component {
   }
 
   activateHandshake() {
-    this.sculptureActions.sendHandshakeActivate(this.props.sculptureId);
+    this.sculptureActions.sendHandshakeAction(this.props.sculptureId, SculptureStore.HANDSHAKE_ACTIVE);
   }
 
   deactivateHandshake() {
-    this.sculptureActions.sendHandshakeDeactivate(this.props.sculptureId);
+    this.sculptureActions.sendHandshakeAction(this.props.sculptureId, SculptureStore.HANDSHAKE_PRESENT);
   }
 
   render() {
