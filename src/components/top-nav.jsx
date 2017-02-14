@@ -15,6 +15,7 @@ export default class TopNav extends React.Component {
   static displayName = 'TopNav';
   static propTypes = {
     currentGame: React.PropTypes.string,
+    currentUser: React.PropTypes.string,
     isLoggedIn: React.PropTypes.bool
   };
 
@@ -29,7 +30,7 @@ export default class TopNav extends React.Component {
             <li className="">
               <a className="" href="#" role="button">Logout</a>
             </li> :
-            <NavDropdown id="login-dropdown" title="Login" bsRole="toggle">
+            <NavDropdown id="login-dropdown" title={this.props.currentUser || 'Login'} bsRole="toggle">
               <Login/>
             </NavDropdown>
           }

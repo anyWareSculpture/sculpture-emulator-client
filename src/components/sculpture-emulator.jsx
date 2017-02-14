@@ -66,6 +66,7 @@ export default class SculptureEmulator extends React.Component {
       <span className="sculpture-emulator">
         <TopNav
          currentGame={sculptureStore.data.get("currentGame")}
+         currentUser={sculptureStore.me}
          isActive={false} />
         <div className="main-content" role="main">
           <div className="game-content">
