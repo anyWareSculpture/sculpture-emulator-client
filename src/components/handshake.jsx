@@ -39,18 +39,29 @@ export default class Handshake extends React.Component {
     let panels = this.props.lights.get('panels');
 
     let reactPanels = [];
-    for (let i = 0; i < this.props.lights.panelIds.length; i++) {
+    let active = false;
+    for (let i = 0; i < 3; i++) {
       let idx = this.props.lights.panelIds[i];
       let panel = panels.get(idx);
+      const state = this.props.handshakes.get(`sculpture${i+1}`);
+      if (state === SculptureStore.HANDSHAKE_ACTIVE) active = true;
       reactPanels.push(
         <Panel active={false}
                enableToggle={false}
-               color={panel.get('color')}
-               intensity={panel.get('intensity')}
+               color={state === SculptureStore.HANDSHAKE_OFF ? 'black' : `sculpture${i+1}`}
+               intensity={100}
                key={i}
-               maxintensity={panels.maxintensity}/>
+               maxintensity={100}/>
       );
     }
+    reactPanels.push(
+      <Panel active={false}
+             enableToggle={false}
+             color={active ? 'white' : 'black'}
+             intensity={100}
+             key={3}
+             maxintensity={100}/>
+    );
 
     return (
       <div className="handshake">
