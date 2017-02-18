@@ -149,20 +149,16 @@ export default class AppStore extends EventEmitter {
   /********* PRIVATE METHODS ********/
 
   _doAnimation() {
-    let needsSuccessAnimation
-      = sculptureStore.data.get("status") === SculptureStore.STATUS_SUCCESS
-      && this._animating === false;
+    const needsSuccessAnimation =
+      sculptureStore.data.get("status") === SculptureStore.STATUS_SUCCESS &&
+      this._animating === false;
 
-    let needsFailureAnimation
-      = sculptureStore.data.get("status") === SculptureStore.STATUS_FAILURE
-      && this._animating === false;
+    const needsFailureAnimation =
+      sculptureStore.data.get("status") === SculptureStore.STATUS_FAILURE &&
+      this._animating === false;
 
-    if (needsSuccessAnimation) {
-      this._playSuccessAnimation();
-    }
-    else if (needsFailureAnimation) {
-      this._playFailureAnimation();
-    }
+    if (needsSuccessAnimation) this._playSuccessAnimation();
+    else if (needsFailureAnimation) this._playFailureAnimation();
   }
 
     /**
@@ -171,10 +167,8 @@ export default class AppStore extends EventEmitter {
   _playSuccessAnimation() {
     this._log("Playing success animation...");
     this._animating = true;
-    PanelAnimations.playSuccessAnimation(
-      this._showAnimationFrame.bind(this),
-      this._animationComplete.bind(this)
-    );
+    PanelAnimations.playSuccessAnimation(this._showAnimationFrame.bind(this),
+                                         this._animationComplete.bind(this));
   }
 
   /**
@@ -183,10 +177,8 @@ export default class AppStore extends EventEmitter {
   _playFailureAnimation() {
     this._log("Playing failure animation...");
     this._animating = true;
-    PanelAnimations.playFailureAnimation(
-      this._showAnimationFrame.bind(this),
-      this._animationComplete.bind(this)
-    );
+    PanelAnimations.playFailureAnimation(this._showAnimationFrame.bind(this),
+                                         this._animationComplete.bind(this));
   }
 
   /**
@@ -252,6 +244,9 @@ export default class AppStore extends EventEmitter {
    * @param  {Object} metadata to add to the update.
    */
   _onStateUpdate(update, metadata) {
+    // Ignore our own state update. FIXME: Can this be configured with MQTT instead?
+    if (metadata.from === sculptureStore.me) return;
+
     update.metadata = metadata;
     this._debug(`Got state update: ${JSON.stringify(update)}`);
     this.emitChange();
