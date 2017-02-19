@@ -18,12 +18,6 @@ class Config extends DefaultConfig {
       disk2: 'images/disk2.png'
     };
 
-    this.initialDiskPositions = {
-      disk0: 90,
-      disk1: 0,
-      disk2: 270,
-    };
-
     this.projectionParameters = {
       scale: 1,
       translate: [0, 0],
