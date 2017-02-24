@@ -26,7 +26,8 @@ export default class Status extends React.Component {
     let gameInfo = curGame ? this.props.sculpture.data.get(curGame) : null;
 
     // disk position info
-    let disks = this.props.sculpture.data.get("disks");
+    let disk = this.props.sculpture.data.get("disk");
+    let disks = disk.get("disks");
     let diskInfo = {};
     for (let diskId of Object.keys(disks._data)) {
       let disk = disks.get(diskId);
