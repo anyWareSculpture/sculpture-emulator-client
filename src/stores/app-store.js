@@ -225,7 +225,7 @@ export default class AppStore extends EventEmitter {
   }
 
   _debug(msg) {
-    console.log(msg);
+    if (config.DEBUG.console) console.debug(msg);
   }
 
   /**
