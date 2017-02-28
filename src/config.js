@@ -5,6 +5,8 @@ class Config extends DefaultConfig {
   constructor() {
     super();
 
+    this.DEBUG.console = true;
+
     this.CLIENT_CONNECTION_OPTIONS = {
       protocol: "wss",
       username: "anyware",
