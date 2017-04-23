@@ -70,6 +70,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "@anyware/sound-assets": "^1.0.0",
     "anyware": "*",
     "babel-polyfill": "^6.9.1",
     "brfs": "^1.4.3",
