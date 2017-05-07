@@ -48,10 +48,12 @@ export default class AppStore extends EventEmitter {
 
     // Register callback to handle app Actions
     sculptureStore.on(SculptureStore.EVENT_CHANGE, (changes, metadata) => {
-      this.client.sendStateUpdate(changes, metadata);
-      this._debug(`Sent state update: ${JSON.stringify(changes)}`);
       this.emitChange();
       this._doAnimation();
+      setTimeout(() => {
+        this.client.sendStateUpdate(changes, metadata);
+        this._debug(`Sent state update: ${JSON.stringify(changes)}`);
+      }, 1000);
     });
     this.sculptureActionCreator = new SculptureActionCreator(dispatcher);
 
