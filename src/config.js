@@ -14,25 +14,12 @@ class Config extends DefaultConfig {
       host: "broker.shiftr.io"
     };
 
-    this.diskUrls = {
-      disk0: 'images/disk0.png',
-      disk1: 'images/disk1.png',
-      disk2: 'images/disk2.png'
-    };
-
     this.projectionParameters = {
       scale: 1,
       translate: [0, 0],
     };
 
-//    this.GAMES_SEQUENCE = [
-//      GAMES.DISK,
-//      GAMES.SIMON
-//    ];
-
   }
-
-  // FIXME: Configure user colors here? How to communicate that to CSS?
 }
 
 export default new Config();

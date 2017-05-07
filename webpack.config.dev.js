@@ -35,13 +35,16 @@ module.exports = {
       { context: 'images',
         from: 'disk*.png',
         to: 'images'
-      }]),
+      },
+      { from: 'config.js' },
+    ]),
     new HtmlWebpackPlugin({
       inject: false, // Done by html-webpack-template
       template: require('html-webpack-template'),
       title: 'anyWare Emulator',
       appMountId: 'content',
       favicon: 'images/favicon.ico',
+      scripts: ['/config.js'],
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
