@@ -23,7 +23,7 @@ export default class Lights extends React.Component {
     for (let i=0;i<2;i++) {
       const color = lightArray.getColor(this.props.sculpture.config.LIGHTS.RGB_STRIPS, ''+i);
       const intensity = lightArray.getIntensity(this.props.sculpture.config.LIGHTS.RGB_STRIPS, ''+i);
-      const classList = ['panel', 'rgbstrip'];
+      const classList = ['panel', 'light_strip'];
 
       let inlineStyle = {};
       if (intensity === 0) {
@@ -35,6 +35,33 @@ export default class Lights extends React.Component {
       else {
         inlineStyle = {
           opacity: intensity / (lightArray.getMaxIntensity(this.props.sculpture.config.LIGHTS.RGB_STRIPS) || 100)
+        };
+      }
+      
+      classList.push(`panel-${color}`);
+      renderedstrips.push(<div key={i} className={classList.join(' ')} style={inlineStyle}/>);
+    }
+    return renderedstrips;
+  }
+
+  renderHighPowerLeds() {
+    const lightArray = this.props.sculpture.data.get('lights');
+    let renderedstrips = [];
+    for (let i=0;i<3;i++) {
+      const color = lightArray.getColor(this.props.sculpture.config.LIGHTS.ART_LIGHTS_STRIP, ''+i);
+      const intensity = lightArray.getIntensity(this.props.sculpture.config.LIGHTS.ART_LIGHTS_STRIP, ''+i);
+      const classList = ['panel', 'light_strip'];
+
+      let inlineStyle = {};
+      if (intensity === 0) {
+        inlineStyle = {
+          opacity: 1,
+          backgroundColor: 'black'
+        };
+      }
+      else {
+        inlineStyle = {
+          opacity: intensity / (lightArray.getMaxIntensity(this.props.sculpture.config.LIGHTS.ART_LIGHTS_STRIP) || 100)
         };
       }
       
@@ -67,7 +94,8 @@ export default class Lights extends React.Component {
     }
     return <div>
       <div>
-        {this.renderRGBStrips()}
+        <span style={{marginRight: '50px'}}>{this.renderRGBStrips()}</span>
+        <span>{this.renderHighPowerLeds()}</span>
       </div>
       <div className="lights">
         {strips}
