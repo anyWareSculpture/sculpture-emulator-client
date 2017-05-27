@@ -13,6 +13,9 @@ import ActionCreator from '../actions/app-actions';
 import {appStore, sculptureStore} from '../stores';
 import config from '../config';
 
+window.anyware = window.anyware || {};
+window.anyware.sculptureStore = sculptureStore;
+
 /**
  * @class SculptureEmulator
  * @extends React.Component
