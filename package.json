@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "@anyware/sound-assets": "^1.0.0",
-    "anyware": "*",
+    "anyware": "^1.0.7",
     "babel-polyfill": "^6.9.1",
     "brfs": "^1.4.3",
     "browser-sync": "^2.13.0",
