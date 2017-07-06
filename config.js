@@ -8,7 +8,7 @@ anyware_config = {
   ACTIVITY_TIMEOUT: 60,
 
     // The sequence of the games to be run. The first game is run on startup
-  GAMES_SEQUENCE: [ "handshake", "mole", "disk", "simon" ],
+  GAMES_SEQUENCE: [ "handshake", "simon", "mole", "disk", ],
 
   // These settings effect the default behaviour of panels outside of
   // any custom logic in any of the games
@@ -97,10 +97,10 @@ anyware_config = {
     PATTERN_LEVELS: [
       // level 0 sequence
       {
-        stripId: '2',
+        stripId: '0',
         // Each array of panel IDs is lit up one at a time
         // Each array within this array is called a "frame" in the "sequence"
-        panelSequence: ['4', '5', '6'],
+        panelSequence: ['1', '2', '3'],
         frameDelay: 750 // Overriding default frame delay to make first level slower
       },
       // level 1 sequence
