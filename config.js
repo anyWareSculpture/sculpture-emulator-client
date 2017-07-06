@@ -1,6 +1,7 @@
 anyware_config = {
   DEBUG: {
     status: true,      // Persistent status icons
+    debugView: true,   // Show game debug view
     console: false,    // Javascript console debug output
   },
   // Local sculptures will time out after this number of seconds without interaction
@@ -109,7 +110,7 @@ anyware_config = {
       },
       // level 2 sequence
       {
-        stripId: '0',
+        stripId: '2',
         panelSequence: ['3', '6', '2', '9']
       }
     ],

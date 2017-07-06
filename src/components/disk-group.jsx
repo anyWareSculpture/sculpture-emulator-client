@@ -1,5 +1,6 @@
 import React from 'react';
 import DiskView from './DiskView';
+import DebugView from './DebugView';
 import config from '../config';
 
 /**
@@ -15,6 +16,7 @@ export default class DiskGroup extends React.Component {
       <div className="disk-group">
         <div className="sculpture-screen">
           <DiskView {...config.projectionParameters}/>
+          {config.DEBUG.debugView && <DebugView {...config.projectionParameters}/>}
         </div>
       </div>
     );
