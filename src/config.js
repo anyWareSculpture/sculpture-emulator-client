@@ -17,6 +17,7 @@ class Config extends DefaultConfig {
     this.projectionParameters = {
       scale: 1,
       translate: [0, 0],
+      rotate: 0,
     };
 
   }

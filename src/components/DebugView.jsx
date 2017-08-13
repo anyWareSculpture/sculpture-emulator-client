@@ -19,10 +19,12 @@ export default class DebugView extends React.Component {
   static propTypes = {
     scale: React.PropTypes.number,
     translate: React.PropTypes.arrayOf(React.PropTypes.number),
+    rotate: React.PropTypes.number,
   };
   static defaultProps = {
     scale: 1,
     translate: [0, 0],
+    rotate: 0,
   };
 
   constructor(props) {
@@ -102,7 +104,7 @@ export default class DebugView extends React.Component {
     }}>
       <g display="none"><Sprites/></g>
       <g style={{transform: "translate(350px, 350px) rotate(155deg)"}}>
-        <g className="" style={{transform: `translate(${this.props.translate[0]}px, ${this.props.translate[1]}px) scale(${this.props.scale})`}}>
+        <g className="" style={{transform: `translate(${this.props.translate[0]}px, ${this.props.translate[1]}px) scale(${this.props.scale}) rotate(${this.props.rotate})`}}>
           {this.renderIcons()}
           {this.renderStatus(this.state.status)}
         </g>
