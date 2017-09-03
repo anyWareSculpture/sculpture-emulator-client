@@ -6,6 +6,8 @@ import {Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap';
 import Login from './login';
 import GameSelector from './game-selector';
 
+import {version} from '../../package.json';
+
 /**
  * @class TopNav
  * @extends React.Component
@@ -22,7 +24,7 @@ export default class TopNav extends React.Component {
   render() {
     return <Navbar className="navbar-inverse navbar-fixed-top">
         <Navbar.Header>
-          <Navbar.Brand><a href="#">anyWare Sculpture</a></Navbar.Brand>
+          <Navbar.Brand><a href="#">anyWare Sculpture {version}</a></Navbar.Brand>
         </Navbar.Header>
         <Nav>
           <GameSelector currentGame={this.props.currentGame}/>
