@@ -15,8 +15,17 @@ To run in development mode:
 
 ## Deployment
 
-FIXME: Deploy to github pages
+Have anyWareSculpture.github.io checked out in `../`
 
+
+    $ npm run build
+    $ cp -R public/* ../anyWareSculpture.github.io
+    $ cd ../anyWareSculpture.github.io
+    <edit package.json: bump version>
+    $ git add .
+    $ git commit -m "sync" .
+    $ git push
+    
 ## How to update disk images
 
 To update the disk images, add the files to the `images/` directory.  Run `gulp images`, or have `gulp watch` running prior to making changes.
