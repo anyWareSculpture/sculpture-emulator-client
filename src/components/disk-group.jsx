@@ -1,6 +1,7 @@
 import React from 'react';
-import DiskView from './DiskView';
+import DiskView from 'anyware/lib/views/DiskView';
 import DebugView from './DebugView';
+import {sculptureStore} from '../stores';
 import config from '../config';
 
 /**
@@ -15,7 +16,7 @@ export default class DiskGroup extends React.Component {
     return (
       <div className="disk-group">
         <div className="sculpture-screen">
-          <DiskView {...config.projectionParameters}/>
+          <DiskView store={sculptureStore} config={config} {...config.projectionParameters}/>
           {config.DEBUG.debugView && <DebugView {...config.projectionParameters}/>}
         </div>
       </div>
