@@ -1,6 +1,6 @@
 {
   "name": "sculpture-emulator-client",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "The emulator client for the anyWare sculpture",
   "main": " ",
   "directories": {
@@ -56,7 +56,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "@anyware/sound-assets": "^1.0.1",
+    "@anyware/sound-assets": "^1.2.0",
     "anyware": "^1.0.7",
     "babel-polyfill": "^6.9.1",
     "brfs": "^1.4.3",
