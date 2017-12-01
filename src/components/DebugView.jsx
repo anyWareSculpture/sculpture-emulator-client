@@ -30,8 +30,8 @@ export default class DebugView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        master: toColor(false),
-        status: '',
+      master: toColor(false),
+      status: '',
     };
   }
 
@@ -45,15 +45,15 @@ export default class DebugView extends React.Component {
   }
 
   _handleLocalChanges() {
-      this.setState({
-          master: toColor(sculptureStore.isMaster())
-      });
+    this.setState({
+      master: toColor(sculptureStore.isMaster())
+    });
   }
 
   _handleChanges() {
-      this.setState({
-          status: sculptureStore.getStatus()
-      });
+    this.setState({
+      status: sculptureStore.getStatus()
+    });
   }
 
   colorFromStates(states) {
