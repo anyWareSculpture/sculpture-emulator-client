@@ -80,7 +80,7 @@ export default class SculptureEmulator extends React.Component {
           <div className="sidebar-content">
             <div className="well">
               <Handshake
-                handshakes={sculptureStore.data.get("handshakes")}
+                handshake={sculptureStore.data.get("handshake")}
                 lights={handshakelights}
                 sculptureId={sculptureStore.me} />
             </div>

@@ -5,6 +5,7 @@ import dispatcher from '../dispatcher';
 import SculptureStore from 'anyware/lib/game-logic/sculpture-store';
 import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-action-creator';
 import PanelsActionCreator from 'anyware/lib/game-logic/actions/panels-action-creator';
+import HandshakeGameLogic from 'anyware/lib/game-logic/logic/handshake-game-logic';
 import config from '../config';
 
 /**
@@ -16,7 +17,7 @@ import config from '../config';
  */
 export default class Handshake extends React.Component {
   static propTypes = {
-    handshakes: React.PropTypes.object.isRequired,
+    handshake: React.PropTypes.object.isRequired,
     lights: React.PropTypes.object.isRequired,
     sculptureId: React.PropTypes.string.isRequired
   };
@@ -28,11 +29,15 @@ export default class Handshake extends React.Component {
   }
 
   activateHandshake() {
-    this.sculptureActions.sendHandshakeAction(this.props.sculptureId, SculptureStore.HANDSHAKE_ACTIVE);
+    this.sculptureActions.sendHandshakeAction(this.props.sculptureId, HandshakeGameLogic.HANDSHAKE_ACTIVE);
   }
 
   deactivateHandshake() {
-    this.sculptureActions.sendHandshakeAction(this.props.sculptureId, SculptureStore.HANDSHAKE_PRESENT);
+    this.sculptureActions.sendHandshakeAction(this.props.sculptureId, HandshakeGameLogic.HANDSHAKE_PRESENT);
+  }
+
+  timeoutHandshake() {
+    this.sculptureActions.sendHandshakeAction(this.props.sculptureId, HandshakeGameLogic.HANDSHAKE_OFF);
   }
 
   render() {
@@ -43,21 +48,23 @@ export default class Handshake extends React.Component {
     for (let i = 0; i < 3; i++) {
       let idx = this.props.lights.panelIds[i];
       let panel = panels.get(idx);
-      const state = this.props.handshakes.get(`sculpture${i+1}`);
-      if (state === SculptureStore.HANDSHAKE_ACTIVE) active = true;
+      const state = this.props.handshake.get('handshakes').get(`sculpture${i+1}`);
+      if (state === HandshakeGameLogic.HANDSHAKE_ACTIVE) active = true;
       reactPanels.push(
         <Panel active={false}
                enableToggle={false}
-               color={state === SculptureStore.HANDSHAKE_OFF ? 'black' : `sculpture${i+1}`}
+               color={state === HandshakeGameLogic.HANDSHAKE_OFF ? 'black' : `sculpture${i+1}`}
                intensity={100}
                key={i}
                maxintensity={100}/>
       );
     }
+    const globalState = this.props.handshake.get('state');
+    const myHandshakeState = this.props.handshake.get('handshakes').get(this.props.sculptureId);
     reactPanels.push(
       <Panel active={false}
              enableToggle={false}
-             color={active ? 'white' : 'black'}
+             color={myHandshakeState == HandshakeGameLogic.HANDSHAKE_OFF ? 'white' : active ? this.props.sculptureId : 'black'}
              intensity={100}
              key={3}
              maxintensity={100}/>
@@ -66,10 +73,9 @@ export default class Handshake extends React.Component {
     return (
       <div className="handshake">
         {reactPanels}
-        <button onMouseDown={ () => this.activateHandshake() }
-                onMouseUp={ () => this.deactivateHandshake() } >
-          Send Handshake
-        </button>
+        <button className="btn-success" onMouseDown={() => this.activateHandshake()}
+                onMouseUp={() => this.deactivateHandshake()}>Handshake</button>
+        <button className={myHandshakeState === HandshakeGameLogic.HANDSHAKE_PRESENT ? 'btn-danger' : 'btn-default disabled'} onMouseDown={() => this.timeoutHandshake()}>Timeout</button>
       </div>
     );
   }

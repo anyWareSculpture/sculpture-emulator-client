@@ -13,7 +13,7 @@ const symbols = {
   master: { states: ['master'] },
 };
 
-const toColor = (bool) => typeof bool !== 'boolean' ? 'yellow' : bool ? 'green' : 'red';
+const toColor = (bool) => typeof bool !== 'boolean' ? COLORS.SEARCHING : bool ? COLORS.OK : COLORS.FAILED;
 
 export default class DebugView extends React.Component {
   static propTypes = {
@@ -30,7 +30,7 @@ export default class DebugView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        master: false,
+        master: toColor(false),
         status: '',
     };
   }

@@ -64,7 +64,6 @@ export default class AppStore extends EventEmitter {
          return console.log(`AudioView error: ${err}`);
       }
       this.audioInitialized = true;
-      this._beginFirstGame();
       console.log('Loaded sounds');
     });
   }
@@ -142,8 +141,6 @@ export default class AppStore extends EventEmitter {
     this.client.on(StreamingClient.EVENT_DISCONNECT, this._onConnectionStatusChange.bind(this));
 
     this.client.on(StreamingClient.EVENT_ERROR, this._error.bind(this));
-
-    this.client.once(StreamingClient.EVENT_CONNECT, this._beginFirstGame.bind(this));
 
     this.client.on(StreamingClient.EVENT_STATE_UPDATE, this._onStateUpdate.bind(this));
   }
@@ -256,16 +253,4 @@ export default class AppStore extends EventEmitter {
     this.sculptureActionCreator.sendMergeState(update);
   }
 
-  _beginFirstGame() {
-    if (!this.client || !this.client.connected || !this.audioInitialized) {
-      return;
-    }
-
-    // Temporarily here until the full game transitions are implemented
-    if (sculptureStore.isPlayingNoGame) {
-      const game = config.GAMES_SEQUENCE[0];
-      this._log(`Starting ${game} game...`);
-      this.sculptureActionCreator.sendStartGame(game);
-    }
-  }
 }
