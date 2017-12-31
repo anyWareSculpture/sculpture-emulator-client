@@ -53,7 +53,7 @@ export default class AppStore extends EventEmitter {
       setTimeout(() => {
         this.client.sendStateUpdate(changes, metadata);
         this._debug(`Sent state update: ${JSON.stringify(changes)}`);
-      }, 1000);
+      }, 0);
     });
     this.sculptureActionCreator = new SculptureActionCreator(dispatcher);
 
