@@ -72,14 +72,7 @@ export default class Lights extends React.Component {
   }
 
   render() {
-    let lightArray;
-
-    if (this.props.appState.isAnimating) {
-      lightArray = this.props.appState.animPanels;
-    }
-    else {
-      lightArray = this.props.sculpture.data.get('lights');
-    }
+    const lightArray = this.props.sculpture.data.get('lights');
 
     let strips = [];
     for (let i = 0; i < 3; i++) {

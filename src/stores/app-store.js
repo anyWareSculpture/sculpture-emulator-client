@@ -11,7 +11,6 @@ import AudioView from 'anyware/lib/views/audio-view';
 
 import dispatcher from '../dispatcher';
 import Actions from '../constants/app-constants';
-import PanelAnimations from '../animations/panel-animations';
 import config from '../config';
 
 import sculptureStore from './sculpture-store';
@@ -28,7 +27,6 @@ export default class AppStore extends EventEmitter {
     super();
     this.client = null;
     this.commandLog = [];
-    this._animating = false;
 
     dispatcher.register((action) => {
 //      this._log(`Sent action: ${JSON.stringify(action)}`);
@@ -49,7 +47,6 @@ export default class AppStore extends EventEmitter {
     // Register callback to handle app Actions
     sculptureStore.on(SculptureStore.EVENT_CHANGE, (changes, metadata) => {
       this.emitChange();
-      this._doAnimation();
       setTimeout(() => {
         this.client.sendStateUpdate(changes, metadata);
         this._debug(`Sent state update: ${JSON.stringify(changes)}`);
@@ -91,17 +88,12 @@ export default class AppStore extends EventEmitter {
    * @return {Object} Object contains properties within the store that are
    *                         important to the emulator.
    *                         {
-   *                           isAnimating: {bool}
    *                           commandLog: {array} array of strings
-   *                           animPanels: {LightArray} panels for use as
-   *                                                    animation frame
    *                         }
    */
   getAppState() {
     return {
-      isAnimating: this._animating,
       commandLog: this.commandLog,
-      animPanels: this.animPanels
     };
   }
 
@@ -146,59 +138,6 @@ export default class AppStore extends EventEmitter {
   }
 
   /********* PRIVATE METHODS ********/
-
-  _doAnimation() {
-    const needsSuccessAnimation =
-      sculptureStore.data.get("status") === SculptureStore.STATUS_SUCCESS &&
-      this._animating === false;
-
-    const needsFailureAnimation =
-      sculptureStore.data.get("status") === SculptureStore.STATUS_FAILURE &&
-      this._animating === false;
-
-    if (needsSuccessAnimation) this._playSuccessAnimation();
-    else if (needsFailureAnimation) this._playFailureAnimation();
-  }
-
-    /**
-   * Triggers a success animation.
-   */
-  _playSuccessAnimation() {
-    this._log("Playing success animation...");
-    this._animating = true;
-    PanelAnimations.playSuccessAnimation(this._showAnimationFrame.bind(this),
-                                         this._animationComplete.bind(this));
-  }
-
-  /**
-   * Triggers a failure animation.
-   */
-  _playFailureAnimation() {
-    this._log("Playing failure animation...");
-    this._animating = true;
-    PanelAnimations.playFailureAnimation(this._showAnimationFrame.bind(this),
-                                         this._animationComplete.bind(this));
-  }
-
-  /**
-   * Callback when an animation is complete notifies scultpture of status change.
-   */
-  _animationComplete() {
-    this._log("Animation complete!");
-    this._animating = false;
-    this.sculptureActionCreator.sendFinishStatusAnimation();
-  }
-
-  /**
-   * Handles showing the animation frame by updating the store and
-   *   emitting a change, causing rerender.
-   * @param  {Object} panels LightArray to define current frame.
-   */
-  _showAnimationFrame(panels) {
-    // update temp panels to show next frame in an animation
-    this.animPanels = panels;
-    this.emitChange();
-  }
 
   _onConnectionStatusChange() {
     this._log(`Client Connected: ${this.client.connected}`);
