@@ -18,12 +18,12 @@ To run in development mode:
 Have anyWareSculpture.github.io checked out in `../`
 
 
+    $ <edit package.json: bump version>
     $ npm run build
     $ cp -R public/* ../anyWareSculpture.github.io
     $ cd ../anyWareSculpture.github.io
-    <edit package.json: bump version>
     $ git add .
-    $ git commit -m "sync" .
+    $ git commit -m "sync"
     $ git push
     
 ## How to update disk images
