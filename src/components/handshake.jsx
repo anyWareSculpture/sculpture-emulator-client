@@ -49,7 +49,7 @@ export default class Handshake extends React.Component {
       let idx = this.props.lights.panelIds[i];
       let panel = panels.get(idx);
       const state = this.props.handshake.get('handshakes').get(`sculpture${i+1}`);
-      if (state === HandshakeGameLogic.HANDSHAKE_ACTIVE) active = true;
+      if (state === HandshakeGameLogic.HANDSHAKE_ACTIVATING || state === HandshakeGameLogic.HANDSHAKE_ACTIVE) active = true;
       reactPanels.push(
         <Panel active={false}
                enableToggle={false}
