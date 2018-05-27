@@ -22,6 +22,8 @@ export default class GameSelector extends React.Component {
   }
 
   _onSelectionChange(game) {
+    // FIXME: This should really send a "select next game" action, and the game should only be started
+    // if we're not in global alone mode. Consider if sendStartGame() ever needs an argument.
     this.sculptureActionCreator.sendStartGame(game);
   }
 
