@@ -137,6 +137,6 @@ anyware_config = {
     // The default color to set the panels to when
     DEFAULT_SIMON_PANEL_COLOR: 'white',
     // Wait while playing final sound
-    TRANSITION_OUT_TIME: 10000
+    TRANSITION_OUT_TIME: 13000
   }
 };
