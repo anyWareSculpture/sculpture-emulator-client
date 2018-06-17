@@ -1,6 +1,6 @@
 {
   "name": "sculpture-emulator-client",
-  "version": "1.6.8",
+  "version": "1.7.1",
   "description": "The emulator client for the anyWare sculpture",
   "main": " ",
   "directories": {
