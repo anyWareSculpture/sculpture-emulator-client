@@ -8,10 +8,13 @@ class Config extends DefaultConfig {
     this.DEBUG.console = true;
 
     this.CLIENT_CONNECTION_OPTIONS = {
-      protocol: "wss",
       username: "anyware",
       password: "anyware",
-      host: "broker.shiftr.io"
+//      protocol: "ws",
+//      host: "broker.shiftr.io",
+      protocol: "wss",
+      host: "excellent-model.cloudmqtt.com",
+      port: 443,
     };
 
     this.projectionParameters = {
