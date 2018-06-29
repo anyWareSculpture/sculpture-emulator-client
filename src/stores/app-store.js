@@ -140,7 +140,7 @@ export default class AppStore extends EventEmitter {
   /********* PRIVATE METHODS ********/
 
   _onConnectionStatusChange() {
-    this._log(`Client Connected: ${this.client.connected}`);
+    this._log(`Streaming Client Connected: ${this.client.connected} (${this.client.username})`);
     if (this.client.connected) {
       this.sculptureActionCreator.sendLogin(this.client.username);
     }
