@@ -143,6 +143,9 @@ export default class AppStore extends EventEmitter {
     this._log(`Streaming Client Connected: ${this.client.connected} (${this.client.username})`);
     if (this.client.connected) {
       this.sculptureActionCreator.sendLogin(this.client.username);
+      if (this.client.username !== config.defaultSculptureId) {
+        this.sculptureActionCreator.sendRestarted();
+      }
     }
     this.emitChange();
   }
