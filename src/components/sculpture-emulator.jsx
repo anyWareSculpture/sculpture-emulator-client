@@ -26,6 +26,10 @@ window.anyware.sculptureStore = sculptureStore;
 export default class SculptureEmulator extends React.Component {
   static displayName = 'SculptureEmulator';
 
+  static propTypes = {
+    debug: React.PropTypes.bool,
+  }
+
   constructor(props) {
     super(props);
     this.state = this.getStateFromStores();
