@@ -13,7 +13,6 @@ import Disk from 'anyware/lib/game-logic/utils/disk';
  * This is primarily for testing purposes.
  */
 export default class DiskPositionForm extends React.Component {
-  static displayName = 'DiskPositionForm';
 
   constructor() {
     super();

@@ -10,7 +10,7 @@ import React from 'react';
  * recent state udpates, and actions.
  */
 export default class Status extends React.Component {
-  static displayName = 'Status';
+
   static propTypes = {
     commandLog: React.PropTypes.array,
     sculpture: React.PropTypes.object.isRequired

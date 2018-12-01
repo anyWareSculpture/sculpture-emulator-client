@@ -12,7 +12,7 @@ import dispatcher from '../dispatcher';
  * View for each light, with an optional toggle to send panel press when clicked.
  */
 export default class Panel extends React.Component {
-  static displayName = 'Panel';
+
   static propTypes = {
     active: React.PropTypes.bool,
     color: React.PropTypes.string,

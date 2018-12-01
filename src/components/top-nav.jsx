@@ -14,7 +14,7 @@ import {version} from '../../package.json';
  * @public
  */
 export default class TopNav extends React.Component {
-  static displayName = 'TopNav';
+
   static propTypes = {
     currentGame: React.PropTypes.string,
     currentUser: React.PropTypes.string,

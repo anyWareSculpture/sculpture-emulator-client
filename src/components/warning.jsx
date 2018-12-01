@@ -10,7 +10,7 @@ import React from 'react';
  * Warning box displayed at the top of the page.
  */
 export default class Warning extends React.Component {
-  static displayName = 'Warning';
+
   static propTypes = {
     msg: React.PropTypes.string.isRequired
   }

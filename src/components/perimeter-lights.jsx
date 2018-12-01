@@ -10,7 +10,7 @@ import Panel from './panel';
  * Lights positioned around the disks.
  */
 export default class PerimeterLights extends React.Component {
-  static displayName = "PerimeterLights";
+
   static PropTypes = {
     lights: React.PropTypes.object.isRequired
   };

@@ -11,7 +11,7 @@ import PanelStrip from './panel-strip';
  * sculpture data with animated lightArray data.
  */
 export default class Lights extends React.Component {
-  static displayName = 'Lights';
+
   static propTypes = {
     appState: React.PropTypes.object.isRequired,
     sculpture: React.PropTypes.object.isRequired

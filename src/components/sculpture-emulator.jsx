@@ -24,7 +24,6 @@ window.anyware.sculptureStore = sculptureStore;
  * Top level view for the application.
  */
 export default class SculptureEmulator extends React.Component {
-  static displayName = 'SculptureEmulator';
 
   static propTypes = {
     debug: React.PropTypes.bool,

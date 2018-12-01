@@ -10,7 +10,7 @@ import Panel from './panel';
  * Strip of main input panels.
  */
 export default class PanelStrip extends React.Component {
-  static displayName = 'PanelStrip';
+
   static propTypes = {
     size: React.PropTypes.string.isRequired,
     strip: React.PropTypes.object.isRequired,
