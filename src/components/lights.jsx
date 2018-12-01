@@ -14,7 +14,8 @@ export default class Lights extends React.Component {
 
   static propTypes = {
     appState: React.PropTypes.object.isRequired,
-    sculpture: React.PropTypes.object.isRequired
+    sculpture: React.PropTypes.object.isRequired,
+    debug: React.PropTypes.bool,
   };
 
   renderRGBStrips() {
@@ -86,10 +87,10 @@ export default class Lights extends React.Component {
       );
     }
     return <div>
-      <div>
+      { this.props.debus && <div>
         <span style={{marginRight: '50px'}}>{this.renderRGBStrips()}</span>
         <span>{this.renderHighPowerLeds()}</span>
-      </div>
+      </div> }
       <div className="lights">
         {strips}
       </div>
