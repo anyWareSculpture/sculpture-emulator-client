@@ -73,7 +73,6 @@ export default class SculptureEmulator extends React.Component {
         <TopNav
          currentGame={sculptureStore.data.get("currentGame")}
          currentUser={sculptureStore.me}
-         isActive={false} />
         <div className="main-content" role="main">
           <div className="game-content">
             <Lights appState={appState} sculpture={sculptureStore} />
