@@ -72,23 +72,22 @@ export default class SculptureEmulator extends React.Component {
         <TopNav
          currentGame={sculptureStore.data.get("currentGame")}
          currentUser={sculptureStore.me}
+         debug={this.props.debug} />
         <div className="main-content" role="main">
           <div className="game-content">
-            <Lights appState={appState} sculpture={sculptureStore} />
+            <Lights debug={this.props.debug} appState={appState} sculpture={sculptureStore} />
             <DiskGroup/>
+            <Handshake
+              handshake={sculptureStore.data.get("handshake")}
+              lights={handshakelights}
+              sculptureId={sculptureStore.me} />
           </div>
           <div className="sidebar-content">
-            <div className="well">
-              <Handshake
-                handshake={sculptureStore.data.get("handshake")}
-                lights={handshakelights}
-                sculptureId={sculptureStore.me} />
-            </div>
-            <div className="well">
+            { this.props.debug && <div className="well">
               <Status
                 commandLog={ this.state.appState.commandLog }
                 sculpture={sculptureStore} />
-            </div>
+            </div> }
           </div>
         </div>
         { /*warning*/ }
