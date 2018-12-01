@@ -86,7 +86,7 @@ export default class Handshake extends React.Component {
               {svgLights}	
             </g>
           </svg>
-          <button className={myHandshakeState === HandshakeGameLogic.HANDSHAKE_PRESENT ? 'btn-danger' : 'btn-default disabled'} onMouseDown={() => this.timeoutHandshake()}>Timeout</button>
+          { myHandshakeState === HandshakeGameLogic.HANDSHAKE_PRESENT && <button className='btn-danger' onMouseDown={() => this.timeoutHandshake()}>Timeout</button> }
 	</div>
     );
   }
