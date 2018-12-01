@@ -69,7 +69,7 @@ export default class SculptureEmulator extends React.Component {
     let handshakelights = sculptureStore.data.get("lights").get(config.LIGHTS.HANDSHAKE_STRIP);
 
     return (
-      <span className="sculpture-emulator">
+      <div className="sculpture-emulator">
         <TopNav
          currentGame={sculptureStore.data.get("currentGame")}
          currentUser={sculptureStore.me}
@@ -95,7 +95,7 @@ export default class SculptureEmulator extends React.Component {
           </div>
         </div>
         { /*warning*/ }
-      </span>
+      </div>
     );
   }
 }
