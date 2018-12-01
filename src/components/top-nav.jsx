@@ -18,7 +18,8 @@ export default class TopNav extends React.Component {
   static propTypes = {
     currentGame: React.PropTypes.string,
     currentUser: React.PropTypes.string,
-    isLoggedIn: React.PropTypes.bool
+    isLoggedIn: React.PropTypes.bool,
+    debug: React.PropTypes.bool,
   };
 
   render() {
@@ -27,7 +28,7 @@ export default class TopNav extends React.Component {
           <Navbar.Brand><a href="#">anyWare Sculpture {version}</a></Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <GameSelector currentGame={this.props.currentGame}/>
+          { this.props.debug && <GameSelector currentGame={this.props.currentGame}/> }
           { this.props.isLoggedIn ?
             <li className="">
               <a className="" href="#" role="button">Logout</a>
