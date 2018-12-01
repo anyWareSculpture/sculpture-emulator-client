@@ -87,7 +87,7 @@ export default class Lights extends React.Component {
       );
     }
     return <div>
-      { this.props.debus && <div>
+      { this.props.debug && <div>
         <span style={{marginRight: '50px'}}>{this.renderRGBStrips()}</span>
         <span>{this.renderHighPowerLeds()}</span>
       </div> }
