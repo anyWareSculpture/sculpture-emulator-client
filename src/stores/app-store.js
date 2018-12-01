@@ -56,9 +56,9 @@ export default class AppStore extends EventEmitter {
 
     this.audioInitialized = false;
     this.audioView = new AudioView(sculptureStore, config, dispatcher);
-    this.audioView.load(err => {
+    this.audioView.load((err) => {
       if (err) {
-         return console.log(`AudioView error: ${err}`);
+        return console.log(`AudioView error: ${err}`);
       }
       this.audioInitialized = true;
       console.log('Loaded sounds');
@@ -156,13 +156,11 @@ export default class AppStore extends EventEmitter {
    */
   _log(msg) {
     console.log(msg);
-/*
     this.commandLog.push(msg);
 
     if (this.commandLog.length > 100) {
       this.commandLog = _.takeRight(this.commandLog, 100);
     }
-*/
   }
 
   _debug(msg) {

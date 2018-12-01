@@ -61,28 +61,17 @@ export default class PanelAnimations {
   static playFailureAnimation(handleAnimationFrame, completeCallback) {
     // frames are a list of pairs for panel indices that are on
     const frames = [
-    [['0', '0'], ['2', '0'],
-            ['1', '1'],
-      ['0', '2'], ['2', '2'],
-            ['1', '3'],
-      ['0', '4'], ['2', '4'],
-            ['1', '5'],
-      ['0', '6'], ['2', '6'],
-            ['1', '7'],
-      ['0', '8'], ['2', '8'],
-            ['1', '9']
-    ]
-    // additional animation frame for longer failure animation
-    // [       ['1', '0'],
-    //   ['0','1'], ['2', '1'],
-    //         ['1', '2'],
-    //   ['0','3'], ['2', '3'],
-    //         ['1', '4'],
-    //   ['0','5'], ['2', '5'],
-    //         ['1', '6'],
-    //   ['0','7'], ['2', '7'],
-    //         ['1', '8'],
-    //   ['0','9'], ['2', '9']]
+      [['0', '0'], ['2', '0'],
+       ['1', '1'],
+       ['0', '2'], ['2', '2'],
+       ['1', '3'],
+       ['0', '4'], ['2', '4'],
+       ['1', '5'],
+       ['0', '6'], ['2', '6'],
+       ['1', '7'],
+       ['0', '8'], ['2', '8'],
+       ['1', '9']
+      ]
     ];
     this.playAnimation(
       frames,
@@ -130,7 +119,7 @@ export default class PanelAnimations {
 
       let nextFn;
       if (frameIdx < frames.length) {
-        nextFn = () => { playFrame(frameIdx + 1); };
+        nextFn = () => playFrame(frameIdx + 1);
       }
       else {
         nextFn = completeCallback;

@@ -18,7 +18,7 @@ export default class Status extends React.Component {
   render() {
     const msgs = this.props.commandLog.map((msg, idx) => <p key={idx}>{msg}</p>).reverse();
     const currentGame = this.props.sculpture.data.get("currentGame");
-    const status = this.props.sculpture.data.get("status")
+    const status = this.props.sculpture.data.get("status");
     const handshakeState = this.props.sculpture.data.get("handshake").get("state");
     const gameInfo = currentGame ? this.props.sculpture.data.get(currentGame) : null;
 

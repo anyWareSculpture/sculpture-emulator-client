@@ -1,7 +1,7 @@
 /*eslint no-extra-parens:0*/
 
 import React from 'react';
-import {Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap';
+import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 
 import Login from './login';
 import GameSelector from './game-selector';

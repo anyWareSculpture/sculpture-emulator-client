@@ -56,7 +56,7 @@ export default class SculptureEmulator extends React.Component {
   }
 
   render() {
-    let warning, controls, disks;
+    let warning;
     let client = this.state.client || {};
     let sculptureStore = this.state.sculptureStore;
     let appState = this.state.appState;

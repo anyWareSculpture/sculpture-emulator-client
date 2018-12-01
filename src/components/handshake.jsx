@@ -3,7 +3,6 @@ import React from 'react';
 import SVGPanel from './svgpanel';
 import SVGLight from './svglight';
 import dispatcher from '../dispatcher';
-import SculptureStore from 'anyware/lib/game-logic/sculpture-store';
 import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-action-creator';
 import PanelsActionCreator from 'anyware/lib/game-logic/actions/panels-action-creator';
 import HandshakeGameLogic from 'anyware/lib/game-logic/logic/handshake-game-logic';
@@ -42,8 +41,6 @@ export default class Handshake extends React.Component {
   }
 
   render() {
-    let panels = this.props.lights.get('panels');
-
     const svgCoords = [
       {cx:"350", cy:"70", r:"20"},
       {cx:"150", cy:"570", r:"20"},
@@ -53,8 +50,6 @@ export default class Handshake extends React.Component {
     let svgLights = [];
     let active = false;
     for (let i = 0; i < 3; i++) {
-      let idx = this.props.lights.panelIds[i];
-      let panel = panels.get(idx);
       const state = this.props.handshake.get('handshakes').get(`sculpture${i+1}`);
       if (state === HandshakeGameLogic.HANDSHAKE_ACTIVATING || state === HandshakeGameLogic.HANDSHAKE_ACTIVE) active = true;
       svgLights.push(
@@ -66,12 +61,11 @@ export default class Handshake extends React.Component {
       );
     }
 	
-    const globalState = this.props.handshake.get('state');
     const myHandshakeState = this.props.handshake.get('handshakes').get(this.props.sculptureId);
       
     const svgPanel = <SVGPanel cx="350" cy="350" r="220" active={false}
       enableToggle={false}
-      color={myHandshakeState == HandshakeGameLogic.HANDSHAKE_OFF ? 'white' : active ? this.props.sculptureId : 'black'}
+      color={myHandshakeState === HandshakeGameLogic.HANDSHAKE_OFF ? 'white' : active ? this.props.sculptureId : 'black'}
       intensity={100}
       key={3}
       maxIntensity={100}
@@ -81,16 +75,16 @@ export default class Handshake extends React.Component {
     return (
         <div className="sculpture-screen">
           <svg id="handshake-view" viewBox="0 0 700 700" style={{
-               position: "relative",
-               width: "100%",
-               height: "100%",
-               left: 0,
-               top: 0,
-               }}>
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            left: 0,
+            top: 0,
+          }}>
             <g id="Handshake">
-	      {svgPanel}
-	      {svgLights}
-	    </g>
+              {svgPanel}
+              {svgLights}	
+            </g>
           </svg>
           <button className={myHandshakeState === HandshakeGameLogic.HANDSHAKE_PRESENT ? 'btn-danger' : 'btn-default disabled'} onMouseDown={() => this.timeoutHandshake()}>Timeout</button>
 	</div>

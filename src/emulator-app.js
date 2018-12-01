@@ -17,5 +17,6 @@ window.onload = () => {
   config.applyLocalConfig(anyware_config);
   sculptureStore.init();
   const query = parse(window.location.search);
-  ReactDOM.render(<SculptureEmulator debug={query.debug == 'true' || false}/>, document.getElementById('content'));
-}
+  ReactDOM.render(<SculptureEmulator debug={query.debug === 'true' || false}/>, document.getElementById('content'));
+};
+
