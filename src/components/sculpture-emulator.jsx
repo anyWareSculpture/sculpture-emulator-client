@@ -7,7 +7,6 @@ import Status from './status';
 import Warning from './warning';
 import Lights from './lights';
 import DiskGroup from './disk-group';
-import DiskPositionForm from './disk-position-form';
 import ActionCreator from '../actions/app-actions';
 
 import {appStore, sculptureStore} from '../stores';
@@ -77,7 +76,6 @@ export default class SculptureEmulator extends React.Component {
           <div className="game-content">
             <Lights appState={appState} sculpture={sculptureStore} />
             <DiskGroup/>
-            <DiskPositionForm />
           </div>
           <div className="sidebar-content">
             <div className="well">
