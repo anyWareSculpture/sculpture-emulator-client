@@ -21,6 +21,6 @@ export default class Light extends React.Component {
   }
 
   render() {
-    return <circle fill={this.props.color} cx={this.props.cx} cy={this.props.cy} r={this.props.r}/>;
+    return <circle className='handshake-light' fill={this.props.color} cx={this.props.cx} cy={this.props.cy} r={this.props.r}/>;
   }
 }

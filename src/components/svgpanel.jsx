@@ -19,6 +19,7 @@ export default class SVGPanel extends React.Component {
     r: React.PropTypes.string,
     active: React.PropTypes.bool,
     color: React.PropTypes.string,
+    pulse: React.PropTypes.bool,
     intensity: React.PropTypes.number,
     maxIntensity: React.PropTypes.number,
     onMouseDown: React.PropTypes.func,
@@ -30,11 +31,11 @@ export default class SVGPanel extends React.Component {
   }
 
   render() {
-    let active = this.props.active;
-    let intensity = this.props.intensity;
-
+    const active = this.props.active;
+    const intensity = this.props.intensity;
+    const cls = this.props.pulse && 'handshake-pulse';
     return (
-      <circle fill={this.props.color} cx={this.props.cx} cy={this.props.cy} r={this.props.r}
+      <circle className={`handshake-light ${cls}`} fill={this.props.color} cx={this.props.cx} cy={this.props.cy} r={this.props.r}
         onMouseDown={this.props.onMouseDown} onMouseUp={this.props.onMouseUp} />
     );
   }

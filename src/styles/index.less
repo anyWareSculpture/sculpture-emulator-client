@@ -232,3 +232,19 @@ form {
   fill: #00C80A;
 }
 
+// Handshake lights
+
+.handshake-light {
+    transition: fill 2s;
+}
+    
+.handshake-pulse {
+  animation: pulse 3s infinite;
+  animation-timing-function: ease-in;
+}
+
+@keyframes pulse {
+  from { fill: #000; }
+  50% { fill: #FFF; }
+  to { fill: #000; }
+}
