@@ -14,14 +14,10 @@ import config from '../config';
  */
 export default class DiskGroup extends React.Component {
   render() {
-    return (
-      <div className="disk-group">
-        <div className="sculpture-screen">
-          <DiskView store={sculptureStore} config={config} {...config.projectionParameters}/>
-          <SimonView store={sculptureStore} config={config} {...config.projectionParameters}/>
-          {config.DEBUG.debugView && <DebugView {...config.projectionParameters}/>}
-        </div>
-      </div>
-    );
+    return <div className="sculpture-screen">
+        <DiskView store={sculptureStore} config={config} {...config.projectionParameters}/>
+        <SimonView store={sculptureStore} config={config} {...config.projectionParameters}/>
+        {config.DEBUG.debugView && <DebugView {...config.projectionParameters}/>}
+      </div>;
   }
 }
