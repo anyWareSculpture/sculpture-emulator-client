@@ -77,6 +77,7 @@ export default class Panel extends React.Component {
         <div className={ classList.join(' ') }
         onMouseDown={this.props.enableToggle ? mouseDownHandler.bind(this) : '' }
         onMouseUp={this.props.enableToggle ? mouseUpHandler.bind(this) : '' }
+        onMouseLeave={this.props.enableToggle ? mouseUpHandler.bind(this) : '' }
         style={inlineStyle}
         ></div>
       </div>
