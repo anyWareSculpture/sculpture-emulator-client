@@ -1,5 +1,6 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
+import PropTypes from 'prop-types';
 import ActionCreator from '../actions/app-actions';
 import _ from 'lodash';
 
@@ -12,7 +13,7 @@ import _ from 'lodash';
  */
 export default class Login extends React.Component {
   static propTypes = {
-    onSelect: React.PropTypes.func,
+    onSelect: PropTypes.func,
   }
 
   constructor(props) {

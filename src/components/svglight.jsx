@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Non-interactive SVG light
@@ -6,15 +7,16 @@ import React from 'react';
 export default class Light extends React.Component {
 
   static propTypes = {
-    active: React.PropTypes.bool,
-    color: React.PropTypes.string,
-    intensity: React.PropTypes.number,
-    maxIntensity: React.PropTypes.number,
-    panelIdx: React.PropTypes.string,
-    size: React.PropTypes.string,
-    cx: React.PropTypes.string,
-    cy: React.PropTypes.string,
-    r: React.PropTypes.string,
+    active: PropTypes.bool,
+    color: PropTypes.string,
+    pulse: PropTypes.bool,
+    intensity: PropTypes.number,
+    maxIntensity: PropTypes.number,
+    panelIdx: PropTypes.string,
+    size: PropTypes.string,
+    cx: PropTypes.string,
+    cy: PropTypes.string,
+    r: PropTypes.string,
   }
   constructor() {
     super();

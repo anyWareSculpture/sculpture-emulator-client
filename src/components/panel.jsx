@@ -1,5 +1,6 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
+import PropTypes from 'prop-types';
 import PanelsActionCreator from 'anyware/lib/game-logic/actions/panels-action-creator';
 
 import dispatcher from '../dispatcher';
@@ -14,14 +15,14 @@ import dispatcher from '../dispatcher';
 export default class Panel extends React.Component {
 
   static propTypes = {
-    active: React.PropTypes.bool,
-    color: React.PropTypes.string,
-    enableToggle: React.PropTypes.bool,
-    intensity: React.PropTypes.number,
-    maxIntensity: React.PropTypes.number,
-    panelIdx: React.PropTypes.string,
-    size: React.PropTypes.string,
-    stripIdx: React.PropTypes.string
+    active: PropTypes.bool,
+    color: PropTypes.string,
+    enableToggle: PropTypes.bool,
+    intensity: PropTypes.number,
+    maxIntensity: PropTypes.number,
+    panelIdx: PropTypes.string,
+    size: PropTypes.string,
+    stripIdx: PropTypes.string
   }
   constructor() {
     super();

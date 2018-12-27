@@ -1,6 +1,7 @@
 /*eslint no-extra-parens:0*/
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 
 import Login from './login';
@@ -11,9 +12,9 @@ import {version} from '../../package.json';
 export default class TopNav extends React.Component {
 
   static propTypes = {
-    currentGame: React.PropTypes.string,
-    currentUser: React.PropTypes.string,
-    debug: React.PropTypes.bool,
+    currentGame: PropTypes.string,
+    currentUser: PropTypes.string,
+    debug: PropTypes.bool,
   };
 
   loginMenu() {

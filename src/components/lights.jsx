@@ -1,5 +1,6 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
+import PropTypes from 'prop-types';
 import PanelStrip from './panel-strip';
 
 /**
@@ -13,9 +14,9 @@ import PanelStrip from './panel-strip';
 export default class Lights extends React.Component {
 
   static propTypes = {
-    appState: React.PropTypes.object.isRequired,
-    sculpture: React.PropTypes.object.isRequired,
-    debug: React.PropTypes.bool,
+    appState: PropTypes.object.isRequired,
+    sculpture: PropTypes.object.isRequired,
+    debug: PropTypes.bool,
   };
 
   renderRGBStrips() {

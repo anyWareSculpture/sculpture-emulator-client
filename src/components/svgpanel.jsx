@@ -1,5 +1,6 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
+import PropTypes from 'prop-types';
 import PanelsActionCreator from 'anyware/lib/game-logic/actions/panels-action-creator';
 
 import dispatcher from '../dispatcher';
@@ -14,16 +15,16 @@ import dispatcher from '../dispatcher';
 export default class SVGPanel extends React.Component {
 
   static propTypes = {
-    cx: React.PropTypes.string,
-    cy: React.PropTypes.string,
-    r: React.PropTypes.string,
-    active: React.PropTypes.bool,
-    color: React.PropTypes.string,
-    pulse: React.PropTypes.bool,
-    intensity: React.PropTypes.number,
-    maxIntensity: React.PropTypes.number,
-    onMouseDown: React.PropTypes.func,
-    onMouseUp: React.PropTypes.func,
+    cx: PropTypes.string,
+    cy: PropTypes.string,
+    r: PropTypes.string,
+    active: PropTypes.bool,
+    color: PropTypes.string,
+    pulse: PropTypes.bool,
+    intensity: PropTypes.number,
+    maxIntensity: PropTypes.number,
+    onMouseDown: PropTypes.func,
+    onMouseUp: PropTypes.func,
   }
   constructor() {
     super();

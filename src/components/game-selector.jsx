@@ -1,5 +1,6 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
+import PropTypes from 'prop-types';
 import {NavDropdown, MenuItem} from 'react-bootstrap';
 import dispatcher from '../dispatcher';
 import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-action-creator';
@@ -14,7 +15,7 @@ import SculptureActionCreator from 'anyware/lib/game-logic/actions/sculpture-act
  */
 export default class GameSelector extends React.Component {
   static propTypes = {
-    currentGame: React.PropTypes.string
+    currentGame: PropTypes.string
   }
   constructor(props) {
     super(props);

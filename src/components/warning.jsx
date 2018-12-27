@@ -1,6 +1,7 @@
 /*eslint no-extra-parens:0*/
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * @class Warning
@@ -12,7 +13,7 @@ import React from 'react';
 export default class Warning extends React.Component {
 
   static propTypes = {
-    msg: React.PropTypes.string.isRequired
+    msg: PropTypes.string.isRequired
   }
 
   render() {

@@ -1,5 +1,6 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TopNav from './top-nav';
 import Handshake from './handshake';
@@ -25,10 +26,10 @@ window.anyware.sculptureStore = sculptureStore;
 export default class SculptureEmulator extends React.Component {
 
   static propTypes = {
-    debug: React.PropTypes.bool,
+    debug: PropTypes.bool,
     // Optional username/password for auto-login
-    username: React.PropTypes.string,
-    password: React.PropTypes.string,
+    username: PropTypes.string,
+    password: PropTypes.string,
   }
 
   constructor(props) {

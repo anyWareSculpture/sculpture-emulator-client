@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SculptureStore from 'anyware/lib/game-logic/sculpture-store';
 import {sculptureStore} from '../stores';
 import Sprites from './svg/status-sprites.svg';
@@ -17,9 +18,9 @@ const toColor = (bool) => typeof bool !== 'boolean' ? COLORS.SEARCHING : bool ? 
 
 export default class DebugView extends React.Component {
   static propTypes = {
-    scale: React.PropTypes.number,
-    translate: React.PropTypes.arrayOf(React.PropTypes.number),
-    rotate: React.PropTypes.number,
+    scale: PropTypes.number,
+    translate: PropTypes.arrayOf(PropTypes.number),
+    rotate: PropTypes.number,
   };
   static defaultProps = {
     scale: 1,

@@ -1,5 +1,6 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
+import PropTypes from 'prop-types';
 import Panel from './panel';
 
 /**
@@ -12,9 +13,9 @@ import Panel from './panel';
 export default class PanelStrip extends React.Component {
 
   static propTypes = {
-    size: React.PropTypes.string.isRequired,
-    strip: React.PropTypes.object.isRequired,
-    stripIdx: React.PropTypes.string
+    size: PropTypes.string.isRequired,
+    strip: PropTypes.object.isRequired,
+    stripIdx: PropTypes.string
   }
   render() {
     let panels = this.props.strip.get('panels');

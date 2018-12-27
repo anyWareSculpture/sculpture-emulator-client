@@ -1,5 +1,6 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * @class Status
@@ -12,8 +13,8 @@ import React from 'react';
 export default class Status extends React.Component {
 
   static propTypes = {
-    commandLog: React.PropTypes.array,
-    sculpture: React.PropTypes.object.isRequired
+    commandLog: PropTypes.array,
+    sculpture: PropTypes.object.isRequired
   };
   render() {
     const msgs = this.props.commandLog.map((msg, idx) => <p key={idx}>{msg}</p>).reverse();

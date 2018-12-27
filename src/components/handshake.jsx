@@ -1,5 +1,6 @@
 /*eslint no-extra-parens:0*/
 import React from 'react';
+import PropTypes from 'prop-types';
 import SVGPanel from './svgpanel';
 import SVGLight from './svglight';
 import dispatcher from '../dispatcher';
@@ -17,10 +18,10 @@ import config from '../config';
  */
 export default class Handshake extends React.Component {
   static propTypes = {
-    handshake: React.PropTypes.object.isRequired,
-    lights: React.PropTypes.object.isRequired,
-    sculptureId: React.PropTypes.string.isRequired,
-    debug: React.PropTypes.bool,
+    handshake: PropTypes.object.isRequired,
+    lights: PropTypes.object.isRequired,
+    sculptureId: PropTypes.string.isRequired,
+    debug: PropTypes.bool,
   };
 
   constructor(props) {
