@@ -8,36 +8,34 @@ import GameSelector from './game-selector';
 
 import {version} from '../../package.json';
 
-/**
- * @class TopNav
- * @extends React.Component
- * @public
- */
 export default class TopNav extends React.Component {
 
   static propTypes = {
     currentGame: React.PropTypes.string,
     currentUser: React.PropTypes.string,
-    isLoggedIn: React.PropTypes.bool,
     debug: React.PropTypes.bool,
   };
+
+  loginMenu() {
+      if (this.props.debug) {
+        return <Nav>
+          <GameSelector currentGame={this.props.currentGame}/>
+          <NavDropdown id="login-dropdown" title={this.props.currentUser || 'Login'} bsRole="toggle">
+            <Login/>
+          </NavDropdown>
+        </Nav>
+      }
+      else {
+          return <Navbar.Text pullRight>{this.props.currentUser}</Navbar.Text>;
+      }
+  }
 
   render() {
     return <Navbar className="navbar-inverse navbar-fixed-top">
         <Navbar.Header>
           <Navbar.Brand><a href="#">anyWare Sculpture {version}</a></Navbar.Brand>
         </Navbar.Header>
-        <Nav>
-          { this.props.debug && <GameSelector currentGame={this.props.currentGame}/> }
-          { this.props.isLoggedIn ?
-            <li className="">
-              <a className="" href="#" role="button">Logout</a>
-            </li> :
-            <NavDropdown id="login-dropdown" title={this.props.currentUser || 'Login'} bsRole="toggle">
-              <Login/>
-            </NavDropdown>
-          }
-        </Nav>
+        { this.loginMenu() }
       </Navbar>;
   }
 }
