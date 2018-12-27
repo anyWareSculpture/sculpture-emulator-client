@@ -37,6 +37,7 @@ export default class AppStore extends EventEmitter {
 
       case Actions.APP_LOGIN:
         this.connectAndSetupClient(action.loginOptions);
+        if (this.audioView) this.audioView.resume();
         break;
 
       default:
