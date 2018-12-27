@@ -19,7 +19,8 @@ export default class Handshake extends React.Component {
   static propTypes = {
     handshake: React.PropTypes.object.isRequired,
     lights: React.PropTypes.object.isRequired,
-    sculptureId: React.PropTypes.string.isRequired
+    sculptureId: React.PropTypes.string.isRequired,
+    debug: React.PropTypes.bool,
   };
 
   constructor(props) {
@@ -86,10 +87,10 @@ export default class Handshake extends React.Component {
           }}>
             <g id="Handshake">
               {svgPanel}
-              {svgLights}	
+              {svgLights}
             </g>
           </svg>
-          { myHandshakeState === HandshakeGameLogic.HANDSHAKE_PRESENT && <button className='btn-danger' onMouseDown={() => this.timeoutHandshake()}>Timeout</button> }
+          { this.props.debug && myHandshakeState === HandshakeGameLogic.HANDSHAKE_PRESENT && <button className='btn-danger' onMouseDown={() => this.timeoutHandshake()}>Timeout</button> }
 	</div>
     );
   }

@@ -78,6 +78,7 @@ export default class SculptureEmulator extends React.Component {
             <Lights debug={this.props.debug} appState={appState} sculpture={sculptureStore} />
             <DiskGroup/>
             <Handshake
+              debug={this.props.debug}
               handshake={sculptureStore.data.get("handshake")}
               lights={handshakelights}
               sculptureId={sculptureStore.me} />
