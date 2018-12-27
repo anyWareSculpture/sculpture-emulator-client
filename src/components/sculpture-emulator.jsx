@@ -26,13 +26,17 @@ export default class SculptureEmulator extends React.Component {
 
   static propTypes = {
     debug: React.PropTypes.bool,
+    // Optional username/password for auto-login
+    username: React.PropTypes.string,
+    password: React.PropTypes.string,
   }
 
   constructor(props) {
     super(props);
     this.state = this.getStateFromStores();
     this.actions = new ActionCreator();
-    this.actions.connectAndSetupClient();
+    const {username, password} = this.props;
+    this.actions.connectAndSetupClient({username, password});
   }
 
   componentDidMount() {

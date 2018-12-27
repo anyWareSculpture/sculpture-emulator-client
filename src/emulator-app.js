@@ -15,12 +15,14 @@ window.onload = () => {
 
   const query = parse(window.location.search);
   const debug = query.debug === 'true';
+  const username = query.username;
+  const password = query.password;
 
   // Apply config from the global variable anyware_config
   config.applyLocalConfig(anyware_config);
   if (debug) config.DEBUG.debugView = true;
 
   sculptureStore.init();
-  ReactDOM.render(<SculptureEmulator debug={debug}/>, document.getElementById('content'));
+  ReactDOM.render(<SculptureEmulator debug={debug} username={username} password={password}/>, document.getElementById('content'));
 };
 
