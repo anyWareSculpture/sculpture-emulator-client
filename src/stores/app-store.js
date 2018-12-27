@@ -98,6 +98,14 @@ export default class AppStore extends EventEmitter {
     };
   }
 
+  resumeAudio() {
+    if (this.audioView) this.audioView.resume();
+  }
+
+  getAudioState() {
+    return this.audioView && this.audioView.state();
+  }
+
   emitChange() {
     this.emit(this.CHANGE_EVENT);
   }

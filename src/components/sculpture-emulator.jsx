@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import TopNav from './top-nav';
+import {Button} from 'react-bootstrap';
 import Handshake from './handshake';
 import Status from './status';
 import Warning from './warning';
@@ -60,17 +61,39 @@ export default class SculptureEmulator extends React.Component {
     this.setState(this.getStateFromStores);
   }
 
+  mainPage() {
+      const sculptureStore = this.state.sculptureStore;
+      const appState = this.state.appState;
+      const handshakelights = sculptureStore.data.get("lights").get(config.LIGHTS.HANDSHAKE_STRIP);
+
+      if (appStore.getAudioState() == 'running' || this.state.startButtonPressed) {
+          return <div className="game-content">
+            <Lights debug={this.props.debug} appState={appState} sculpture={sculptureStore} />
+            <DiskGroup/>
+            <Handshake
+               debug={this.props.debug}
+               handshake={sculptureStore.data.get("handshake")}
+               lights={handshakelights}
+               sculptureId={sculptureStore.me} />
+          </div>;
+      }
+      else {
+          return <div className='start-button'><Button bsSize='large' className='btn-success' onMouseDown={() => {
+              appStore.resumeAudio();
+              this.setState({startButtonPressed: true});
+          }}>Start anyWare</Button></div>;
+      }
+  }
+
   render() {
     let warning;
     let client = this.state.client || {};
-    let sculptureStore = this.state.sculptureStore;
-    let appState = this.state.appState;
+    const sculptureStore = this.state.sculptureStore;
+    const appState = this.state.appState;
 
     if (!client.connected) {
       warning = <Warning msg="disconnect" />;
     }
-
-    let handshakelights = sculptureStore.data.get("lights").get(config.LIGHTS.HANDSHAKE_STRIP);
 
     return (
       <div className="sculpture-emulator">
@@ -79,15 +102,7 @@ export default class SculptureEmulator extends React.Component {
          currentUser={sculptureStore.me}
          debug={this.props.debug} />
         <div className="main-content" role="main">
-          <div className="game-content">
-            <Lights debug={this.props.debug} appState={appState} sculpture={sculptureStore} />
-            <DiskGroup/>
-            <Handshake
-              debug={this.props.debug}
-              handshake={sculptureStore.data.get("handshake")}
-              lights={handshakelights}
-              sculptureId={sculptureStore.me} />
-          </div>
+          { this.mainPage() }
           <div className="sidebar-content">
             { this.props.debug && <div className="well">
               <Status
