@@ -50,13 +50,13 @@ export default class Handshake extends React.Component {
     ];
       
     let svgLights = [];
-    let active = false;
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) { 
       const state = this.props.handshake.get('handshakes').get(`sculpture${i+1}`);
-      if (state === HandshakeGameLogic.HANDSHAKE_ACTIVATING || state === HandshakeGameLogic.HANDSHAKE_ACTIVE) active = true;
+      const active = state === HandshakeGameLogic.HANDSHAKE_ACTIVATING || state === HandshakeGameLogic.HANDSHAKE_ACTIVE;
       svgLights.push(
-        <SVGLight {...svgCoords[i]} active={false}
+        <SVGLight {...svgCoords[i]}
                color={state === HandshakeGameLogic.HANDSHAKE_OFF ? 'black' : config.getWebColor(`sculpture${i+1}`)}
+               pulse={active}
                intensity={100}
                key={i}
                maxIntensity={100}/>
