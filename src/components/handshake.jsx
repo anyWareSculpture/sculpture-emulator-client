@@ -67,16 +67,8 @@ export default class Handshake extends React.Component {
       
     const state = this.props.handshake.get('handshakes').get(this.props.sculptureId);
     const isHandshaking = (state === HandshakeGameLogic.HANDSHAKE_ACTIVATING || state === HandshakeGameLogic.HANDSHAKE_ACTIVE);
-    const svgPanel = <SVGPanel cx="350" cy="350" r="220" active={false}
-      enableToggle={false}
-      color={myHandshakeState === HandshakeGameLogic.HANDSHAKE_OFF ? 'white' : isHandshaking ? config.getWebColor(this.props.sculptureId) : 'black'}
-      pulse={myHandshakeState === HandshakeGameLogic.HANDSHAKE_OFF}
-      intensity={100}
-      key={3}
-      maxIntensity={100}
-      onMouseDown={() => this.activateHandshake()}
-      onMouseUp={() => this.deactivateHandshake()} />;
-      
+    const handshakeColor = myHandshakeState === HandshakeGameLogic.HANDSHAKE_OFF ? 'white' : isHandshaking || state == HandshakeGameLogic.HANDSHAKE_PRESENT ? config.getWebColor(this.props.sculptureId) : 'black';
+
     return (
         <div className="sculpture-screen">
           <svg id="handshake-view" viewBox="0 0 700 700" style={{
@@ -87,8 +79,14 @@ export default class Handshake extends React.Component {
             top: 0,
           }}>
             <g id="Handshake">
-              {svgPanel}
-              {svgLights}
+              <SVGPanel cx="350" cy="350" r="220" active={false} enableToggle={false}
+                       color={handshakeColor}
+                       pulse={myHandshakeState === HandshakeGameLogic.HANDSHAKE_OFF || isHandshaking}
+                       intensity={100}
+                       maxIntensity={100}
+                       onMouseDown={() => this.activateHandshake()}
+                       onMouseUp={() => this.deactivateHandshake()} />
+            {svgLights}
             </g>
           </svg>
           { this.props.debug && myHandshakeState === HandshakeGameLogic.HANDSHAKE_PRESENT && <button className='btn-danger' onMouseDown={() => this.timeoutHandshake()}>Timeout</button> }
