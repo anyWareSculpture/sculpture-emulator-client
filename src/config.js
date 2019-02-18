@@ -10,10 +10,10 @@ class Config extends DefaultConfig {
     this.CLIENT_CONNECTION_OPTIONS = {
       username: "anyware",
       password: "anyware",
-//      protocol: "ws",
-//      host: "broker.shiftr.io",
       protocol: "wss",
-      host: "excellent-model.cloudmqtt.com",
+      host: "broker.shiftr.io",
+//      protocol: "wss",
+//      host: "excellent-model.cloudmqtt.com",
       port: 443,
     };
 
