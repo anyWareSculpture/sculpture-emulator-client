@@ -12,9 +12,7 @@ class Config extends DefaultConfig {
       password: "anyware",
       protocol: "wss",
       host: "broker.shiftr.io",
-//      protocol: "wss",
 //      host: "excellent-model.cloudmqtt.com",
-      port: 443,
     };
 
     this.projectionParameters = {
