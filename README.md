@@ -9,6 +9,11 @@ Install node.js and npm. Then run the following to install dependencies:
 
     $ npm install
 
+Note: If using local dev versions of libraries:
+
+    npm link anyware
+    npm link @anyware/sound-assets
+
 To run in development mode:
 
     $ npm run dev
